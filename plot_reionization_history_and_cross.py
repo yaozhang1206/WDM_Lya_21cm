@@ -30,6 +30,8 @@ def tanH_model(z_re,z):
 # let's grab all the data
 # grab the wdm candidates
 z, xH_3keV = pylab.loadtxt('./data/21cmFAST/xH_test_3keV.txt',unpack=True)
+z, xH_6keV = pylab.loadtxt('./data/21cmFAST/xH_test_6keV.txt',unpack=True)
+z, xH_9keV = pylab.loadtxt('./data/21cmFAST/xH_test_9keV.txt',unpack=True)
 # grab the fiducial
 z, xH_cdm = pylab.loadtxt('./data/21cmFAST/xH_test_cdm.txt',unpack=True)
 # and then we plot them
@@ -37,6 +39,8 @@ fig = plt.figure(figsize=(6,6))
 ax1 = fig.add_subplot(111)
 ax1.plot(z,xH_cdm,color='black',label=r'cdm',zorder=4)
 ax1.plot(z,xH_3keV,color='purple',label=r'm$_{\rm wdm} = 3$ keV',zorder=4)
+ax1.plot(z,xH_6keV,color='aqua',label=r'm$_{\rm wdm} = 6$ keV',zorder=4)
+ax1.plot(z,xH_9keV,color='chartreuse',label=r'm$_{\rm wdm} = 9$ keV',zorder=4)
 ax1.axvline(x=5.90,linestyle='dashed',color='navy')
 ax1.plot(z,(1.0 - tanH_model(7.68 - 0.79,z)),':',color='maroon',label=r'Planck 1-$\sigma$',zorder=5)
 ax1.plot(z,(1.0 - tanH_model(7.68 + 0.79,z)),':',color='maroon',zorder=5)
@@ -75,17 +79,25 @@ plt.show()
 # transition to cross power plot
 # grab data
 z, k, cross_3keV_a = np.loadtxt('./data/21cmFAST/cross_21cm_test_3keV.txt', unpack=True)
+z, k, cross_6keV_a = np.loadtxt('./data/21cmFAST/cross_21cm_test_6keV.txt', unpack=True)
+z, k, cross_9keV_a = np.loadtxt('./data/21cmFAST/cross_21cm_test_9keV.txt', unpack=True)
 # and fiducial
 z, k, cross_cdm_a = np.loadtxt('./data/21cmFAST/cross_21cm_test_cdm.txt', unpack=True)
 # interpolate for easiness
 z = np.unique(z)
 k = np.unique(k)
 cross_3kev = interp2d(z, k, cross_3keV_a, kind='cubic')
+cross_6kev = interp2d(z, k, cross_6keV_a, kind='cubic')
+cross_9kev = interp2d(z, k, cross_9keV_a, kind='cubic')
 cross_cdm = interp2d(z, k, cross_cdm_a, kind='cubic')
 plot_3keV = np.zeros(len(z))
+plot_6keV = np.zeros(len(z))
+plot_9keV = np.zeros(len(z))
 plot_cdm = np.zeros(len(z))
 for i in range(0,len(z)):
     plot_3keV[i] = cross_3kev(z[i], 0.12)
+    plot_6keV[i] = cross_6kev(z[i], 0.12)
+    plot_9keV[i] = cross_9kev(z[i], 0.12)
     plot_cdm[i] = cross_cdm(z[i], 0.12)
 
     
@@ -94,6 +106,9 @@ fig = plt.figure(figsize=(6,6))
 ax1 = fig.add_subplot(111)
 ax1.plot(z,plot_cdm,color='black',label=r'cdm')
 ax1.plot(z,plot_3keV,color='purple',label=r'm$_{\rm wdm} = 3$ keV')
+ax1.plot(z,plot_6keV,color='aqua',label=r'm$_{\rm wdm} = 6$ keV')
+ax1.plot(z,plot_9keV,color='chartreuse',label=r'm$_{\rm wdm} = 9$ keV')
+ax1.grid(linestyle='dotted')
 #ax1.set_xlim(5.5,12)
 ax1.set_xlabel(r'Redshift',fontsize=14)
 ax1.set_ylabel(r'$\frac{k^3}{2\pi^2} P_{m,x_{HI}}$',fontsize=14)
