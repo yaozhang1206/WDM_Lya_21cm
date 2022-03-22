@@ -172,3 +172,13 @@ class theory_P_lyas(object):
     def FluxP3D_reio_Mpc(self, z, k, mu):
         """ Returns the 3D memory of reionization in the lya forest in Mpc^3, unit for k is Mpc^-1 """
         return 2. * self.F_bias(z) * self.G_bias(z) * ( 1. + mu**2) * self._crosspower_psi(z, k)
+
+    # making things easier to plot IGM plot
+    def transparency(self, z_re,z_obs):
+        """ returns a given z_obs psi(z_re) """
+        if z_obs == 2.0:
+            return interpolate.splev(z_re, self.tck_z1, der=0)
+        if z_obs == 4.0:
+            return interpolate.splev(z_re, self.tck_z5, der=0)
+        else:
+            print('Come here and code it yourself, since I only did two redshifts :)')
