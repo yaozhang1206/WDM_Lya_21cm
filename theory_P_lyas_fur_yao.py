@@ -45,8 +45,8 @@ class theory_P_lyas(object):
         """
         The transparency tables must be in the format of each row correspond to a z_obs from 2.0 to 4.0 and each column is a z_re starting at 6.0 up to 12.0 with an additional final column giving us the bias_G, e.g.
                    # z_re=6    z_re=7                          b_G
-        #z_obs=2.    0.06299  0.02590  0.  -0.01460  -0.03112  0.084
-        #zobs=2.5    0.07600  0.03307  0.  -0.01865  -0.03723  0.146
+        #z_obs=2.    0.06299  0.02590  0.xxx  -0.01460  -0.03112  0.084
+        #zobs=2.5    0.07600  0.03307  0.xxx  -0.01865  -0.03723  0.146
             ...
         """
         # defining hyper parameters for the EoR integrals
