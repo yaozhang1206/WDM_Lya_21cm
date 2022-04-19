@@ -15,3 +15,17 @@ def do_the_thing(model):
 
 for i in range(0, len(model)):
     do_the_thing(model[i])
+
+
+xH_model = ['r1_cdm', 'r2_cdm', 'r3_cdm', 'r4_cdm', 'r1_wdm3', 'r2_wdm3', 'r3_wdm3', 'r4_wdm3', 'r1_wdm4', 'r2_wdm4', 'r3_wdm4', 'r4_wdm4', 'r1_wdm6', 'r2_wdm6', 'r3_wdm6', 'r4_wdm6', 'r1_wdm9', 'r2_wdm9', 'r3_wdm9', 'r4_wdm9']
+
+def do_the_xH_thing(xH_model):
+    file_ini = open('./data/21cmFAST/xH_'+str(xH_model)+'.txt','rt')
+    file_out = open('./data/21cmFAST/xH_21cm_'+str(xH_model)+'.txt','wt')
+    for line in file_ini:
+        file_out.write(line.replace(',',' '))
+    file_ini.close()
+    file_out.close()
+
+for i in range(0, len(xH_model)):
+    do_the_xH_thing(xH_model[i])
