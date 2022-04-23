@@ -178,7 +178,9 @@ class theory_P_lyas(object):
         """ returns a given z_obs psi(z_re) """
         if z_obs == 2.0:
             return interpolate.splev(z_re, self.tck_z1, der=0)
-        if z_obs == 4.0:
+        elif z_obs == 3.0:
+            return interpolate.splev(z_re, self.tck_z3, der=0)
+        elif z_obs == 4.0:
             return interpolate.splev(z_re, self.tck_z5, der=0)
         else:
             print('Come here and code it yourself, since I only did two redshifts :)')
