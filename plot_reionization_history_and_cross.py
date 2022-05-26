@@ -150,6 +150,115 @@ ax1.legend(loc='best')
 plt.savefig('global_history.pdf',bbox_inches="tight")
 #plt.savefig('global_history.png',bbox_inches="tight")
 plt.show()
+
+# let's also do the mini-halos
+# start with cdm
+z, mh_xH_r1_cdm = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r1_cdm.txt', unpack=True)
+z, mh_xH_r2_cdm = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r2_cdm.txt', unpack=True)
+z, mh_xH_r3_cdm = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r3_cdm.txt', unpack=True)
+z, mh_xH_r4_cdm = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r4_cdm.txt', unpack=True)
+# 3keV
+z, mh_xH_r1_3keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r1_wdm3.txt', unpack=True)
+z, mh_xH_r2_3keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r2_wdm3.txt', unpack=True)
+z, mh_xH_r3_3keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r3_wdm3.txt', unpack=True)
+z, mh_xH_r4_3keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r4_wdm3.txt', unpack=True)
+# 4keV
+z, mh_xH_r1_4keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r1_wdm4.txt', unpack=True)
+z, mh_xH_r2_4keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r2_wdm4.txt', unpack=True)
+z, mh_xH_r3_4keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r3_wdm4.txt', unpack=True)
+z, mh_xH_r4_4keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r4_wdm4.txt', unpack=True)
+# 6keV
+z, mh_xH_r1_6keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r1_wdm6.txt', unpack=True)
+z, mh_xH_r2_6keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r2_wdm6.txt', unpack=True)
+z, mh_xH_r3_6keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r3_wdm6.txt', unpack=True)
+z, mh_xH_r4_6keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r4_wdm6.txt', unpack=True)
+# 9keV
+z, mh_xH_r1_9keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r1_wdm9.txt', unpack=True)
+z, mh_xH_r2_9keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r2_wdm9.txt', unpack=True)
+z, mh_xH_r3_9keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r3_wdm9.txt', unpack=True)
+z, mh_xH_r4_9keV = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_r4_wdm9.txt', unpack=True)
+
+mh_mean_cdm  = ave(mh_xH_r1_cdm, mh_xH_r2_cdm, mh_xH_r3_cdm, mh_xH_r4_cdm)
+mh_error_cdm = std(mh_xH_r1_cdm, mh_xH_r2_cdm, mh_xH_r3_cdm, mh_xH_r4_cdm)
+mh_mean_3keV  = ave(mh_xH_r1_3keV, mh_xH_r2_3keV, mh_xH_r3_3keV, mh_xH_r4_3keV)
+mh_error_3keV = std(mh_xH_r1_3keV, mh_xH_r2_3keV, mh_xH_r3_3keV, mh_xH_r4_3keV)
+mh_mean_4keV  = ave(mh_xH_r1_4keV, mh_xH_r2_4keV, mh_xH_r3_4keV, mh_xH_r4_4keV)
+mh_error_4keV = std(mh_xH_r1_4keV, mh_xH_r2_4keV, mh_xH_r3_4keV, mh_xH_r4_4keV)
+mh_mean_6keV  = ave(mh_xH_r1_6keV, mh_xH_r2_6keV, mh_xH_r3_6keV, mh_xH_r4_6keV)
+mh_error_6keV = std(mh_xH_r1_6keV, mh_xH_r2_6keV, mh_xH_r3_6keV, mh_xH_r4_6keV)
+mh_mean_9keV  = ave(mh_xH_r1_9keV, mh_xH_r2_9keV, mh_xH_r3_9keV, mh_xH_r4_9keV)
+mh_error_9keV = std(mh_xH_r1_9keV, mh_xH_r2_9keV, mh_xH_r3_9keV, mh_xH_r4_9keV)
+
+# I am going to need to invert/interpolate for future plot
+mh_history_cdm = interp1d(mh_mean_cdm, z)
+mh_history_3keV = interp1d(mh_mean_3keV, z)
+mh_history_4keV = interp1d(mh_mean_4keV, z)
+mh_history_6keV = interp1d(mh_mean_6keV, z)
+mh_history_9keV = interp1d(mh_mean_9keV, z)
+
+arr = mean_cdm[::-1]
+arr_error = error_cdm[::-1]
+
+mh_xH_table = np.zeros((len(z),6))
+mh_xH_table[:,0] = arr[:]
+mh_xH_table[:,1] = mh_mean_cdm[:]
+mh_xH_table[:,2] = mh_mean_9keV[:]
+mh_xH_table[:,3] = mh_mean_6keV[:]
+mh_xH_table[:,4] = mh_mean_4keV[:]
+mh_xH_table[:,5] = mh_mean_3keV[:]
+mh_xH_e_table = np.zeros((len(z),6))
+mh_xH_e_table[:,0] = arr_error[:]
+mh_xH_e_table[:,1] = mh_error_cdm[:]
+mh_xH_e_table[:,2] = mh_error_9keV[:]
+mh_xH_e_table[:,3] = mh_error_6keV[:]
+mh_xH_e_table[:,4] = mh_error_4keV[:]
+mh_xH_e_table[:,5] = mh_error_3keV[:]
+
+
+
+mh_n = 6
+mh_colors = plt.cm.viridis(np.linspace(0,1,mh_n))
+mh_labels = [r'CDM', r'CDM-MH', r'm$_{\rm wdm} = 9$ keV', r'm$_{\rm wdm} = 6$ keV', r'm$_{\rm wdm} = 4$ keV', r'm$_{\rm wdm} = 3$ keV']
+
+# and then we plot them
+fig = plt.figure(figsize=(6,6))
+ax1 = fig.add_subplot(111)
+#ax1.plot(z,mean_cdm,color='black',zorder=4)
+#ax1.plot(z,mean_3keV,color='purple',zorder=4)
+#ax1.plot(z,mean_4keV,color='salmon',zorder=4)
+#ax1.plot(z,mean_6keV,color='aqua',zorder=4)
+#ax1.plot(z,mean_9keV,color='chartreuse',zorder=4)
+ax1.axvline(x=5.90,linestyle='dashed',color='navy')
+for i in range(mh_n):
+    ax1.fill_between(z, mh_xH_table[:,i] - mh_xH_e_table[:,i], mh_xH_table[:,i] + mh_xH_e_table[:,i], facecolor = mh_colors[i], edgecolor=mh_colors[i], label=mh_labels[i])
+
+
+#ax1.fill_between(z, mean_cdm - error_cdm, mean_cdm + error_cdm, facecolor='black', edgecolor='black', zorder=3, alpha=0.8, label=r'CDM')
+#ax1.fill_between(z, mean_3keV - error_3keV, mean_3keV + error_3keV, facecolor='purple', edgecolor='purple', zorder=3, alpha=0.8, label= r'm$_{\rm wdm} = 3$ keV')
+#ax1.fill_between(z, mean_4keV - error_4keV, mean_4keV + error_4keV, facecolor='salmon', edgecolor='salmon', zorder=3, alpha=0.8, label=r'm$_{\rm wdm} = 4$ keV')
+#ax1.fill_between(z, mean_6keV - error_6keV, mean_6keV + error_6keV, facecolor='aqua', edgecolor='aqua', zorder=3, alpha=0.8,label=r'm$_{\rm wdm} = 6$ keV')
+#ax1.fill_between(z, mean_9keV - error_9keV, mean_9keV + error_9keV, facecolor='chartreuse', edgecolor='chartreuse', zorder=3, alpha=0.8,label=r'm$_{\rm wdm} = 9$ keV')
+ax1.plot(z,(1.0 - tanH_model(7.68 - 0.79,z)),':',color='maroon',label=r'Planck 1-$\sigma$',zorder=5)
+ax1.plot(z,(1.0 - tanH_model(7.68 + 0.79,z)),':',color='maroon',zorder=5)
+ax1.errorbar(5.9,0.11,0.06,uplims=True,marker='o',markersize=7,label=r'Dark Pixel',zorder=6)
+ax1.errorbar(6.9,0.4,0.1,uplims=False,lolims=True,marker='s',markersize=7,label=r'Ly$\alpha$ Fraction',zorder=6)
+ax1.errorbar(6.6,0.5,0.1,uplims=True,lolims=False,marker='*',markersize=7,label=r'LAE Clustering',zorder=6)
+ax1.errorbar(7.1,0.4,yerr=np.array([[0.19,0.21]]).T,uplims=False,marker='p',markersize=7,capthick=2,capsize=4,label=r'ULAS J1120+0641',zorder=6)
+ax1.errorbar(7.5,0.21,yerr=np.array([[0.19,0.17]]).T,uplims=False,marker='v',markersize=7,capthick=2,capsize=4,label=r'ULAS J1342+0928a',zorder=6)
+ax1.errorbar(7.6,0.56,yerr=np.array([[0.18,0.21]]).T,uplims=False,marker='^',markersize=7,capthick=2,capsize=4,label=r'ULAS J1342+0928b',zorder=6)
+ax1.errorbar(7.4,0.60,yerr=np.array([[0.23,0.20]]).T,uplims=False,marker='<',markersize=7,capthick=2,capsize=4,label=r'ULAS J1342+0928c',zorder=6)
+ax1.errorbar(7.0,0.59,yerr=np.array([[0.15,0.11]]).T,xerr=0.5,uplims=False,marker='d',markersize=7,capthick=2,capsize=4,label=r'Ly$\alpha$ EWa',zorder=6)
+ax1.errorbar(7.6,0.88,yerr=np.array([[0.10,0.05]]).T,xerr=0.6,uplims=False,marker='D',markersize=7,capthick=2,capsize=4,label=r'Ly$\alpha$ EWb',zorder=6)
+ax1.errorbar(8.0,0.76,yerr=0.22,xerr=0.6,uplims=False,lolims=True,marker='X',markersize=7,capthick=2,capsize=4,label=r'Ly$\alpha$ EWc',zorder=6)
+ax1.set_xlim(5.5,12)
+ax1.set_xlabel(r'Redshift',fontsize=14)
+ax1.set_ylabel(r'Neutral hydrogen fraction',fontsize=14)
+ax1.legend(loc='best')
+plt.savefig('mh_global_history.pdf',bbox_inches="tight")
+#plt.savefig('global_history.png',bbox_inches="tight")
+plt.show()
+
+
 # ************* The xe fraction to compare with Planck's plot *************************
 
   
@@ -256,6 +365,92 @@ plt.savefig('cross_power.pdf',bbox_inches="tight")
 #plt.savefig('cross_power.png',bbox_inches="tight")
 plt.show()
 
+# and for minihalos
+# now need to grab Catalina's data
+z, k, mh_cross_r1_cdm = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r1_cdm.txt', unpack=True)
+z, k, mh_cross_r2_cdm = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r2_cdm.txt', unpack=True)
+z, k, mh_cross_r3_cdm = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r3_cdm.txt', unpack=True)
+z, k, mh_cross_r4_cdm = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r4_cdm.txt', unpack=True)
+# 3keV
+z, k, mh_cross_r1_3keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r1_wdm3.txt', unpack=True)
+z, k, mh_cross_r2_3keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r2_wdm3.txt', unpack=True)
+z, k, mh_cross_r3_3keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r3_wdm3.txt', unpack=True)
+z, k, mh_cross_r4_3keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r4_wdm3.txt', unpack=True)
+# 4keV
+z, k, mh_cross_r1_4keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r1_wdm4.txt', unpack=True)
+z, k, mh_cross_r2_4keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r2_wdm4.txt', unpack=True)
+z, k, mh_cross_r3_4keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r3_wdm4.txt', unpack=True)
+z, k, mh_cross_r4_4keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r4_wdm4.txt', unpack=True)
+# 6keV
+z, k, mh_cross_r1_6keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r1_wdm6.txt', unpack=True)
+z, k, mh_cross_r2_6keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r2_wdm6.txt', unpack=True)
+z, k, mh_cross_r3_6keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r3_wdm6.txt', unpack=True)
+z, k, mh_cross_r4_6keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r4_wdm6.txt', unpack=True)
+# 9keV
+z, k, mh_cross_r1_9keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r1_wdm9.txt', unpack=True)
+z, k, mh_cross_r2_9keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r2_wdm9.txt', unpack=True)
+z, k, mh_cross_r3_9keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r3_wdm9.txt', unpack=True)
+z, k, mh_cross_r4_9keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r4_wdm9.txt', unpack=True)
+z = np.unique(z)
+k = np.unique(k)
+# get errors and average
+mh_cross_mean_cdm = ave(mh_cross_r1_cdm, mh_cross_r2_cdm, mh_cross_r3_cdm, mh_cross_r4_cdm)
+mh_cross_mean_3keV = ave(mh_cross_r1_3keV, mh_cross_r2_3keV, mh_cross_r3_3keV, mh_cross_r4_3keV)
+mh_cross_mean_4keV = ave(mh_cross_r1_4keV, mh_cross_r2_4keV, mh_cross_r3_4keV, mh_cross_r4_4keV)
+mh_cross_mean_6keV = ave(mh_cross_r1_6keV, mh_cross_r2_6keV, mh_cross_r3_6keV, mh_cross_r4_6keV)
+mh_cross_mean_9keV = ave(mh_cross_r1_9keV, mh_cross_r2_9keV, mh_cross_r3_9keV, mh_cross_r4_9keV)
+mh_cross_error_cdm = std(mh_cross_r1_cdm, mh_cross_r2_cdm, mh_cross_r3_cdm, mh_cross_r4_cdm)
+mh_cross_error_3keV = std(mh_cross_r1_3keV, mh_cross_r2_3keV, mh_cross_r3_3keV, mh_cross_r4_3keV)
+mh_cross_error_4keV = std(mh_cross_r1_4keV, mh_cross_r2_4keV, mh_cross_r3_4keV, mh_cross_r4_4keV)
+mh_cross_error_6keV = std(mh_cross_r1_6keV, mh_cross_r2_6keV, mh_cross_r3_6keV, mh_cross_r4_6keV)
+mh_cross_error_9keV = std(mh_cross_r1_9keV, mh_cross_r2_9keV, mh_cross_r3_9keV, mh_cross_r4_9keV)
+# interpolate
+mh_p_mean_cdm = interp2d(z, k, mh_cross_mean_cdm, kind='cubic')
+mh_p_mean_3keV = interp2d(z, k, mh_cross_mean_3keV, kind='cubic')
+mh_p_mean_4keV = interp2d(z, k, mh_cross_mean_4keV, kind='cubic')
+mh_p_mean_6keV = interp2d(z, k, mh_cross_mean_6keV, kind='cubic')
+mh_p_mean_9keV = interp2d(z, k, mh_cross_mean_9keV, kind='cubic')
+mh_p_error_cdm = interp2d(z, k, mh_cross_error_cdm, kind='cubic')
+mh_p_error_3keV = interp2d(z, k, mh_cross_error_3keV, kind='cubic')
+mh_p_error_4keV = interp2d(z, k, mh_cross_error_4keV, kind='cubic')
+mh_p_error_6keV = interp2d(z, k, mh_cross_error_6keV, kind='cubic')
+mh_p_error_9keV = interp2d(z, k, mh_cross_error_9keV, kind='cubic')
+
+k_test = 0.12
+
+mh_plot_cross = np.zeros((len(z),6))
+mh_plot_e_cross = np.zeros((len(z),6))
+for i in range(0,len(z)):
+    mh_plot_cross[i,5] = mh_p_mean_3keV(z[i], k_test)
+    mh_plot_cross[i,4] = mh_p_mean_4keV(z[i], k_test)
+    mh_plot_cross[i,3] = mh_p_mean_6keV(z[i], k_test)
+    mh_plot_cross[i,2] = mh_p_mean_9keV(z[i], k_test)
+    mh_plot_cross[i,1] = mh_p_mean_cdm(z[i], k_test)
+    mh_plot_cross[i,0] = p_mean_cdm(z[i], k_test)
+    mh_plot_e_cross[i,0] = p_error_cdm(z[i], k_test)
+    mh_plot_e_cross[i,1] = mh_p_error_cdm(z[i], k_test)
+    mh_plot_e_cross[i,5] = mh_p_error_3keV(z[i], k_test)
+    mh_plot_e_cross[i,4] = mh_p_error_4keV(z[i], k_test)
+    mh_plot_e_cross[i,3] = mh_p_error_6keV(z[i], k_test)
+    mh_plot_e_cross[i,2] = mh_p_error_9keV(z[i], k_test)
+
+# and plot
+fig = plt.figure(figsize=(6,6))
+ax1 = fig.add_subplot(111)
+
+for i in range(mh_n):
+    ax1.fill_between(z, mh_plot_cross[:,i] - mh_plot_e_cross[:,i], mh_plot_cross[:,i] + mh_plot_e_cross[:,i], facecolor = mh_colors[i], edgecolor=mh_colors[i], label=mh_labels[i])
+ax1.grid(linestyle='dotted')
+ax1.set_xlim(5.5,12)
+ax1.set_xlabel(r'Redshift',fontsize=14)
+ax1.set_ylabel(r'$\frac{k^3}{2\pi^2} P_{m,x_{HI}}$',fontsize=14)
+ax1.legend(loc=4)
+plt.savefig('mh_cross_power.pdf',bbox_inches="tight")
+#plt.savefig('cross_power.png',bbox_inches="tight")
+plt.show()
+
+
+#sys.exit()
 
 
 #plot_3keV = np.zeros(len(z))
@@ -309,7 +504,8 @@ plt.show()
 
 
 
-sys.exit()
+
+#sys.exit()
 # let's do midpoint, 75 percent, and 25 percent of reionization
 
 # Also, I want a plot as function of wavenumber
@@ -318,27 +514,225 @@ z_50_3keV = history_3keV(0.5)
 z_50_4keV = history_4keV(0.5)
 z_50_6keV = history_6keV(0.5)
 z_50_9keV = history_9keV(0.5)
-plot_3keV = np.zeros(len(k))
-plot_4keV = np.zeros(len(k))
-plot_6keV = np.zeros(len(k))
-plot_9keV = np.zeros(len(k))
-plot_cdm = np.zeros(len(k))
-plot_e_cdm = np.zeros(len(k))
-plot_e_3keV = np.zeros(len(k))
-plot_e_4keV = np.zeros(len(k))
-plot_e_6keV = np.zeros(len(k))
-plot_e_9keV = np.zeros(len(k))
+kplot_mid = np.zeros((len(k), 5))
+kerror_mid = np.zeros((len(k), 5))
 for i in range(0,len(k)):
-    plot_3keV[i] = p_mean_3keV(z_50_3keV, k[i])
-    plot_4keV[i] = p_mean_4keV(z_50_4keV, k[i])
-    plot_6keV[i] = p_mean_6keV(z_50_6keV, k[i])
-    plot_9keV[i] = p_mean_9keV(z_50_9keV, k[i])
-    plot_cdm[i] = p_mean_cdm(z_50_cdm, k[i])
-    plot_e_cdm[i] = p_error_cdm(z_50_cdm, k[i])
-    plot_e_3keV[i] = p_error_3keV(z_50_3keV, k[i])
-    plot_e_4keV[i] = p_error_3keV(z_50_4keV, k[i])
-    plot_e_6keV[i] = p_error_3keV(z_50_6keV, k[i])
-    plot_e_9keV[i] = p_error_3keV(z_50_9keV, k[i])
+    kplot_mid[i,0] = p_mean_cdm(z_50_cdm, k[i])
+    kplot_mid[i,1] = p_mean_9keV(z_50_9keV, k[i])
+    kplot_mid[i,2] = p_mean_6keV(z_50_6keV, k[i])
+    kplot_mid[i,3] = p_mean_4keV(z_50_4keV, k[i])
+    kplot_mid[i,4] = p_mean_3keV(z_50_3keV, k[i])
+    kerror_mid[i,0] = p_error_cdm(z_50_cdm, k[i])
+    kerror_mid[i,1] = p_error_9keV(z_50_9keV, k[i])
+    kerror_mid[i,2] = p_error_6keV(z_50_6keV, k[i])
+    kerror_mid[i,3] = p_error_4keV(z_50_4keV, k[i])
+    kerror_mid[i,4] = p_error_3keV(z_50_3keV, k[i])
+
+fig = plt.figure(figsize=(6,6))
+ax1 = fig.add_subplot(111)
+for i in range(n):
+    ax1.fill_between(k, kplot_mid[:,i] - kerror_mid[:,i], kplot_mid[:,i] + kerror_mid[:,i], facecolor = colors[i], edgecolor=colors[i], label=labels[i])
+ax1.set_xscale('log')
+ax1.grid(linestyle='dotted')
+ax1.legend(loc='best')
+ax1.set_title(r'$x_{\rm HI} = 0.50$',fontsize=14)
+ax1.set_xlabel(r'Wavenumber',fontsize=14)
+ax1.set_ylabel(r'$\frac{k^3}{2\pi^2} P_{m,x_{HI}}$',fontsize=14)
+plt.savefig('cross_power_func_k_50.pdf',bbox_inches="tight")
+plt.show()
+
+
+
+mh_z_50_cdm  = mh_history_cdm(0.5)
+mh_z_50_3keV = mh_history_3keV(0.5)
+mh_z_50_4keV = mh_history_4keV(0.5)
+mh_z_50_6keV = mh_history_6keV(0.5)
+mh_z_50_9keV = mh_history_9keV(0.5)
+mh_kplot_mid = np.zeros((len(k), 6))
+mh_kerror_mid = np.zeros((len(k), 6))
+for i in range(0,len(k)):
+    mh_kplot_mid[i,0] = p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,1] = mh_p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,2] = mh_p_mean_9keV(mh_z_50_9keV, k[i])
+    mh_kplot_mid[i,3] = mh_p_mean_6keV(mh_z_50_6keV, k[i])
+    mh_kplot_mid[i,4] = mh_p_mean_4keV(mh_z_50_4keV, k[i])
+    mh_kplot_mid[i,5] = mh_p_mean_3keV(mh_z_50_3keV, k[i])
+    mh_kerror_mid[i,0] = p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,1] = mh_p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,2] = mh_p_error_9keV(mh_z_50_9keV, k[i])
+    mh_kerror_mid[i,3] = mh_p_error_6keV(mh_z_50_6keV, k[i])
+    mh_kerror_mid[i,4] = mh_p_error_4keV(mh_z_50_4keV, k[i])
+    mh_kerror_mid[i,5] = mh_p_error_3keV(mh_z_50_3keV, k[i])
+
+fig = plt.figure(figsize=(6,6))
+ax1 = fig.add_subplot(111)
+for i in range(mh_n):
+    ax1.fill_between(k, mh_kplot_mid[:,i] - mh_kerror_mid[:,i], mh_kplot_mid[:,i] + mh_kerror_mid[:,i], facecolor = mh_colors[i], edgecolor=mh_colors[i], label=mh_labels[i])
+ax1.set_xscale('log')
+ax1.grid(linestyle='dotted')
+ax1.legend(loc='best')
+ax1.set_title(r'$x_{\rm HI} = 0.50$',fontsize=14)
+ax1.set_xlabel(r'Wavenumber',fontsize=14)
+ax1.set_ylabel(r'$\frac{k^3}{2\pi^2} P_{m,x_{HI}}$',fontsize=14)
+plt.savefig('mh_cross_power_func_k_50.pdf',bbox_inches="tight")
+plt.show()
+
+
+""" now computing the 25 per cent """
+
+z_50_cdm = history_cdm(0.25)
+z_50_3keV = history_3keV(0.25)
+z_50_4keV = history_4keV(0.25)
+z_50_6keV = history_6keV(0.25)
+z_50_9keV = history_9keV(0.25)
+kplot_mid = np.zeros((len(k), 5))
+kerror_mid = np.zeros((len(k), 5))
+for i in range(0,len(k)):
+    kplot_mid[i,0] = p_mean_cdm(z_50_cdm, k[i])
+    kplot_mid[i,1] = p_mean_9keV(z_50_9keV, k[i])
+    kplot_mid[i,2] = p_mean_6keV(z_50_6keV, k[i])
+    kplot_mid[i,3] = p_mean_4keV(z_50_4keV, k[i])
+    kplot_mid[i,4] = p_mean_3keV(z_50_3keV, k[i])
+    kerror_mid[i,0] = p_error_cdm(z_50_cdm, k[i])
+    kerror_mid[i,1] = p_error_9keV(z_50_9keV, k[i])
+    kerror_mid[i,2] = p_error_6keV(z_50_6keV, k[i])
+    kerror_mid[i,3] = p_error_4keV(z_50_4keV, k[i])
+    kerror_mid[i,4] = p_error_3keV(z_50_3keV, k[i])
+
+fig = plt.figure(figsize=(6,6))
+ax1 = fig.add_subplot(111)
+for i in range(n):
+    ax1.fill_between(k, kplot_mid[:,i] - kerror_mid[:,i], kplot_mid[:,i] + kerror_mid[:,i], facecolor = colors[i], edgecolor=colors[i], label=labels[i])
+ax1.set_xscale('log')
+ax1.grid(linestyle='dotted')
+ax1.legend(loc='best')
+ax1.set_title(r'$x_{\rm HI} = 0.25$',fontsize=14)
+ax1.set_xlabel(r'Wavenumber',fontsize=14)
+ax1.set_ylabel(r'$\frac{k^3}{2\pi^2} P_{m,x_{HI}}$',fontsize=14)
+plt.savefig('cross_power_func_k_25.pdf',bbox_inches="tight")
+plt.show()
+
+
+
+mh_z_50_cdm  = mh_history_cdm(0.25)
+mh_z_50_3keV = mh_history_3keV(0.25)
+mh_z_50_4keV = mh_history_4keV(0.25)
+mh_z_50_6keV = mh_history_6keV(0.25)
+mh_z_50_9keV = mh_history_9keV(0.25)
+mh_kplot_mid = np.zeros((len(k), 6))
+mh_kerror_mid = np.zeros((len(k), 6))
+for i in range(0,len(k)):
+    mh_kplot_mid[i,0] = p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,1] = mh_p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,2] = mh_p_mean_9keV(mh_z_50_9keV, k[i])
+    mh_kplot_mid[i,3] = mh_p_mean_6keV(mh_z_50_6keV, k[i])
+    mh_kplot_mid[i,4] = mh_p_mean_4keV(mh_z_50_4keV, k[i])
+    mh_kplot_mid[i,5] = mh_p_mean_3keV(mh_z_50_3keV, k[i])
+    mh_kerror_mid[i,0] = p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,1] = mh_p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,2] = mh_p_error_9keV(mh_z_50_9keV, k[i])
+    mh_kerror_mid[i,3] = mh_p_error_6keV(mh_z_50_6keV, k[i])
+    mh_kerror_mid[i,4] = mh_p_error_4keV(mh_z_50_4keV, k[i])
+    mh_kerror_mid[i,5] = mh_p_error_3keV(mh_z_50_3keV, k[i])
+
+fig = plt.figure(figsize=(6,6))
+ax1 = fig.add_subplot(111)
+for i in range(mh_n):
+    ax1.fill_between(k, mh_kplot_mid[:,i] - mh_kerror_mid[:,i], mh_kplot_mid[:,i] + mh_kerror_mid[:,i], facecolor = mh_colors[i], edgecolor=mh_colors[i], label=mh_labels[i])
+ax1.set_xscale('log')
+ax1.grid(linestyle='dotted')
+ax1.legend(loc='best')
+ax1.set_title(r'$x_{\rm HI} = 0.25$',fontsize=14)
+ax1.set_xlabel(r'Wavenumber',fontsize=14)
+ax1.set_ylabel(r'$\frac{k^3}{2\pi^2} P_{m,x_{HI}}$',fontsize=14)
+plt.savefig('mh_cross_power_func_k_25.pdf',bbox_inches="tight")
+plt.show()
+
+""" now computing the 75 per cent """
+
+z_50_cdm = history_cdm(0.75)
+z_50_3keV = history_3keV(0.75)
+z_50_4keV = history_4keV(0.75)
+z_50_6keV = history_6keV(0.75)
+z_50_9keV = history_9keV(0.75)
+kplot_mid = np.zeros((len(k), 5))
+kerror_mid = np.zeros((len(k), 5))
+for i in range(0,len(k)):
+    kplot_mid[i,0] = p_mean_cdm(z_50_cdm, k[i])
+    kplot_mid[i,1] = p_mean_9keV(z_50_9keV, k[i])
+    kplot_mid[i,2] = p_mean_6keV(z_50_6keV, k[i])
+    kplot_mid[i,3] = p_mean_4keV(z_50_4keV, k[i])
+    kplot_mid[i,4] = p_mean_3keV(z_50_3keV, k[i])
+    kerror_mid[i,0] = p_error_cdm(z_50_cdm, k[i])
+    kerror_mid[i,1] = p_error_9keV(z_50_9keV, k[i])
+    kerror_mid[i,2] = p_error_6keV(z_50_6keV, k[i])
+    kerror_mid[i,3] = p_error_4keV(z_50_4keV, k[i])
+    kerror_mid[i,4] = p_error_3keV(z_50_3keV, k[i])
+
+fig = plt.figure(figsize=(6,6))
+ax1 = fig.add_subplot(111)
+for i in range(n):
+    ax1.fill_between(k, kplot_mid[:,i] - kerror_mid[:,i], kplot_mid[:,i] + kerror_mid[:,i], facecolor = colors[i], edgecolor=colors[i], label=labels[i])
+ax1.set_xscale('log')
+ax1.grid(linestyle='dotted')
+ax1.legend(loc='best')
+ax1.set_title(r'$x_{\rm HI} = 0.75$',fontsize=14)
+ax1.set_xlabel(r'Wavenumber',fontsize=14)
+ax1.set_ylabel(r'$\frac{k^3}{2\pi^2} P_{m,x_{HI}}$',fontsize=14)
+plt.savefig('cross_power_func_k_75.pdf',bbox_inches="tight")
+plt.show()
+
+
+
+mh_z_50_cdm  = mh_history_cdm(0.75)
+mh_z_50_3keV = mh_history_3keV(0.75)
+mh_z_50_4keV = mh_history_4keV(0.75)
+mh_z_50_6keV = mh_history_6keV(0.75)
+mh_z_50_9keV = mh_history_9keV(0.75)
+mh_kplot_mid = np.zeros((len(k), 6))
+mh_kerror_mid = np.zeros((len(k), 6))
+for i in range(0,len(k)):
+    mh_kplot_mid[i,0] = p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,1] = mh_p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,2] = mh_p_mean_9keV(mh_z_50_9keV, k[i])
+    mh_kplot_mid[i,3] = mh_p_mean_6keV(mh_z_50_6keV, k[i])
+    mh_kplot_mid[i,4] = mh_p_mean_4keV(mh_z_50_4keV, k[i])
+    mh_kplot_mid[i,5] = mh_p_mean_3keV(mh_z_50_3keV, k[i])
+    mh_kerror_mid[i,0] = p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,1] = mh_p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,2] = mh_p_error_9keV(mh_z_50_9keV, k[i])
+    mh_kerror_mid[i,3] = mh_p_error_6keV(mh_z_50_6keV, k[i])
+    mh_kerror_mid[i,4] = mh_p_error_4keV(mh_z_50_4keV, k[i])
+    mh_kerror_mid[i,5] = mh_p_error_3keV(mh_z_50_3keV, k[i])
+
+fig = plt.figure(figsize=(6,6))
+ax1 = fig.add_subplot(111)
+for i in range(mh_n):
+    ax1.fill_between(k, mh_kplot_mid[:,i] - mh_kerror_mid[:,i], mh_kplot_mid[:,i] + mh_kerror_mid[:,i], facecolor = mh_colors[i], edgecolor=mh_colors[i], label=mh_labels[i])
+ax1.set_xscale('log')
+ax1.grid(linestyle='dotted')
+ax1.legend(loc='best')
+ax1.set_title(r'$x_{\rm HI} = 0.75$',fontsize=14)
+ax1.set_xlabel(r'Wavenumber',fontsize=14)
+ax1.set_ylabel(r'$\frac{k^3}{2\pi^2} P_{m,x_{HI}}$',fontsize=14)
+plt.savefig('mh_cross_power_func_k_75.pdf',bbox_inches="tight")
+plt.show()
+
+
+
+
+
+
+
+sys.exit()
+
+
+
+
+
+
+
+
 # and plot
 fig = plt.figure(figsize=(6,6))
 ax1 = fig.add_subplot(111)
