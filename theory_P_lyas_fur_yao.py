@@ -4,6 +4,7 @@ from scipy.interpolate import interp2d
 from scipy.interpolate import interp1d
 from scipy import interpolate
 from scipy.integrate import quad
+from scipy.special import spherical_jn
 
 """
     Class in charge of building the theory models for base Lya and memory of reio in Lya with/without WDM.
@@ -54,6 +55,15 @@ class theory_P_lyas(object):
         self.N_total = 291
         # call constructor
         self._setup_theory()
+        # setting up some hyper-parameters for correlation
+        self.pre_factor_ell0 = 1. / (2. * np.pi**2)
+        self.pre_factor_ell2 = -1. / (2. * np.pi**2)
+        self.pre_factor_ell4 = self.pre_factor_ell0
+        self.k_min = 0.0001
+        self.k_max = 10.
+        self.n = 5000.
+        self.w = (self.k_max - self.k_min) / self.n # width of the intervals
+        self.k_trap = np.linspace(self.k_min, self.k_max, int(self.n)+1)
         
     # defining some useful functions
     def hubble(self,z):
@@ -162,6 +172,25 @@ class theory_P_lyas(object):
                     crosspower_psi_array[b+len(self.k_21cm)*4] = self.crosspower_z5(5.90,self.k_21cm[b])
         # time to interpolate
         self._crosspower_psi = interp2d(self.z_obs_array, self.k_21cm, crosspower_psi_array, kind='cubic')
+        # for the bias for large scales
+        k_lows = [5.263151e-02, 7.314235e-02, 1.025928e-01]
+        bias_re_array_z1 = np.zeros(len(k_lows))
+        bias_re_array_z2 = np.zeros(len(k_lows))
+        bias_re_array_z3 = np.zeros(len(k_lows))
+        bias_re_array_z4 = np.zeros(len(k_lows))
+        bias_re_array_z5 = np.zeros(len(k_lows))
+        for i in range(0, len(k_lows)):
+            bias_re_array_z1[i] = self._crosspower_psi(2.0, k_lows[i]) / self.pm.P_m_WDM_Mpc(k_lows[i] / self.h, 2.0)
+            bias_re_array_z2[i] = self._crosspower_psi(2.5, k_lows[i]) / self.pm.P_m_WDM_Mpc(k_lows[i] / self.h, 2.5)
+            bias_re_array_z3[i] = self._crosspower_psi(3.0, k_lows[i]) / self.pm.P_m_WDM_Mpc(k_lows[i] / self.h, 3.0)
+            bias_re_array_z4[i] = self._crosspower_psi(3.5, k_lows[i]) / self.pm.P_m_WDM_Mpc(k_lows[i] / self.h, 3.5)
+            bias_re_array_z5[i] = self._crosspower_psi(4.0, k_lows[i]) / self.pm.P_m_WDM_Mpc(k_lows[i] / self.h, 4.0)
+        bias_re_append = np.append(bias_re_array_z1, bias_re_array_z2)
+        bias_re_append = np.append(bias_re_append, bias_re_array_z3)
+        bias_re_append = np.append(bias_re_append, bias_re_array_z4)
+        bias_re_append = np.append(bias_re_append, bias_re_array_z5)
+        # interpolate
+        self._bias_re = interp2d(self.z_obs_array, k_lows, bias_re_append)
         
     # time to focus on the main results of this class
     def FluxP3D_lya_Mpc(self, z, k, mu):
@@ -184,3 +213,126 @@ class theory_P_lyas(object):
             return interpolate.splev(z_re, self.tck_z5, der=0)
         else:
             print('Come here and code it yourself, since I only did two redshifts :)')
+
+    def psi_power(self, z, k_Mpc):
+        """ using this to include the biasing procedure """
+        k_min = 7.314235e-02
+        k_max = 10.
+        k_cut = 5.263151e-02
+        if k_Mpc <= k_max and k_Mpc >= k_min:
+            return self._crosspower_psi(z, k_Mpc)
+        elif k_Mpc > k_max:
+            return 0. # force to disapear at small scales
+        elif k_Mpc >= k_cut and k_Mpc < k_min:
+            bias_scaling = self._bias_re(z, k_Mpc)
+            return bias_scaling * self.pm.P_m_WDM_Mpc(k_Mpc / self.h, z)
+        elif k_Mpc < k_cut:
+            bias_scaling = self._bias_re(z, k_cut)
+            return bias_scaling * self.pm.P_m_WDM_Mpc(k_Mpc / self.h, z)
+        
+    def P_mu0_Mpc(self, z, k_Mpc, reio):
+        """ Analytic formula for the mu^0 term in Mpc^3 """
+        P = self.F_bias(z)**2 * self.pm.P_m_WDM_Mpc(k_Mpc / self.h, z)
+        if reio == False:
+            return P
+        else:
+            P_reio = 2. * self.F_bias(z) * self.G_bias(z) * self.psi_power(z, k_Mpc)
+            return P + P_reio
+    
+    def P_mu2_Mpc(self, z, k_Mpc, reio):
+        """ Analytic formula for the quadrupole term in Mpc^3 """
+        P = self.F_bias(z)**2 * self.beta_rsd * self.pm.P_m_WDM_Mpc(k_Mpc / self.h, z)
+        if reio == False:
+            return P
+        else:
+            P_reio = self.F_bias(z) * self.G_bias(z) * self.beta_rsd * self.psi_power(z, k_Mpc)
+            return P + P_reio
+        
+    def P_mu4_Mpc(self, z, k_Mpc):
+        """ Analytic formula for the hexadecapole in Mpc^3 """
+        P = self.F_bias(z)**2 * self.beta_rsd**2 * self.pm.P_m_WDM_Mpc(k_Mpc / self.h, z)
+        return P
+    
+    # and now for the correlation function
+    def integ_ell0(self, k_Mpc, r_Mpc, z):
+        # no-reio monopole
+        P_ell0 = self.P_mu0_Mpc(z, k_Mpc, False) + 2. * self.P_mu2_Mpc(z, k_Mpc, False) / 3. + self.P_mu4_Mpc(z, k_Mpc) / 5.
+        return pow(k_Mpc, 2) * spherical_jn(0, k_Mpc * r_Mpc, False) * P_ell0
+    
+    def reio_integ_ell0(self, k_Mpc, r_Mpc, z):
+        # include reio monopole
+        reio_P_ell0 = self.P_mu0_Mpc(z, k_Mpc, True) + 2. * self.P_mu2_Mpc(z, k_Mpc, True) / 3. + self.P_mu4_Mpc(z, k_Mpc) / 5.
+        return pow(k_Mpc, 2) * spherical_jn(0, k_Mpc * r_Mpc, False) * reio_P_ell0
+    
+    def integ_ell2(self, k_Mpc, r_Mpc, z):
+        # no-reio quadrupole
+        P_ell2 = 4. * self.P_mu2_Mpc(z, k_Mpc, False) / 3. + 4. * self.P_mu4_Mpc(z, k_Mpc) / 7.
+        return pow(k_Mpc, 2) * spherical_jn(2, k_Mpc * r_Mpc, False) * P_ell2
+        
+    def reio_integ_ell2(self, k_Mpc, r_Mpc, z):
+        # include reio quadrupole
+        reio_P_ell2 = 4. * self.P_mu2_Mpc(z, k_Mpc, True) / 3. + 4. * self.P_mu4_Mpc(z, k_Mpc) / 7.
+        return pow(k_Mpc, 2) * spherical_jn(2, k_Mpc * r_Mpc, False) * reio_P_ell2
+    
+    def integ_ell4(self, k_Mpc, r_Mpc, z):
+        # only component
+        P_ell4 = 8. * self.P_mu4_Mpc(z, k_Mpc) / 35.
+        return pow(k_Mpc, 2) * spherical_jn(4, k_Mpc * r_Mpc, False) * P_ell4
+        
+    # setting up trapezoidal, it is kind of annoying so combine into a single function
+    def correlation_components_Mpc(self, r_Mpc, z):
+        # integrate and it throws them in order: ell0, ell2, ell4, reio_ell0, reio_ell2
+        ell0 = np.zeros(len(self.k_trap))
+        ell2 = np.zeros(len(self.k_trap))
+        ell4 = np.zeros(len(self.k_trap))
+        reio_ell0 = np.zeros(len(self.k_trap))
+        reio_ell2 = np.zeros(len(self.k_trap))
+        for i in range(0, len(self.k_trap)):
+            ell0[i] = self.integ_ell0(self.k_trap[i], r_Mpc=r_Mpc, z=z)
+            ell2[i] = self.integ_ell2(self.k_trap[i], r_Mpc=r_Mpc, z=z)
+            ell4[i] = self.integ_ell4(self.k_trap[i], r_Mpc=r_Mpc, z=z)
+            reio_ell0[i] = self.reio_integ_ell0(self.k_trap[i], r_Mpc=r_Mpc, z=z)
+            reio_ell2[i] = self.reio_integ_ell2(self.k_trap[i], r_Mpc=r_Mpc, z=z)
+        result_ell0 = self.w * (ell0.sum() - (ell0[0] + ell0[-1]) / 2.)
+        result_ell2 = self.w * (ell2.sum() - (ell2[0] + ell2[-1]) / 2.)
+        result_ell4 = self.w * (ell4.sum() - (ell4[0] + ell4[-1]) / 2.)
+        result_reio_ell0 = self.w * (reio_ell0.sum() - (reio_ell0[0] + reio_ell0[-1]) / 2.)
+        result_reio_ell2 = self.w * (reio_ell2.sum() - (reio_ell2[0] + reio_ell2[-1]) / 2.)
+        result_ell0 = result_ell0 * self.pre_factor_ell0
+        result_ell2 = result_ell2 * self.pre_factor_ell2
+        result_ell4 = result_ell4 * self.pre_factor_ell4
+        result_reio_ell0 = result_reio_ell0 * self.pre_factor_ell0
+        result_reio_ell2 = result_reio_ell2 * self.pre_factor_ell2
+        return result_ell0, result_ell2, result_ell4, result_reio_ell0, result_reio_ell2
+        
+#    def reio_correlation_ell0_Mpc(self, r_Mpc, z):
+#        # integrate, but be careful due to format
+#        y_reio = np.zeros(len(self.k_trap))
+#        for i in range(0, len(self.k_trap)):
+#            y_reio[i] = self.reio_integ_ell0(self.k_trap[i], r_Mpc=r_Mpc, z=z)
+#        result = self.w * (y_reio.sum() - (y_reio[0] + y_reio[-1]) / 2.)
+#        return self.pre_factor_ell2 * result
+#
+#    def correlation_ell2_Mpc(self, r_Mpc, z):
+#        # integrate
+#        y = np.zeros(len(self.k_trap))
+#        for i in range(0, len(self.k_trap)):
+#            y[i] = self.integ_ell2(self.k_trap[i], r_Mpc=r_Mpc, z=z)
+#        result = self.w * (y.sum() - (y[0] + y[-1]) / 2.)
+#        return self.pre_factor_ell2 * result
+#
+#    def reio_correlation_ell2_Mpc(self, r_Mpc, z):
+#        # integrate but with fix
+#        y_reio = np.zeros(len(self.k_trap))
+#        for i in range(0, len(self.k_trap)):
+#            y_reio[i] = self.reio_integ_ell2(k_trap[i], r_Mpc=r_Mpc, z=z)
+#        result = self.w * (y_reio.sum() - (y_reio[0] + y_reio[-1]) / 2.)
+#        return pre_factor_ell2 * result
+#
+#    def correlation_ell4_Mpc(self, r_Mpc, z):
+#        # integrate
+#        y = np.zeros(len(self.k_trap))
+#        for i in range(0, len(self.k_trap)):
+#            y[i] = self.integ_ell4(self.k_trap[i], r_Mpc=r_Mpc, z=z)
+#        result = self.w * (y.sum() - (y[0] + y[-1]) / 2.)
+#        return self.pre_factor_ell4 * result
