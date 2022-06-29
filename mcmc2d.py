@@ -69,7 +69,7 @@ for z in z_bin:
             bins[i,2,4] = cdm_splus.FluxP3D_lya_Mpc(z, k, mu) + cdm_splus.FluxP3D_reio_Mpc(z, k, mu)
             i += 1
 
-# !! we use 1/m and sigma8 as parameter !!
+# !! we use 1/m and sigma8 as parameters !!
 inverse_mass = [1/3, 1/4, 1/6, 1/9, 0]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
@@ -130,7 +130,7 @@ def log_prob(theta, ref, var):
 nwalkers = 32
 ndim = 2
 # we need to make the initial value in the prior range
-initial = np.zeros(nwalkers, ndim)
+initial = np.zeros((nwalkers, ndim))
 for l in range(len(nwalkers)):
     initial[l,0] = np.random.rand()/3
     initial[l,1] = 0.7659 + np.random.rand() * 0.1
