@@ -117,7 +117,7 @@ class theory_P_lyas(object):
     def _setup_theory(self):
         # constructor in charge of making the computations
         # start with flux bias for IGM
-        self.F_bias = interp1d(self.z_obs_array, self.bias_F_array)
+        self.F_bias = interp1d(self.z_obs_array, self.bias_F_array,fill_value="extrapolate")
         # grab large-scale info
         self.z_21cm, self.k_21cm, self.P_mxHI = np.loadtxt(self.file_21cm, unpack=True)
         self.z_21cm = np.unique(self.z_21cm)
@@ -135,7 +135,7 @@ class theory_P_lyas(object):
         # also grabing the bias, let's rename for clarity
         bias_G_array = igm_table[:,-1]
         # interpolate radiation bias
-        self.G_bias = interp1d(self.z_obs_array, bias_G_array)
+        self.G_bias = interp1d(self.z_obs_array, bias_G_array, fill_value="extrapolate")
         # and the redshifts
         x = np.array([6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0], dtype=float)
         self.tck_z1 = interpolate.splrep(x, y_z1, k=1, s=0)
