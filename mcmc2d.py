@@ -131,7 +131,7 @@ nwalkers = 32
 ndim = 2
 # we need to make the initial value in the prior range
 initial = np.zeros((nwalkers, ndim))
-for l in range(len(nwalkers)):
+for l in range(nwalkers):
     initial[l,0] = np.random.rand()/3
     initial[l,1] = 0.7659 + np.random.rand() * 0.1
 print(initial)
