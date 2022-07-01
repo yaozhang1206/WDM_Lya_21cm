@@ -159,7 +159,7 @@ axs[1].set_ylabel('sigma 8')
 fig.savefig('chain2d.pdf')
 
 
-samples = sampler.get_chain(flat=True)
+samples = sampler.get_chain(flat=True, discard=100, thin=10)
 fig1 = corner.corner(
     samples, labels=['1keV / m', 'sigma8'], truths=[0, 0.8159])
 fig1.savefig('corner.pdf')
