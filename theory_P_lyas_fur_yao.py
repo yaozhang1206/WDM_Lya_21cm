@@ -146,7 +146,7 @@ class theory_P_lyas(object):
         # also grabing the bias, let's rename for clarity
         bias_G_array = igm_table[:,-1]
         # interpolate radiation bias
-        self.G_bias = interp1d(self.z_obs_array, bias_G_array, , fill_value="extrapolate")
+        self.G_bias = interp1d(self.z_obs_array, bias_G_array, fill_value="extrapolate")
         # and the redshifts
         x = np.array([6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0], dtype=float)
         self.tck_z1 = interpolate.splrep(x, y_z1, k=1, s=0)
