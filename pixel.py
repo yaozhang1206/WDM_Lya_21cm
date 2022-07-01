@@ -15,9 +15,9 @@ class spec_pixel(object):
     
     def _read_file(self,mag):
         # this get the files with SNR(z,lambda)
-        if self.band is 'g':
+        if self.band == 'g':
             file = './data/sn-spec-lya-g'+str(mag)+'-t4000.dat'
-        elif self.band is 'r':
+        elif self.band == 'r':
 #            print 'Made it to r-band\n'
             file = './data/sn-spec-lya-r'+str(mag)+'-t4000.dat'
         else:
