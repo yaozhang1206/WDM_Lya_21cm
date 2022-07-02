@@ -44,7 +44,7 @@ def obs_z(l):
 
 # wavelength list
 lmin_list = [3501.0 + i * 200.0 for i in range(12)]
-'''
+
 # bins to do summation
 z_bin = [obs_z(l) for l in lmin_list]
 k_bin = np.linspace(0.06, 0.85, 80)
@@ -53,6 +53,7 @@ mu_bin = [0.1, 0.3, 0.5, 0.7, 0.9]
 z_bin = [2.0, 3.0]
 k_bin = [0.08, 0.1]
 mu_bin = [0.1, 0.3]
+'''
 # calculate the bins by previous theoretical model
 bins = np.zeros((len(z_bin)*len(k_bin)*len(mu_bin), 3, 5))
 i = 0
@@ -138,11 +139,7 @@ filename = "chain2d.h5"
 backend = emcee.backends.HDFBackend(filename)
 backend.reset(nwalkers=nw, ndim=nd)
 sampler = emcee.EnsembleSampler(nwalkers = nw, ndim = nd, log_prob_fn = log_prob, args=(ref_bin, var_bin), backend=backend)
-sampler.run_mcmc(initial, 1000, progress=True)
-
-print("Mean acceptance fraction: {0:.3f}".format(np.mean(sampler.acceptance_fraction)))
-
-print("Mean autocorrelation time: {0:.3f} steps".format(np.mean(sampler.get_autocorr_time())))
+sampler.run_mcmc(initial, 20000, progress=True)
 
 end3 = time.time()
 mcmc_time = end3 - end2
@@ -159,7 +156,11 @@ axs[1].set_ylabel('sigma 8')
 fig.savefig('chain2d.pdf')
 
 
-samples = sampler.get_chain(flat=True, discard=100, thin=10)
+samples = sampler.get_chain(flat=True, discard=500, thin=50)
 fig1 = corner.corner(
     samples, labels=['1keV / m', 'sigma8'], truths=[0, 0.8159])
 fig1.savefig('corner.pdf')
+
+print("Mean acceptance fraction: {0:.3f}".format(np.mean(sampler.acceptance_fraction)))
+
+print("Mean autocorrelation time: {0:.3f} steps".format(np.mean(sampler.get_autocorr_time())))
