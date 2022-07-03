@@ -81,7 +81,7 @@ for z in z_bin:
 inverse_mass = [1/3, 1/4, 1/6, 1/9, 0]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
-# time to interpolate! here is only the inverse of mass of WDM
+# time to interpolate!
 bins_inter = []
 
 for i in range(len(bins)):
