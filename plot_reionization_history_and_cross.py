@@ -196,18 +196,31 @@ mh_history_4keV = interp1d(mh_mean_4keV, z)
 mh_history_6keV = interp1d(mh_mean_6keV, z)
 mh_history_9keV = interp1d(mh_mean_9keV, z)
 
-arr = mean_cdm[::-1]
-arr_error = error_cdm[::-1]
+#arr = mean_cdm[::-1]
+#arr_error = error_cdm[::-1]
+
+# for reference
+znmh, nmh_xH_r1_cdm = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_nmh_xh_r1_cdm.txt', unpack=True)
+znmh, nmh_xH_r2_cdm = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_nmh_r2_cdm.txt', unpack=True)
+znmh, nmh_xH_r3_cdm = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_nmh_r3_cdm.txt', unpack=True)
+znmh, nmh_xH_r4_cdm = np.loadtxt('./data/21cmFAST/mini_halos/21cmfast_xh_nmh_r4_cdm.txt', unpack=True)
+
+nmh_mean_cdm = ave(nmh_xH_r1_cdm, nmh_xH_r2_cdm, nmh_xH_r3_cdm, nmh_xH_r4_cdm)
+nmh_error_cdm = std(nmh_xH_r1_cdm, nmh_xH_r2_cdm, nmh_xH_r3_cdm, nmh_xH_r4_cdm)
+
+nmh_history_cdm = interp1d(nmh_mean_cdm, z)
 
 mh_xH_table = np.zeros((len(z),6))
-mh_xH_table[:,0] = arr[:]
+#mh_xH_table[:,0] = arr[:]
+mh_xH_table[:,0] = nmh_mean_cdm[:]
 mh_xH_table[:,1] = mh_mean_cdm[:]
 mh_xH_table[:,2] = mh_mean_9keV[:]
 mh_xH_table[:,3] = mh_mean_6keV[:]
 mh_xH_table[:,4] = mh_mean_4keV[:]
 mh_xH_table[:,5] = mh_mean_3keV[:]
 mh_xH_e_table = np.zeros((len(z),6))
-mh_xH_e_table[:,0] = arr_error[:]
+#mh_xH_e_table[:,0] = arr_error[:]
+mh_xH_e_table[:,0] = nmh_error_cdm[:]
 mh_xH_e_table[:,1] = mh_error_cdm[:]
 mh_xH_e_table[:,2] = mh_error_9keV[:]
 mh_xH_e_table[:,3] = mh_error_6keV[:]
@@ -250,7 +263,7 @@ ax1.errorbar(7.4,0.60,yerr=np.array([[0.23,0.20]]).T,uplims=False,marker='<',mar
 ax1.errorbar(7.0,0.59,yerr=np.array([[0.15,0.11]]).T,xerr=0.5,uplims=False,marker='d',markersize=7,capthick=2,capsize=4,label=r'Ly$\alpha$ EWa',zorder=6)
 ax1.errorbar(7.6,0.88,yerr=np.array([[0.10,0.05]]).T,xerr=0.6,uplims=False,marker='D',markersize=7,capthick=2,capsize=4,label=r'Ly$\alpha$ EWb',zorder=6)
 ax1.errorbar(8.0,0.76,yerr=0.22,xerr=0.6,uplims=False,lolims=True,marker='X',markersize=7,capthick=2,capsize=4,label=r'Ly$\alpha$ EWc',zorder=6)
-ax1.set_xlim(5.5,12)
+ax1.set_xlim(5.5,18)
 ax1.set_xlabel(r'Redshift',fontsize=14)
 ax1.set_ylabel(r'Neutral hydrogen fraction',fontsize=14)
 ax1.legend(loc='best')
@@ -393,6 +406,15 @@ z, k, mh_cross_r3_9keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_m
 z, k, mh_cross_r4_9keV = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_mh_r4_wdm9.txt', unpack=True)
 z = np.unique(z)
 k = np.unique(k)
+
+# need the reference model
+znmh, knmh, nmh_cross_r1_cdm = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_nmh_r1.txt', unpack=True)
+znmh, knmh, nmh_cross_r2_cdm = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_nmh_r2.txt', unpack=True)
+znmh, knmh, nmh_cross_r3_cdm = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_nmh_r3.txt', unpack=True)
+znmh, knmh, nmh_cross_r4_cdm = np.loadtxt('./data/21cmFAST/mini_halos/cross_21cmfast_nmh_r4.txt', unpack=True)
+
+nmh_cross_mean_cdm = ave(nmh_cross_r1_cdm, nmh_cross_r2_cdm, nmh_cross_r3_cdm, nmh_cross_r4_cdm)
+nmh_cross_error_cdm = std(nmh_cross_r1_cdm, nmh_cross_r2_cdm, nmh_cross_r3_cdm, nmh_cross_r4_cdm)
 # get errors and average
 mh_cross_mean_cdm = ave(mh_cross_r1_cdm, mh_cross_r2_cdm, mh_cross_r3_cdm, mh_cross_r4_cdm)
 mh_cross_mean_3keV = ave(mh_cross_r1_3keV, mh_cross_r2_3keV, mh_cross_r3_3keV, mh_cross_r4_3keV)
@@ -405,11 +427,13 @@ mh_cross_error_4keV = std(mh_cross_r1_4keV, mh_cross_r2_4keV, mh_cross_r3_4keV, 
 mh_cross_error_6keV = std(mh_cross_r1_6keV, mh_cross_r2_6keV, mh_cross_r3_6keV, mh_cross_r4_6keV)
 mh_cross_error_9keV = std(mh_cross_r1_9keV, mh_cross_r2_9keV, mh_cross_r3_9keV, mh_cross_r4_9keV)
 # interpolate
+nmh_p_mean_cdm = interp2d(z, k, nmh_cross_mean_cdm, kind='cubic')
 mh_p_mean_cdm = interp2d(z, k, mh_cross_mean_cdm, kind='cubic')
 mh_p_mean_3keV = interp2d(z, k, mh_cross_mean_3keV, kind='cubic')
 mh_p_mean_4keV = interp2d(z, k, mh_cross_mean_4keV, kind='cubic')
 mh_p_mean_6keV = interp2d(z, k, mh_cross_mean_6keV, kind='cubic')
 mh_p_mean_9keV = interp2d(z, k, mh_cross_mean_9keV, kind='cubic')
+nmh_p_error_cdm = interp2d(z, k, nmh_cross_error_cdm, kind='cubic')
 mh_p_error_cdm = interp2d(z, k, mh_cross_error_cdm, kind='cubic')
 mh_p_error_3keV = interp2d(z, k, mh_cross_error_3keV, kind='cubic')
 mh_p_error_4keV = interp2d(z, k, mh_cross_error_4keV, kind='cubic')
@@ -426,8 +450,8 @@ for i in range(0,len(z)):
     mh_plot_cross[i,3] = mh_p_mean_6keV(z[i], k_test)
     mh_plot_cross[i,2] = mh_p_mean_9keV(z[i], k_test)
     mh_plot_cross[i,1] = mh_p_mean_cdm(z[i], k_test)
-    mh_plot_cross[i,0] = p_mean_cdm(z[i], k_test)
-    mh_plot_e_cross[i,0] = p_error_cdm(z[i], k_test)
+    mh_plot_cross[i,0] = nmh_p_mean_cdm(z[i], k_test)
+    mh_plot_e_cross[i,0] = nmh_p_error_cdm(z[i], k_test)
     mh_plot_e_cross[i,1] = mh_p_error_cdm(z[i], k_test)
     mh_plot_e_cross[i,5] = mh_p_error_3keV(z[i], k_test)
     mh_plot_e_cross[i,4] = mh_p_error_4keV(z[i], k_test)
@@ -542,7 +566,7 @@ plt.savefig('cross_power_func_k_50.pdf',bbox_inches="tight")
 plt.show()
 
 
-
+nmh_z_50_cdm = nmh_history_cdm(0.5)
 mh_z_50_cdm  = mh_history_cdm(0.5)
 mh_z_50_3keV = mh_history_3keV(0.5)
 mh_z_50_4keV = mh_history_4keV(0.5)
@@ -551,13 +575,13 @@ mh_z_50_9keV = mh_history_9keV(0.5)
 mh_kplot_mid = np.zeros((len(k), 6))
 mh_kerror_mid = np.zeros((len(k), 6))
 for i in range(0,len(k)):
-    mh_kplot_mid[i,0] = p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,0] = nmh_p_mean_cdm(mh_z_50_cdm, k[i])
     mh_kplot_mid[i,1] = mh_p_mean_cdm(mh_z_50_cdm, k[i])
     mh_kplot_mid[i,2] = mh_p_mean_9keV(mh_z_50_9keV, k[i])
     mh_kplot_mid[i,3] = mh_p_mean_6keV(mh_z_50_6keV, k[i])
     mh_kplot_mid[i,4] = mh_p_mean_4keV(mh_z_50_4keV, k[i])
     mh_kplot_mid[i,5] = mh_p_mean_3keV(mh_z_50_3keV, k[i])
-    mh_kerror_mid[i,0] = p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,0] = nmh_p_error_cdm(mh_z_50_cdm, k[i])
     mh_kerror_mid[i,1] = mh_p_error_cdm(mh_z_50_cdm, k[i])
     mh_kerror_mid[i,2] = mh_p_error_9keV(mh_z_50_9keV, k[i])
     mh_kerror_mid[i,3] = mh_p_error_6keV(mh_z_50_6keV, k[i])
@@ -614,6 +638,7 @@ plt.show()
 
 
 
+nmh_z_50_cdm  = nmh_history_cdm(0.25)
 mh_z_50_cdm  = mh_history_cdm(0.25)
 mh_z_50_3keV = mh_history_3keV(0.25)
 mh_z_50_4keV = mh_history_4keV(0.25)
@@ -622,13 +647,13 @@ mh_z_50_9keV = mh_history_9keV(0.25)
 mh_kplot_mid = np.zeros((len(k), 6))
 mh_kerror_mid = np.zeros((len(k), 6))
 for i in range(0,len(k)):
-    mh_kplot_mid[i,0] = p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,0] = nmh_p_mean_cdm(nmh_z_50_cdm, k[i])
     mh_kplot_mid[i,1] = mh_p_mean_cdm(mh_z_50_cdm, k[i])
     mh_kplot_mid[i,2] = mh_p_mean_9keV(mh_z_50_9keV, k[i])
     mh_kplot_mid[i,3] = mh_p_mean_6keV(mh_z_50_6keV, k[i])
     mh_kplot_mid[i,4] = mh_p_mean_4keV(mh_z_50_4keV, k[i])
     mh_kplot_mid[i,5] = mh_p_mean_3keV(mh_z_50_3keV, k[i])
-    mh_kerror_mid[i,0] = p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,0] = nmh_p_error_cdm(nmh_z_50_cdm, k[i])
     mh_kerror_mid[i,1] = mh_p_error_cdm(mh_z_50_cdm, k[i])
     mh_kerror_mid[i,2] = mh_p_error_9keV(mh_z_50_9keV, k[i])
     mh_kerror_mid[i,3] = mh_p_error_6keV(mh_z_50_6keV, k[i])
@@ -684,6 +709,7 @@ plt.show()
 
 
 
+nmh_z_50_cdm  = nmh_history_cdm(0.75)
 mh_z_50_cdm  = mh_history_cdm(0.75)
 mh_z_50_3keV = mh_history_3keV(0.75)
 mh_z_50_4keV = mh_history_4keV(0.75)
@@ -692,13 +718,13 @@ mh_z_50_9keV = mh_history_9keV(0.75)
 mh_kplot_mid = np.zeros((len(k), 6))
 mh_kerror_mid = np.zeros((len(k), 6))
 for i in range(0,len(k)):
-    mh_kplot_mid[i,0] = p_mean_cdm(mh_z_50_cdm, k[i])
+    mh_kplot_mid[i,0] = nmh_p_mean_cdm(nmh_z_50_cdm, k[i])
     mh_kplot_mid[i,1] = mh_p_mean_cdm(mh_z_50_cdm, k[i])
     mh_kplot_mid[i,2] = mh_p_mean_9keV(mh_z_50_9keV, k[i])
     mh_kplot_mid[i,3] = mh_p_mean_6keV(mh_z_50_6keV, k[i])
     mh_kplot_mid[i,4] = mh_p_mean_4keV(mh_z_50_4keV, k[i])
     mh_kplot_mid[i,5] = mh_p_mean_3keV(mh_z_50_3keV, k[i])
-    mh_kerror_mid[i,0] = p_error_cdm(mh_z_50_cdm, k[i])
+    mh_kerror_mid[i,0] = nmh_p_error_cdm(nmh_z_50_cdm, k[i])
     mh_kerror_mid[i,1] = mh_p_error_cdm(mh_z_50_cdm, k[i])
     mh_kerror_mid[i,2] = mh_p_error_9keV(mh_z_50_9keV, k[i])
     mh_kerror_mid[i,3] = mh_p_error_6keV(mh_z_50_6keV, k[i])

@@ -51,7 +51,7 @@ class theory_P_lyas(object):
         """
         # defining hyper parameters for the EoR integrals
         self.delta_z = 0.10
-        self.N_total = 291
+        self.N_total = 300
         # call constructor
         self._setup_theory()
         
@@ -117,7 +117,7 @@ class theory_P_lyas(object):
     def _setup_theory(self):
         # constructor in charge of making the computations
         # start with flux bias for IGM
-        self.F_bias = interp1d(self.z_obs_array, self.bias_F_array,fill_value="extrapolate")
+        self.F_bias = interp1d(self.z_obs_array, self.bias_F_array)
         # grab large-scale info
         self.z_21cm, self.k_21cm, self.P_mxHI = np.loadtxt(self.file_21cm, unpack=True)
         self.z_21cm = np.unique(self.z_21cm)
@@ -135,7 +135,7 @@ class theory_P_lyas(object):
         # also grabing the bias, let's rename for clarity
         bias_G_array = igm_table[:,-1]
         # interpolate radiation bias
-        self.G_bias = interp1d(self.z_obs_array, bias_G_array, fill_value="extrapolate")
+        self.G_bias = interp1d(self.z_obs_array, bias_G_array)
         # and the redshifts
         x = np.array([6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0], dtype=float)
         self.tck_z1 = interpolate.splrep(x, y_z1, k=1, s=0)
@@ -151,15 +151,15 @@ class theory_P_lyas(object):
             b = 0 # reset
             for b in range(0,len(self.k_21cm)):
                 if a==0:
-                    crosspower_psi_array[b] = self.crosspower_z1(5.90, self.k_21cm[b])
+                    crosspower_psi_array[b] = self.crosspower_z1(5.0, self.k_21cm[b])
                 elif a==1:
-                    crosspower_psi_array[b+len(self.k_21cm)] = self.crosspower_z2(5.90,self.k_21cm[b])
+                    crosspower_psi_array[b+len(self.k_21cm)] = self.crosspower_z2(5.0,self.k_21cm[b])
                 elif a==2:
-                    crosspower_psi_array[b+len(self.k_21cm)*2] = self.crosspower_z3(5.90,self.k_21cm[b])
+                    crosspower_psi_array[b+len(self.k_21cm)*2] = self.crosspower_z3(5.0,self.k_21cm[b])
                 elif a==3:
-                    crosspower_psi_array[b+len(self.k_21cm)*3] = self.crosspower_z4(5.90,self.k_21cm[b])
+                    crosspower_psi_array[b+len(self.k_21cm)*3] = self.crosspower_z4(5.0,self.k_21cm[b])
                 elif a==4:
-                    crosspower_psi_array[b+len(self.k_21cm)*4] = self.crosspower_z5(5.90,self.k_21cm[b])
+                    crosspower_psi_array[b+len(self.k_21cm)*4] = self.crosspower_z5(5.0,self.k_21cm[b])
         # time to interpolate
         self._crosspower_psi = interp2d(self.z_obs_array, self.k_21cm, crosspower_psi_array, kind='cubic')
         
