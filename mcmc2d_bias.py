@@ -77,7 +77,7 @@ for z in z_bin:
             i += 1
 
 bins_save = np.reshape(bins, (len(z_bin)*len(k_bin)*len(mu_bin),15))
-np.savetxt('theory_bins.txt', bins_save, fmt='%.5f', delimiter=' ')
+np.savetxt('theory_bins_bias.txt', bins_save, fmt='%.5f', delimiter=' ')
 
 # !! we use 1/m and sigma8 as parameter !!
 inverse_mass = [1/3, 1/4, 1/6, 1/9, 0]
@@ -114,7 +114,7 @@ ref_save = np.zeros((len(ref_bin),2))
 for i in range(len(ref_bin)):
     ref_save[i,0] = ref_bin[i]
     ref_save[i,1] = var_bin[i]
-np.savetxt('ref_bins.txt', ref_save, fmt='%.5f', delimiter=' ')
+np.savetxt('ref_bins_bias.txt', ref_save, fmt='%.5f', delimiter=' ')
 
 end2 = time.time()
 ref_time = end2 - end1
