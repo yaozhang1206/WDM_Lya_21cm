@@ -22,16 +22,16 @@ wdm_4keV_s8 = theory.theory_P_lyas(4.0, '21cm_avg_wdm4', 'gadget_ave_4keV')
 wdm_6keV_s8 = theory.theory_P_lyas(6.0, '21cm_avg_wdm6', 'gadget_ave_6keV')
 wdm_9keV_s8 = theory.theory_P_lyas(9.0, '21cm_avg_wdm9', 'gadget_ave_9keV')
 cdm_s8 = theory.theory_P_lyas(np.infty, '21cm_avg_cdm', 'gadget_ave_cdm')
-wdm_3keV_splus = theory.theory_P_lyas(3.0, '21cm_wdm3_s8plus_r1', 'gadget_sigma+0.05_r1_3keV')
-wdm_4keV_splus = theory.theory_P_lyas(4.0, '21cm_wdm4_s8plus_r1', 'gadget_sigma+0.05_r1_4keV')
-wdm_6keV_splus = theory.theory_P_lyas(6.0, '21cm_wdm6_s8plus_r1', 'gadget_sigma+0.05_r1_6keV')
-wdm_9keV_splus = theory.theory_P_lyas(9.0, '21cm_wdm9_s8plus_r1', 'gadget_sigma+0.05_r1_9keV')
-cdm_splus = theory.theory_P_lyas(np.infty, '21cm_cdm_s8plus_r1', 'gadget_sigma+0.05_r1_cdm')
-wdm_3keV_sminus = theory.theory_P_lyas(3.0, '21cm_wdm3_s8minus_r1', 'gadget_sigma-0.05_r1_3keV')
-wdm_4keV_sminus = theory.theory_P_lyas(4.0, '21cm_wdm4_s8minus_r1', 'gadget_sigma-0.05_r1_4keV')
-wdm_6keV_sminus = theory.theory_P_lyas(6.0, '21cm_wdm6_s8minus_r1', 'gadget_sigma-0.05_r1_6keV')
-wdm_9keV_sminus = theory.theory_P_lyas(9.0, '21cm_wdm9_s8minus_r1', 'gadget_sigma-0.05_r1_9keV')
-cdm_sminus = theory.theory_P_lyas(np.infty, '21cm_cdm_s8minus_r1', 'gadget_sigma-0.05_r1_cdm')
+wdm_3keV_splus = theory.theory_P_lyas(3.0, '21cm_wdm3_s8plus_ave', 'gadget_sigma+0.05_ave_3keV')
+wdm_4keV_splus = theory.theory_P_lyas(4.0, '21cm_wdm4_s8plus_ave', 'gadget_sigma+0.05_ave_4keV')
+wdm_6keV_splus = theory.theory_P_lyas(6.0, '21cm_wdm6_s8plus_ave', 'gadget_sigma+0.05_ave_6keV')
+wdm_9keV_splus = theory.theory_P_lyas(9.0, '21cm_wdm9_s8plus_ave', 'gadget_sigma+0.05_ave_9keV')
+cdm_splus = theory.theory_P_lyas(np.infty, '21cm_cdm_s8plus_ave', 'gadget_sigma+0.05_ave_cdm')
+wdm_3keV_sminus = theory.theory_P_lyas(3.0, '21cm_wdm3_s8minus_ave', 'gadget_sigma-0.05_ave_3keV')
+wdm_4keV_sminus = theory.theory_P_lyas(4.0, '21cm_wdm4_s8minus_ave', 'gadget_sigma-0.05_ave_4keV')
+wdm_6keV_sminus = theory.theory_P_lyas(6.0, '21cm_wdm6_s8minus_ave', 'gadget_sigma-0.05_ave_6keV')
+wdm_9keV_sminus = theory.theory_P_lyas(9.0, '21cm_wdm9_s8minus_ave', 'gadget_sigma-0.05_ave_9keV')
+cdm_sminus = theory.theory_P_lyas(np.infty, '21cm_cdm_s8minus_ave', 'gadget_sigma-0.05_ave_cdm')
 
 # observed CDM REFERENCE model, "average" in gaussian likelihood
 ref = obs.observed_3D('g')
@@ -44,7 +44,6 @@ def obs_z(l):
 
 # wavelength list
 lmin_list = [3501.0 + i * 200.0 for i in range(12)]
-
 # bins to do summation
 z_bin = [obs_z(l) for l in lmin_list]
 k_bin = np.linspace(0.06, 0.85, 80)
@@ -77,6 +76,9 @@ for z in z_bin:
             bins[i,2,4] = cdm_splus.FluxP3D_lya_Mpc(z, k, mu) + cdm_splus.FluxP3D_reio_Mpc(z, k, mu)
             i += 1
 
+bins_save = np.reshape(bins, (len(z_bin)*len(k_bin)*len(mu_bin),15))
+np.savetxt('theory_bins.txt', bins_save, fmt='%.5f', delimiter=' ')
+
 # !! we use 1/m and sigma8 as parameter !!
 inverse_mass = [1/3, 1/4, 1/6, 1/9, 0]
 sigma8 = [0.7659, 0.8159, 0.8659]
@@ -108,6 +110,11 @@ for i in range(len(z_bin)):
             ref_bin.append(ref.TotalFluxP3D_Mpc(kt_deg, kp_kms, Pw2D=pw, PN_eff=pn))
             var_bin.append(ref.VarFluxP3D_Mpc(k, mu, 0.01, 0.2, Pw2D=pw, PN_eff=pn))
 
+ref_save = np.zeros((len(ref_bin),2))
+for i in range(len(ref_bin)):
+    ref_save[i,0] = ref_bin[i]
+    ref_save[i,1] = var_bin[i]
+np.savetxt('ref_bins.txt', ref_save, fmt='%.5f', delimiter=' ')
 
 end2 = time.time()
 ref_time = end2 - end1
@@ -130,7 +137,7 @@ nd = 2
 # we need to make the initial value in the prior range
 initial = np.zeros((nw, nd))
 for l in range(nw):
-    initial[l,0] = np.random.rand()/3
+    initial[l,0] = np.random.rand()/3.0
     initial[l,1] = 0.7659 + np.random.rand() * 0.1
 print(initial)
 
