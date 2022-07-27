@@ -142,7 +142,7 @@ for l in range(nw):
 print(initial)
 
 # run mcmc chain
-filename = "chain2d.h5"
+filename = "chain2d_bias.h5"
 backend = emcee.backends.HDFBackend(filename)
 backend.reset(nwalkers=nw, ndim=nd)
 sampler = emcee.EnsembleSampler(nwalkers = nw, ndim = nd, log_prob_fn = log_prob, args=(ref_bin, var_bin), backend=backend)
