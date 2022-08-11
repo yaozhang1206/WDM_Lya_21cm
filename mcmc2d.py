@@ -144,7 +144,7 @@ filename = "chain2d.h5"
 backend = emcee.backends.HDFBackend(filename)
 backend.reset(nwalkers=nw, ndim=nd)
 sampler = emcee.EnsembleSampler(nwalkers = nw, ndim = nd, log_prob_fn = log_prob, args=(ref_bin, var_bin), backend=backend)
-sampler.run_mcmc(initial, 3000, progress=True)
+sampler.run_mcmc(initial, 20000, progress=True)
 
 end3 = time.time()
 mcmc_time = end3 - end2
@@ -161,7 +161,7 @@ axs[1].set_ylabel('sigma 8')
 fig.savefig('chain2d.pdf')
 
 
-samples = sampler.get_chain(flat=True, discard=200, thin=20)
+samples = sampler.get_chain(flat=True, discard=500, thin=20)
 fig1 = corner.corner(
     samples, labels=['1keV / m', 'sigma8'], truths=[0, 0.8159])
 fig1.savefig('corner.pdf')
