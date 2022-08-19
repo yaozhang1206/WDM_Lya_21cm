@@ -110,7 +110,7 @@ class theory_P_lyas(object):
         """ Dimensionless linear power density, for the non-linear correction """
         k_hMpc = k_Mpc / self.h # careful here, I did this wrong initially.
         if z<= 3.0:
-            return pow(k_Mpc, z) * self.pm.P_m_WDM_Mpc(k_hMpc, z) / (2. * np.pi**2)
+            return pow(k_Mpc, 3.0) * self.pm.P_m_WDM_Mpc(k_hMpc, z) / (2. * np.pi**2)
         else:
             return pow(k_Mpc, 3.0) * self.pm.P_m_WDM_Mpc(k_hMpc, 3.0) / (2. * np.pi**2)
             
