@@ -80,7 +80,7 @@ bins_save = np.reshape(bins, (len(z_bin)*len(k_bin)*len(mu_bin),15))
 np.savetxt('theory_bins_bias.txt', bins_save, fmt='%.5f', delimiter=' ')
 
 # !! we use 1/m and sigma8 as parameter !!
-inverse_mass = [1/3, 1/4, 1/6, 1/9, 0]
+inverse_mass = [1/3.0, 1/4.0, 1/6.0, 1/9.0, 0.0]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
 # time to interpolate!
