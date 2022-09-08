@@ -146,7 +146,7 @@ class theory_P_lyas(object):
         else:
             kaiser = pow(bias * (1.0 + self.beta_rsd(3.0, self.sigma8) * pow(mu, 2)), 2)
             z_evol = pow((1.0 + z) / (1.0 + self.z_ref), 3.55) # got this from https://www.aanda.org/articles/aa/pdf/2013/11/aa22130-13.pdf
-            P3D = self.pm.P_m_WDM_Mpc(k_hMpc, z) * kaiser * z_evol
+            P3D = self.pm.P_m_WDM_Mpc(k_hMpc, 3.0) * kaiser * z_evol
         return P3D
 
     def nonlinear_FluxP3D_lya_Mpc(self, z, k, mu, linear=False):
