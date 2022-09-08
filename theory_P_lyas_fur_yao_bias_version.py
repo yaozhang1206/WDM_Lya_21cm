@@ -316,7 +316,7 @@ class theory_P_lyas(object):
         else:
             temp = bias * self.G_bias(z) * (1. + self.beta_rsd(3.0, self.sigma8) * mu**2)
             z_evol = pow((1.0 + z) / (1.0 + self.z_ref), 3.55)
-            return temp * z_evol * np.sqrt(self.pm.P_m_WDM_Mpc(k_Mpc / self.h, 3.0) / (1. * self.pm.P_m_WDM_Mpc(k_Mpc / self.h, z)))
+            return temp * np.sqrt(z_evol) * np.sqrt(self.pm.P_m_WDM_Mpc(k_Mpc / self.h, 3.0) / (1. * self.pm.P_m_WDM_Mpc(k_Mpc / self.h, z)))
 
     def FluxP3D_reio_Mpc(self, z, k, mu):
         """ Returns the 3D memory of reionization in the lya forest in Mpc^3, unit for k is Mpc^-1. It has a cutoff just in case """
