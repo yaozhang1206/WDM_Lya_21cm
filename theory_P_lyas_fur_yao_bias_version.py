@@ -247,7 +247,9 @@ class theory_P_lyas(object):
         # interpolate radiation bias
         self.G_bias = interp1d(self.z_obs_array, bias_G_array, fill_value="extrapolate")
         # and the redshifts
-        x = np.array([6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0], dtype=float)
+        # x = np.array([6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0], dtype=float)
+        # medium box, ignore 10.0 and 11.0
+        x = np.array([6.0, 7.0, 8.0, 9.0, 12.0], dtype=float)
         self.tck_z1 = interpolate.splrep(x, y_z1, k=1, s=0)
         self.tck_z2 = interpolate.splrep(x, y_z2, k=1, s=0)
         self.tck_z3 = interpolate.splrep(x, y_z3, k=1, s=0)
