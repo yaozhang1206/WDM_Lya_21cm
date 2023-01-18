@@ -112,7 +112,7 @@ class theory_P_lyas(object):
         if z<= 3.0:
             return pow(k_Mpc, z) * self.pm.P_m_WDM_Mpc(k_hMpc, z) / (2. * np.pi**2)
         else:
-            return pow(k_Mpc, 3.0) * self.pm.P_m_WDM_Mpc(k_hMpc, z) / (2. * np.pi**2)
+            return pow(k_Mpc, 3.0) * self.pm.P_m_WDM_Mpc(k_hMpc, 3.) / (2. * np.pi**2)
             
     def D_Mpc_Arinyo2015(self,z,k_Mpc,mu,sigma8):
         """ Analytic formula for the nonlinear correction to the 3D lya power spectrum from Arinyo 2015 """
