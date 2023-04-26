@@ -52,6 +52,7 @@ class theory_P_lyas(object):
         self.b_gamma = interpolate.interp1d(self.z_obs_array, bg)
         # let's unpickle the pickles
         f_pat = open('./pickle/pat_'+self.fast_realization+'_'+self.fast_model+'.pkl', 'rb')
+        # this is actually a power and not a density!
         self.PmxH = pickle.load(f_pat)
         f_pat.close()
         f_psi = open('./pickle/psi_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'rb')
@@ -62,9 +63,12 @@ class theory_P_lyas(object):
         """ Please comment out the cosmo and the self-pickle if running new pickles """
         self.cosmo = pm.P_matter(params)
         # need to unpickle my own result here
-        flya = open('./pickle/p_mpsi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'rb')
-        self._crosspower_psi = pickle.load(flya)
-        flya.close()
+        if params['pickle'] == True:
+            self._crosspower_psi = 1.
+        else:
+            flya = open('./pickle/p_mpsi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'rb')
+            self._crosspower_psi = pickle.load(flya)
+            flya.close()
         
         
         
@@ -154,6 +158,10 @@ class theory_P_lyas(object):
 
     def LyaLya_reio_Mpc_norm(self, z, k_Mpc, mu):
         """ reio term in LyaLya auto-power spectrum """
+        """ I should probably move this out of here to get things easier when generating pickles,
+        instead of calling my own pickle...
+        The reason this is here is because it is called in the observed class.
+        """
         bias_mem = self.memory_bias(z, k_Mpc, mu)
         return 2. * bias_mem * self._crosspower_psi(z, k_Mpc)
             

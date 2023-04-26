@@ -17,7 +17,7 @@ class QSO_LF(object):
     
     def _setup_LF(self):
         # Grab the DESI data
-        file = './data/dNdzdg_QSO.dat'
+        file = '../data/dNdzdg_QSO.dat'
         z,m,temp_dNdmdzddeg2 = np.loadtxt(file,unpack=True)
         # now grab the arrays for later interpolation
         z = np.unique(z)
