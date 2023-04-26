@@ -53,7 +53,7 @@ class puma(object):
         self.d = 1.6635 # sq 1.5974
         self.e = 7.3177 # sq 6.8390
         # for system noise we need the comoving distance
-        self.lya_c = lya_c.lya_convert(Omega_m, h, Omega_r)
+        self.lya_c = lya_c.lya_convert()
         # for bug-catching
         self.verbose = False #True
         
