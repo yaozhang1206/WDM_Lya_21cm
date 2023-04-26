@@ -48,14 +48,14 @@ class theory_P_lyas(object):
         # the observed array
         self.z_obs_array = [2.0, 2.5, 3.0, 3.5, 4.0]
         # for memory of reionization
-        bg = np.loadtxt('./data/gadget/transp_gadget_'+self.gadget_realization+'_'+self.gadget_model+'.txt', usecols=[7])
+        bg = np.loadtxt('../data/gadget/transp_gadget_'+self.gadget_realization+'_'+self.gadget_model+'.txt', usecols=[7])
         self.b_gamma = interpolate.interp1d(self.z_obs_array, bg)
         # let's unpickle the pickles
-        f_pat = open('./pickle/pat_'+self.fast_realization+'_'+self.fast_model+'.pkl', 'rb')
+        f_pat = open('../pickles/pat_'+self.fast_realization+'_'+self.fast_model+'.pkl', 'rb')
         # this is actually a power and not a density!
         self.PmxH = pickle.load(f_pat)
         f_pat.close()
-        f_psi = open('./pickle/psi_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'rb')
+        f_psi = open('../pickles/psi_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'rb')
         self.psi = pickle.load(f_psi)
         f_psi.close()
         # some extra redshifts for help
@@ -66,7 +66,7 @@ class theory_P_lyas(object):
         if params['pickle'] == True:
             self._crosspower_psi = 1.
         else:
-            flya = open('./pickle/p_mpsi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'rb')
+            flya = open('../pickles/p_mpsi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'rb')
             self._crosspower_psi = pickle.load(flya)
             flya.close()
         
@@ -108,7 +108,7 @@ class theory_P_lyas(object):
         
     def pickle_this(self):
         # let's pickle the memory term
-        file = open('./pickle/p_mpsi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'wb')
+        file = open('../pickles/p_mpsi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'wb')
         pickle.dump(self.P_m_psi, file)
         file.close()
         return print('PickleD!')

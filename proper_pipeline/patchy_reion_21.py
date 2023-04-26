@@ -60,7 +60,7 @@ class P_21_obs:
         self.model = params['fast-model']
         # hyper parameters
         self.zres = np.arange(6., 12.+0.1, 0.01)
-        file = open('./pickle/pat_'+self.realization+'_'+self.model+'.pkl', 'rb')
+        file = open('../pickles/pat_'+self.realization+'_'+self.model+'.pkl', 'rb')
         self.PmxH = pickle.load(file)
         file.close()
         
@@ -94,13 +94,13 @@ class P_21_obs:
     def rho_HI(self):
 
         # rho_HI_func_{Gadge_realization}_{Gadget model}.pkl
-        with open('./pickle/rho_HI_func.pkl','rb') as f:
+        with open('../pickles/rho_HI_func.pkl','rb') as f:
            rho_HI = pickle.load(f)
            
         return rho_HI
 
     def reion_mid(self):
-        xi_arr = self.reion_his('./data/21cmFAST/21cmfast_xh_'+self.realization+'_'+self.model+'.txt')
+        xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_'+self.realization+'_'+self.model+'.txt')
         for z in np.arange(8.0,6.0,-0.01):
             if (np.abs(xi_arr(z)-0.5) < 0.001): break
         return z
@@ -129,7 +129,7 @@ class P_21_obs:
         
     def pickle_this(self):
         # hhopefully it is faster to get the function than to compute it
-        file = open('./pickle/p_mXi_'+self.realization+'_'+self.model+'.pkl', 'wb')
+        file = open('../pickles/p_mXi_'+self.realization+'_'+self.model+'.pkl', 'wb')
         pickle.dump(self.P_m_Xi, file)
         file.close()
         return print('PickleD!')

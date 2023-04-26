@@ -46,7 +46,7 @@ class P_bubble(object):
         
     def pickle_this(self):
         # file for our pickle
-        file = open('./pickle/pat_'+realization+'_'+model+'.pkl', 'wb')
+        file = open('../pickle/pat_'+realization+'_'+model+'.pkl', 'wb')
         # dump information to file
         pickle.dump(self.P_mxHI_func, file)
         file.close()
