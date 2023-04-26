@@ -15,11 +15,11 @@ class P_bubble(object):
     
     def __init__(self, params):
         # lya and 21cm needs this, so it will be good to separate it and build it once
-        model = params['fast-model'] # know which file is getting called from 21cmFAST
-        realization = params['fast-realization'] # know which realization, or if it is the average one
+        self.model = params['fast-model'] # know which file is getting called from 21cmFAST
+        self.realization = params['fast-realization'] # know which realization, or if it is the average one
         # for average it should be avg
         # model just covers reionization histories but it could be more than that.
-        filename = '../data/21cmfast/cross_21cm_'+realization+'_'+model+'.txt'
+        filename = '../data/21cmfast/cross_21cm_'+self.realization+'_'+self.model+'.txt'
         # grab data
         Pc = np.loadtxt(filename)
         # transform from dimensionless to Mpc^3
@@ -46,7 +46,7 @@ class P_bubble(object):
         
     def pickle_this(self):
         # file for our pickle
-        file = open('../pickle/pat_'+realization+'_'+model+'.pkl', 'wb')
+        file = open('../pickles/pat_'+self.realization+'_'+self.model+'.pkl', 'wb')
         # dump information to file
         pickle.dump(self.P_mxHI_func, file)
         file.close()
