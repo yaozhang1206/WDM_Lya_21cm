@@ -61,7 +61,8 @@ class P_bubble(object):
             bias = self.P_mxHI(z, self.k_min) / (self.cosmo.P_m_Mpc(self.k_min, z))
             return bias * self.cosmo.P_m_Mpc(k_Mpc, z)
         
-        
+       
+       
     def pickle_this(self):
         temp = np.loadtxt('../data/21cmfast/matter_cross_21cm_'+self.realization+'_'+self.model+'.txt')
         Pk = temp.T[2]
