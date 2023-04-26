@@ -38,7 +38,7 @@ class P_matter(object):
             'P_k_ini type': 'analytic_Pk',
             'P_k_max_1/Mpc': 10,
             'format': 'CLASS',
-            'z_max_pk': 5.5,
+            'z_max_pk': params['z_max_pk'],
             # here comes the changing ones
             'h': params['h'],
             'n_s': params['ns'],
