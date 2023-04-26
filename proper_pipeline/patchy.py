@@ -37,7 +37,7 @@ class P_bubble(object):
         self.z_temp = np.array(Pc.T[0][:]).flatten()
         self.z_temp = np.unique(self.z_temp)
         self.P_temp = np.array(Pc.T[2][:]).flatten()
-        print(self.z_temp)
+#        print(self.z_temp)
 #        print(self.k_temp)
         self.temp_table = np.zeros((len(self.z_temp)*len(self.k_temp),3))
         print('This patchy pickle will take some time just because I did not try to optimize this procedure... :P')
