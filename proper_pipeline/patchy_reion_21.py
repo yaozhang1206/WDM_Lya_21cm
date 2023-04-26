@@ -94,6 +94,8 @@ class P_21_obs:
     def rho_HI(self):
 
         # rho_HI_func_{Gadge_realization}_{Gadget model}.pkl
+        # unfortunately can't change yet until Yao starts generating pickles, but I
+        # should make a pickle farmer
         with open('../pickles/rho_HI_func.pkl','rb') as f:
            rho_HI = pickle.load(f)
            

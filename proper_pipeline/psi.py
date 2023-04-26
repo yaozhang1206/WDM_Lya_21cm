@@ -20,7 +20,7 @@ class transparency(object):
         # for average it should be avg
         # model may not cover anything for now but we are building up for later
         # grab data
-        igm_table = np.loadtxt('./data/gadget/transp_gadget_'+realization+'_'+model+'.txt', usecols=[0,1,2,3,4,5,6])
+        igm_table = np.loadtxt('../data/gadget/transp_gadget_'+realization+'_'+model+'.txt', usecols=[0,1,2,3,4,5,6])
 #        b_gamma = np.loadtxt('./data/gadget/transp_gadget_'+realization+'_'+model+'.txt', usecols=[7]) # do this one somewhere else.
         # for redshift of reionization we have
 #        z_res = [6., 7., 8., 9., 10., 11., 12.] # go back after the new sims
@@ -33,6 +33,6 @@ class transparency(object):
         redshifts[:,1] = z_obs
         self.psi = CloughTocher2DInterpolator(redshifts, igm_table.flatten())
         # the pickle
-        file = open('./pickle/psi_'+realization+'_'+model+'.pkl', 'wb')
+        file = open('../pickles/psi_'+realization+'_'+model+'.pkl', 'wb')
         pickle.dump(self.psi, file)
         file.close()

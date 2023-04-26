@@ -61,11 +61,12 @@ class theory_P_lyas(object):
         # some extra redshifts for help
         self.z_res = np.arange(6, 12+0.1, 0.01)
         """ Please comment out the cosmo and the self-pickle if running new pickles """
-        self.cosmo = pm.P_matter(params)
         # need to unpickle my own result here
         if params['pickle'] == True:
             self._crosspower_psi = 1.
+            self.cosmo = 1.
         else:
+            self.cosmo = pm.P_matter(params)
             flya = open('../pickles/p_mpsi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'rb')
             self._crosspower_psi = pickle.load(flya)
             flya.close()
