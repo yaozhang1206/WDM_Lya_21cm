@@ -28,9 +28,9 @@ class theory_P_cross(object):
         # let's get to the unpickling
         fast_model = params['fast-model'] # this can be things like 'early' or '3keV' or 'cdm'
         # in the future it could be 'early_3keV'
-        fast_realization = params['fast-realization'] # e.g. 'r1', or 'avg'
+        fast_realization = params['fast-realization'] # e.g. 'r1', or 'ave'
         gadget_model = params['gadget-model'] # e.g. '3keV', 'cdm'
-        gadget_realization = params['gadget-realization'] # e.g. 'r2' or 'avg'
+        gadget_realization = params['gadget-realization'] # e.g. 'r2' or 'ave'
         flya = open('../pickles/p_mpsi_'+fast_realization+'_'+fast_model+'_'+gadget_realization+'_'+gadget_model+'.pkl', 'rb')
         self.P_m_psi = pickle.load(flya)
         flya.close()
