@@ -56,11 +56,13 @@ class P_21_obs:
         self.bHI = params['bHI'] # fiducial is 2.82 (range 3.5<z<4.5)
         self.OHI = params['OHI'] / 1.e3 # 1.18 fiducial //
         self.OMh2 = self.Obh2 + self.Och2
-        self.realization = params['fast-realization']
-        self.model = params['fast-model']
+        self.fast_realization = params['fast-realization']
+        self.fast_model = params['fast-model']
+        self.gadget_realization = params['gadget-realization']
+        self.gadget_model = params['gadget-model']
         # hyper parameters
         self.zres = np.arange(6., 12.+0.1, 0.01)
-        file = open('../pickles/pat_'+self.realization+'_'+self.model+'.pkl', 'rb')
+        file = open('../pickles/pat_'+self.fast_realization+'_'+self.fast_model+'.pkl', 'rb')
         self.PmxH = pickle.load(file)
         file.close()
 
@@ -144,7 +146,7 @@ class P_21_obs:
         
     def pickle_this(self):
         # hhopefully it is faster to get the function than to compute it
-        file = open('../pickles/p_mXi_'+self.realization+'_'+self.model+'.pkl', 'wb')
+        file = open('../pickles/p_mXi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'wb')
         pickle.dump(self.P_m_Xi, file)
         file.close()
         return print('PickleD!')
