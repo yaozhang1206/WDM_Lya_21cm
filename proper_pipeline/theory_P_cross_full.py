@@ -70,7 +70,7 @@ class theory_P_cross(object):
     def Lya_HI_base_Mpc_norm(self, z, k_Mpc, mu):
         """ Computes the base (no reio term) cross-correlation term """
         b_F = self.Forest.my_P.flux_bias(z, self.Forest.my_P.our_sigma8)
-        b_21 = self.P_21_hey.bHI
+        b_21 = self.P_21_hey.bHI_func(z)
         beta_F = self.Forest.my_P.beta_rsd(z, self.Forest.my_P.our_sigma8)
         beta_21 = self.P_21_hey.beta_21(z)
         P_m = self.Forest.my_P.cosmo.P_m_Mpc(k_Mpc, z)
@@ -98,7 +98,7 @@ class theory_P_cross(object):
         
     def cross_F_memory_Mpc_norm(self, z, k_Mpc, mu):
         """ Computes the memory of reionization term sourced by underdense regions """
-        b_21 = self.P_21_hey.bHI
+        b_21 = self.P_21_hey.bHI_func(z)
         beta_21 = self.P_21_hey.beta_21(z)
         bias_G = self.Forest.my_P.b_gamma(z)
         return b_21 * (1. + beta_21 * mu**2) * bias_G * self.P_m_psi(z, k_Mpc)
@@ -114,14 +114,14 @@ class theory_P_cross(object):
     # Capability to compute the 21 auto
     def HIHI_base_Mpc_norm(self, z, k_Mpc, mu):
         """ 3D base 21 cm power spectrum """
-        b_21 = self.P_21_hey.bHI
+        b_21 = self.P_21_hey.bHI_func(z)
         beta_21 = self.P_21_hey.beta_21(z)
         P_m = self.Forest.my_P.cosmo.P_m_Mpc(k_Mpc, z)
         return b_21**2 * (1. + beta_21 * mu**2)**2 * P_m
         
     def HIHI_reio_Mpc_norm(self, z, k_Mpc, mu):
         """ reio term in 21cm auto-power spectrum """
-        b_21 = self.P_21_hey.bHI
+        b_21 = self.P_21_hey.bHI_func(z)
         beta_21 = self.P_21_hey.beta_21(z)
         return 2. * b_21 * (1. + beta_21 * mu**2) * self.P_m_Xi(z, k_Mpc)
 

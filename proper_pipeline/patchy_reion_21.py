@@ -63,14 +63,27 @@ class P_21_obs:
         file = open('../pickles/pat_'+self.realization+'_'+self.model+'.pkl', 'rb')
         self.PmxH = pickle.load(file)
         file.close()
-        
+
+
+    # adding the bias and omega as functions here
+    def OHI_func(self, z):
+        if 3.49 < z < 4.5:
+            return 1.18e-3
+        elif 4.5 <= z < 5.51:
+            return 0.98e-3
+            
+    def bHI_func(self, z):
+        if 3.49 < z < 4.5:
+            return 2.82
+        elif 4.5 <= z < 5.51:
+            return 3.18
 
     def Tb_mean(self, z):
         '''
         output in units of mK
         '''
         
-        return 27*np.sqrt((1+z)/10*0.15/self.OMh2)*(self.OHI*self.h**2/0.023)
+        return 27*np.sqrt((1+z)/10*0.15/self.OMh2)*(self.OHI_func(z)*self.h**2/0.023)
         
 
     def f(self, z):
@@ -80,7 +93,7 @@ class P_21_obs:
 
     def beta_21(self, z):
         # returns the rsd parameter
-        return self.f(z) / self.bHI
+        return self.f(z) / self.bHI_func(z)
 
 
 
@@ -125,7 +138,7 @@ class P_21_obs:
         
     def P_reion(self, z, k, mu):
         # normalized, i.e. no mK^2
-        P_patchy = 2 * (self.bHI + mu**2 * self.f(z)) * self.P_m_Xi(z, k)
+        P_patchy = 2 * (self.bHI_func(z) + mu**2 * self.f(z)) * self.P_m_Xi(z, k)
 
         return P_patchy
         
