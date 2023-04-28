@@ -33,7 +33,7 @@ class skalow(object):
         self.Total_N_s = 512 * 2 #512 * 4 # total stations
         self.N_a = 256 # this is the number of antennas per station, not being used for anything
         # the data that we grabbed manually
-        self.U_over_nu, self.n_U_x_nu_nu = np.loadtxt('./data/density_baseline.csv', unpack=True)
+        self.U_over_nu, self.n_U_x_nu_nu = np.loadtxt('../data/density_baseline.csv', unpack=True)
         # for system noise we need the comoving distance
         self.lya_c = lya_c.lya_convert()
         """ need to come back to this when it changes """

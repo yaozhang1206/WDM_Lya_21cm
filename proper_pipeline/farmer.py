@@ -29,11 +29,11 @@ params['alphas'] = -0.002
 params['taure'] = 0.066
 params['bHI'] = 2.82
 params['OHI'] = 1.18e-3 * 1.e3
-params['fast-model'] = '3keV'
+params['fast-model'] = '9keV'
 params['fast-realization'] = 'r1'
 params['gadget-realization'] = 'r1'
-params['gadget-model'] = '3keV'
-params['m_wdm'] = 3.0 #np.infty # for cdm is np.infty
+params['gadget-model'] = '9keV'
+params['m_wdm'] = 9.0 #np.infty # for cdm is np.infty
 params['band'] = 'g'
 params['sigma8'] = 0.8159
 params['telescope'] = 'skalow'
@@ -96,3 +96,4 @@ print('21cmfast realization: ', params['fast-realization'])
 print('21cmfast model: ', params['fast-model'])
 print('Gadget realization: ', params['gadget-realization'])
 print('Gadget model: ', params['gadget-model'])
+print('AND a WDM mass [in keV] of ', params['m_wdm'])

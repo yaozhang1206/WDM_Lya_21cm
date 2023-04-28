@@ -34,7 +34,7 @@ class theory_P_cross(object):
         flya = open('../pickles/p_mpsi_'+fast_realization+'_'+fast_model+'_'+gadget_realization+'_'+gadget_model+'.pkl', 'rb')
         self.P_m_psi = pickle.load(flya)
         flya.close()
-        f21 = open('../pickles/p_mXi_'+fast_realization+'_'+fast_model+'.pkl', 'rb')
+        f21 = open('../pickles/p_mXi_'+fast_realization+'_'+fast_model+'_'+gadget_realization+'_'+gadget_model+'.pkl', 'rb')
         self.P_m_Xi = pickle.load(f21)
         f21.close()
         # get lya related stuff

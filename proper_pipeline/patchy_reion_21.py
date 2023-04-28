@@ -117,7 +117,7 @@ class P_21_obs:
         return rho_HI
 
     def reion_mid(self):
-        xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_'+self.realization+'_'+self.model+'.txt')
+        xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_'+self.fast_realization+'_'+self.fast_model+'.txt')
         for z in np.arange(8.0,6.0,-0.01):
             if (np.abs(xi_arr(z)-0.5) < 0.001): break
         return z
