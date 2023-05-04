@@ -112,7 +112,7 @@ class P_21_obs:
         # unfortunately can't change yet until Yao starts generating pickles, but I
         # should make a pickle farmer
         with open('../pickles/rho_HI_func_'+self.gadget_realization+'_'+self.gadget_model+'.pkl','rb') as f:
-           rho_HI = pickle.load(f)
+           rho_HI = pickle.load(f, encoding='latin1')
            
         return rho_HI
 
