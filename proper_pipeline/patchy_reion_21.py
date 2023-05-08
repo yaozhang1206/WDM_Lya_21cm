@@ -130,6 +130,12 @@ class P_21_obs:
         return dpsi_dz
 
 
+    def Xi_for_plot(self, z_re, z_obs):
+        z_re_mean = self.reion_mid()
+        rho_HI = self.rho_HI()
+        Xi = np.log(rho_HI(z_re, z_obs) / rho_HI(z_re_mean, z_obs))
+        return Xi
+
     def P_m_Xi(self, z, k):
         dpsi_dz = self.dpsi_dz(z)
         
