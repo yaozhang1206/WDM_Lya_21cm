@@ -118,8 +118,11 @@ class P_21_obs:
 
     def reion_mid(self):
         xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_'+self.fast_realization+'_'+self.fast_model+'.txt')
-        for z in np.arange(8.0,6.0,-0.01):
-            if (np.abs(xi_arr(z)-0.5) < 0.001): break
+        for z in np.arange(9.0,6.0,-0.01):
+            if (xi_arr(z)<0.5 and xi_arr(z+0.01)>0.5): break
+            
+        z = z + ((0.5-(xi_arr(z)))/(xi_arr(z+0.01)-xi_arr(z)))*0.01
+        
         return z
 
     def dpsi_dz(self, z):
