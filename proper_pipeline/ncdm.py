@@ -2,7 +2,6 @@
 # halo and subhalo mass functions of non cold dark matter models with
 # respect to a CDM reference case.
 #
-# For detailed explanations, please see the publication Stücker et al (2021)
 # Code by Jens Stuecker
 
 import numpy as np
