@@ -1,7 +1,6 @@
 # This file offers some helper functions to handle the power spectra
 # of a non cold dark matter universe and the length and mass scales
 #
-# For detailed explanations, please see the publication Stücker et al (2021)
 # Code by Jens Stuecker
 
 import numpy as np
