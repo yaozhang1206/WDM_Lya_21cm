@@ -199,7 +199,7 @@ print(rho_HI)
 rho_func = interpolate.LinearNDInterpolator(coords, rho_HI)
 
 # save it in pickle file
-with open('../pickles/rho_HI_func/%s_%s.pkl'%(realization, model), 'wb') as f:
+with open('../pickles/rho_HI_func_%s_%s.pkl'%(realization, model), 'wb') as f:
 	pickle.dump(rho_func, f)
 f.close()
 
