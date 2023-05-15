@@ -95,9 +95,10 @@ f_b = params['Obh2'] / OMh2
 rhom=rho_crit*OMh2/params['h']**2 #*(1+z)**3  #Yao: if not multiply (1+z)**3, it's comoving density
 
 # prepare for converting from CDM to WDM halo mass function from Stucker et al. 2021
-alpha = scales.alpha_wdm(mx=m_wdm, mode="schneider", omega_x=params['Omega_cdm'], h=params['h'], gx=1.5)
-alphanew, betanew, gammanew = scales.alpha_beta_gamma_3_to_2_par(alpha, 2.24, 5./1.12, gammamap=5.)
-mhm = scales.half_mode_mass(alphanew, betanew, gammanew, omega_m=0.3088) #Calculates the half mode mass in units of Msol/h
+if m_wdm != np.inf:
+    alpha = scales.alpha_wdm(mx=m_wdm, mode="schneider", omega_x=params['Omega_cdm'], h=params['h'], gx=1.5)
+    alphanew, betanew, gammanew = scales.alpha_beta_gamma_3_to_2_par(alpha, 2.24, 5./1.12, gammamap=5.)
+    mhm = scales.half_mode_mass(alphanew, betanew, gammanew, omega_m=0.3088) #Calculates the half mode mass in units of Msol/h
 
 
 # fitting fomular from Tinker et al. 2008, eq.(2)
@@ -175,11 +176,13 @@ for z_re in z_res:
         dndM= - f_sigma*rhom/Mhalos*np.gradient(np.log(sigmas),Mhalos)
 
         # convert from CDM to WDM halo mass function
-        fhalos = []
-        for m in Mhalos:
-            fhalos.append(ncdm.mass_function_beta_mhm(m, beta=betanew, mhm=mhm, mode="halo"))
-        fhalos = np.array(fhalos)
-        dndM = dndM * fhalos
+        if m_wdm != np.inf:
+        # convert from CDM to WDM halo mass function
+            fhalos = []
+            for m in Mhalos:
+                fhalos.append(ncdm.mass_function_beta_mhm(m, beta=betanew, mhm=mhm, mode="halo"))
+            fhalos = np.array(fhalos)
+            dndM = dndM * fhalos
         M_baryon = np.array([f_b*M*(1+(2**(1./3)-1)*MF[i]/M)**(-3.) for M in Mhalos])
         # note MF[i] corresponds to z_cs[i]
         rho_HI.append(integrate.simps(dndM*M_baryon, Mhalos))
