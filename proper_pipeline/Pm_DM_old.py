@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from classy import Class
 from scipy.interpolate import interp1d
 
@@ -21,16 +22,33 @@ class P_matter(object):
         
         self.params = {
             'output': 'mPk',
-            'sigma8': params['sigma8'],
-            'n_s': 0.9667,
-            'h': 0.6774,
-            'Omega_b': 0.0486,
-            'Omega_cdm': 0.2602,
-            'z_reio': 7.93,
+            'T_cmb': 2.7255,
+            'N_ur': 3.046,
+            'N_ncdm': 1,
+#            'ncdm_psd_parameters': (0.3, 0.5, 0.05),
+            'deg_ncdm': 1,
+            'Omega_k': 0,
+            'YHe' : 'BBN',
+            'recombination': 'RECFAST',
+            'reio_parametrization': 'reio_camb',
+            'reionization_exponent': 1.5,
+            'reionization_width': 0.5,
+            'helium_fullreio_redshift': 3.5,
+            'helium_fullreio_width': 0.5,
+            'gauge': 'synchronous',
+            'P_k_ini type': 'analytic_Pk',
+            'P_k_max_1/Mpc': 10,
             'format': 'CLASS',
-            'P_k_max_1/Mpc': params['P_k_max_1/Mpc'],
             'z_max_pk': params['z_max_pk'],
-
+            # here comes the changing ones
+            'h': params['h'],
+            'n_s': params['ns'],
+            'A_s': params['As'] / 1.e9,
+            'm_ncdm': params['mnu'],
+            'alpha_s': params['alphas'],
+            'tau_reio': params['taure'],
+            'Omega_b': params['Obh2'] / (params['h']**2),
+            'Omega_cdm': params['Och2'] / (params['h']**2),
         } # values chosen consistent with planck cosmology, #P_k_max_1/Mpc was 5 before
         
         # Create an instance of the CLASS wrapper, this class we call for solving Boltzmann equations
