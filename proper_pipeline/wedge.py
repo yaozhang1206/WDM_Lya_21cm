@@ -1,14 +1,6 @@
 import numpy as np
-from scipy import interpolate
 from scipy import integrate
-import matplotlib.pyplot as plt
-import pandas as pd
-import scipy.linalg
-import sys
-# import puma
-# import skalow
-from math import floor
-import pickle
+
 
 # OM = 0.3089
 H0 = 67.74 # km/s/Mpc
