@@ -159,4 +159,5 @@ class P_21_obs:
         file = open('../pickles/p_mXi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'wb')
         pickle.dump(self.P_m_Xi, file)
         file.close()
-        return print('PickleD!')
+        print('PickleD!')
+        return 
