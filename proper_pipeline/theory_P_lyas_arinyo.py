@@ -112,7 +112,8 @@ class theory_P_lyas(object):
         file = open('../pickles/p_mpsi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'wb')
         pickle.dump(self.P_m_psi, file)
         file.close()
-        return print('PickleD!')
+        print('PickleD!')
+        return
         
     def P1D_z_kms_PD2013(self,z,k_kms):
         """ Fitting formula from Palanque-Delabrouille et al. (2013).
