@@ -1,18 +1,6 @@
 import numpy as np
 from scipy import integrate
 
-
-# OM = 0.3089
-H0 = 67.74 # km/s/Mpc
-# h = 4.135667696e-15 # Planck constant in units of eV/Hz
-# nu_0 = 13.6/h
-# c = 3.0e10 # light speed in units of cm
-G = 6.67e-11 # kg^-1 m^3 s^-2
-# Yp = 0.249 # Helium abundance
-# mH = 1.6729895e-24 # g
-# bolz_k = 8.617333262145e-5 # Bolzmann constant in units of eV/K
-rho_crit=3*H0**2/8/np.pi/G*H0/100 # M_solar/(Mpc)^3/h
-
 class bins:
     def __init__(self, dish_D, verbose = True, wedgeon = True):
 
