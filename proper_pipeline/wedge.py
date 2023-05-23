@@ -60,3 +60,37 @@ class bins:
         dmu = (1- mu_wedge) / self.nmu
 
         return mus, dmu
+ 
+'''
+ska = bins(dish_D=40.)
+puma = bins(dish_D=6.)
+
+zobs = [5.5,5.0,4.5,4.0,3.5,3.0]
+
+for z in zobs:
+    ska.z = z
+    puma.z = z
+    print("z = %.1f"%z)
+    print("ska: kmin: %f  wedge: %f"%(np.sqrt(ska.k_parallel_min()**2+ska.k_perp_min()**2), ska.mu_wedge()))
+    print("puma: kmin: %f  wedge: %f"%(np.sqrt(puma.k_parallel_min()**2+puma.k_perp_min()**2), puma.mu_wedge()))
+
+z = 5.5
+ska: kmin: 0.069163  wedge: 0.935066
+puma: kmin: 0.065530  wedge: 0.935066
+z = 5.0
+ska: kmin: 0.063257  wedge: 0.926315
+puma: kmin: 0.058224  wedge: 0.926315
+z = 4.5
+ska: kmin: 0.058391  wedge: 0.915296
+puma: kmin: 0.051247  wedge: 0.915296
+z = 4.0
+ska: kmin: 0.055015  wedge: 0.901112
+puma: kmin: 0.044631  wedge: 0.901112
+z = 3.5
+ska: kmin: 0.053834  wedge: 0.882384
+puma: kmin: 0.038428  wedge: 0.882384
+z = 3.0
+ska: kmin: 0.055923  wedge: 0.856906
+puma: kmin: 0.032737  wedge: 0.856906
+
+'''
