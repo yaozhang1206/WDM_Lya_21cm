@@ -40,6 +40,7 @@ params['telescope'] = 'skalow'
 params['t_int'] = 1000
 params['beam'] = 32 # think about this one
 params['z_max_pk'] = 35 # 35 for running patchy class and 5.5 for everything else
+params['P_k_max_1/Mpc'] = 110
 params['pickle'] = True # this needs to be True for this script.
 
 print('\n')
