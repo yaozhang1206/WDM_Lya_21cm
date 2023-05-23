@@ -72,4 +72,5 @@ class P_bubble(object):
         # dump information to file
         pickle.dump(self._P_mxHI, file)
         file.close()
-        return print('PickleD!')
+        print('PickleD!')
+        return
