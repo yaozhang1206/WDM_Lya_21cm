@@ -19,7 +19,7 @@ class P_bubble(object):
         self.realization = params['fast-realization'] # know which realization, or if it is the average one
         # for average it should be avg
         # model just covers reionization histories but it could be more than that.
-        filename = '../data/21cmfast/cross_21cm_'+self.realization+'_'+self.model+'.txt'
+        filename = '../data/21cmFAST/cross_21cm_'+self.realization+'_'+self.model+'.txt'
         # grab data
         Pc = np.loadtxt(filename)
         # transform from dimensionless to Mpc^3
@@ -46,7 +46,7 @@ class P_bubble(object):
                 self.temp_table[i*len(self.k_plot) + j, 0] = self.z_temp[i]
                 self.temp_table[i*len(self.k_plot) + j, 1] = self.k_plot[j]
                 self.temp_table[i*len(self.k_plot) + j, 2] = self.P_mxHI_vegetable(self.z_temp[i], self.k_plot[j])
-        np.savetxt('../data/21cmfast/matter_cross_21cm_'+self.realization+'_'+self.model+'.txt', self.temp_table, fmt='%e', delimiter=' ')
+        np.savetxt('../data/21cmFAST/matter_cross_21cm_'+self.realization+'_'+self.model+'.txt', self.temp_table, fmt='%e', delimiter=' ')
         
         
         
@@ -64,7 +64,7 @@ class P_bubble(object):
        
        
     def pickle_this(self):
-        temp = np.loadtxt('../data/21cmfast/matter_cross_21cm_'+self.realization+'_'+self.model+'.txt')
+        temp = np.loadtxt('../data/21cmFAST/matter_cross_21cm_'+self.realization+'_'+self.model+'.txt')
         Pk = temp.T[2]
         self._P_mxHI = interpolate.LinearNDInterpolator(temp[:,0:2], np.array(Pk).flatten())
         # file for our pickle
