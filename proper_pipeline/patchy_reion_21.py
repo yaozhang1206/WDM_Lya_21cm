@@ -1,39 +1,7 @@
 import numpy as np
 from scipy import interpolate
 from scipy import integrate
-import matplotlib.pyplot as plt
-import pandas as pd
-import scipy.linalg
-import sys
-from math import floor
 import pickle
-import Pm_DM as pm
-
-
-# OM = 0.3089
-H0 = 67.74 # km/s/Mpc
-# h = 4.135667696e-15 # Planck constant in units of eV/Hz
-# nu_0 = 13.6/h
-# c = 3.0e10 # light speed in units of cm
-# G = 6.67e-11 # kg^-1 m^3 s^-2
-G=4.30091e-9
-# Yp = 0.249 # Helium abundance
-# mH = 1.6729895e-24 # g
-# bolz_k = 8.617333262145e-5 # Bolzmann constant in units of eV/K
-rho_crit=3*H0**2/8/np.pi/G*H0/100 # M_solar/(Mpc)^3/h
-
-# rhom=rho_crit*OM
-
-# parsec=3.085677581e16 # m per parsec
-# H_0=67.74 # Hubble constants now, 67.74 km/s/mpc
-# G=4.30091e-9  #6.674×10−11 m3*kg−1*s−2 ### 4.30091(25)×10−3 Mpc*M_solar-1*(km/s)^2
-# solar_m= 1.98847e30 #(1.98847±0.00007)×10^30 kg
-
-# z=5.5
-
-# Omega_m=0.3089 # Omega_m = 0.3089+-0.0062
-# rhom=rho_crit*Omega_m #*(1+z)**3
-# f_b=0.17 # baryon fraction
 
 
 class P_21_obs:
