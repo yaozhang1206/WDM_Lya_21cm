@@ -71,26 +71,33 @@ for z in zobs:
     ska.z = z
     puma.z = z
     print("z = %.1f"%z)
-    print("ska: kmin: %f  wedge: %f"%(np.sqrt(ska.k_parallel_min()**2+ska.k_perp_min()**2), ska.mu_wedge()))
-    print("puma: kmin: %f  wedge: %f"%(np.sqrt(puma.k_parallel_min()**2+puma.k_perp_min()**2), puma.mu_wedge()))
-
+    print("wedge: %f"%ska.mu_wedge())
+    print("ska:  kmin: %f  k_parallel_min: %f  k_perp_min: %f"%(np.sqrt(ska.k_parallel_min()**2+ska.k_perp_min()**2), ska.k_parallel_min(), ska.k_perp_min()))
+    print("puma: kmin: %f  k_parallel_min: %f  k_perp_min: %f"%(np.sqrt(puma.k_parallel_min()**2+puma.k_perp_min()**2), puma.k_parallel_min(), puma.k_perp_min()))
+    
 z = 5.5
-ska: kmin: 0.069163  wedge: 0.935066
-puma: kmin: 0.065530  wedge: 0.935066
+wedge: 0.935066
+ska:  kmin: 0.069163  k_parallel_min: 0.065444  k_perp_min: 0.022373
+puma: kmin: 0.065530  k_parallel_min: 0.065444  k_perp_min: 0.003356
 z = 5.0
-ska: kmin: 0.063257  wedge: 0.926315
-puma: kmin: 0.058224  wedge: 0.926315
+wedge: 0.926315
+ska:  kmin: 0.063257  k_parallel_min: 0.058103  k_perp_min: 0.025011
+puma: kmin: 0.058224  k_parallel_min: 0.058103  k_perp_min: 0.003752
 z = 4.5
-ska: kmin: 0.058391  wedge: 0.915296
-puma: kmin: 0.051247  wedge: 0.915296
+wedge: 0.915296
+ska:  kmin: 0.058391  k_parallel_min: 0.051070  k_perp_min: 0.028308
+puma: kmin: 0.051247  k_parallel_min: 0.051070  k_perp_min: 0.004246
 z = 4.0
-ska: kmin: 0.055015  wedge: 0.901112
-puma: kmin: 0.044631  wedge: 0.901112
+wedge: 0.901112
+ska:  kmin: 0.055015  k_parallel_min: 0.044363  k_perp_min: 0.032535
+puma: kmin: 0.044631  k_parallel_min: 0.044363  k_perp_min: 0.004880
 z = 3.5
-ska: kmin: 0.053834  wedge: 0.882384
-puma: kmin: 0.038428  wedge: 0.882384
+wedge: 0.882384
+ska:  kmin: 0.053834  k_parallel_min: 0.038000  k_perp_min: 0.038132
+puma: kmin: 0.038428  k_parallel_min: 0.038000  k_perp_min: 0.005720
 z = 3.0
-ska: kmin: 0.055923  wedge: 0.856906
-puma: kmin: 0.032737  wedge: 0.856906
+wedge: 0.856906
+ska:  kmin: 0.055923  k_parallel_min: 0.032006  k_perp_min: 0.045858
+puma: kmin: 0.032737  k_parallel_min: 0.032006  k_perp_min: 0.006879
 
 '''
