@@ -167,7 +167,7 @@ class theory_P_cross(object):
         # volume
         V_Mpc = self.tel.survey_vol_Mpc(z)
         # number of modes
-        Nmodes = V_Mpc * k_Mpc * k_Mpc * epsilon * dmu / (2. * np.pi * np.pi)
+        Nmodes = V_Mpc * k_Mpc * k_Mpc * k_Mpc * epsilon * dmu / (2. * np.pi * np.pi)
         var21 = 2. * sigma_IM**2 / Nmodes
         return var21
 
