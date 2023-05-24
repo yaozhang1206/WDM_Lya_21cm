@@ -41,8 +41,8 @@ class bins:
         return mu
 
     def k_bins(self):
-        k_parallel_min = self.k_parallel_min(self)
-        k_perp_min = self.k_perp_min(self)
+        k_parallel_min = self.k_parallel_min()
+        k_perp_min = self.k_perp_min()
 
         kmin = np.sqrt(k_parallel_min**2+k_perp_min**2)
         ks0 = np.logspace(np.log10(kmin), np.log10(self.kmax), self.nk+1, endpoint = True)
@@ -52,7 +52,7 @@ class bins:
         return ks, dks, kmin
 
     def mu_bins(self):
-        mu_wedge = self.mu_wedge(self)
+        mu_wedge = self.mu_wedge()
         mus = np.linspace(mu_wedge, 1, self.nmu+1, endpoint = True)
 
         mus = (mus[1:] + mus[:-1]) / 2
