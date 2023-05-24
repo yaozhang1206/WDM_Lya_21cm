@@ -134,7 +134,7 @@ class theory_P_cross(object):
         """ Returns the total power spectrum including noise and memory of reionization """
         P3D = self.P3D_21_Mpc_norm(z, k_Mpc, mu)
         PN = self.tel.noise_power_Mpc(z, k_Mpc, mu) # normalize
-        PN = PN / self.P_21_hey.Tb_mean(z)
+        PN = PN / self.P_21_hey.Tb_mean(z)**2
         P_tot = P3D + PN
         return P_tot
  
