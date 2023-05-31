@@ -157,7 +157,6 @@ for z_re in z_res:
 
 
     # calculate halo mass function
-    # Note we haven't implemented WDM here, we just use WDM power spectrum to calculate f(sigma)
     for i in range(len(z_cs)):
         sigmas=[]
         
