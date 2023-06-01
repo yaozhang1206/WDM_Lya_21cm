@@ -156,7 +156,7 @@ for z_re in z_res:
     
 
 
-    # calculate halo mass function
+    # calculate halo mass function (first CDM)
     for i in range(len(z_cs)):
         sigmas=[]
         
@@ -176,7 +176,6 @@ for z_re in z_res:
 
         # convert from CDM to WDM halo mass function
         if m_wdm != np.inf:
-        # convert from CDM to WDM halo mass function
             fhalos = []
             for m in Mhalos:
                 fhalos.append(ncdm.mass_function_beta_mhm(m, beta=betanew, mhm=mhm, mode="halo"))
