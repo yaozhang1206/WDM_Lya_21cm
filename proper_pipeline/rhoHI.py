@@ -19,7 +19,7 @@ import ncdm
 realization = sys.argv[1]
 model = sys.argv[2]
 
-directory = '/scratch/yaozhang/xray_%s/%s_%s/'%(realization,model,realization)
+directory = '/scratch/yaozhang/%s/%s_%s/'%(realization,model,realization)
 
 z_res = [6,7,8,9,10,11,12]
 
