@@ -34,7 +34,6 @@ params['OHI'] = 1.18e-3 * 1.e3
 params['fast-realization'] = 'ave'
 params['gadget-realization'] = 'ave'
 params['band'] = 'g'
-params['sigma8'] = 0.8159
 params['telescope'] = tele
 params['t_int'] = 1000
 params['beam'] = 32 # think about this one
