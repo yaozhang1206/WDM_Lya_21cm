@@ -125,7 +125,6 @@ params['gadget-model'] = 'cdm_sminus'
 params['m_wdm'] = np.infty
 cdm_sminus = theory.theory_P_cross(params)
 
-# bins to do summation
 if params['telescope'] == 'skalow':
     D_dish = 40.0 # meter
 elif params['telescope'] == 'puma':
@@ -138,6 +137,7 @@ else:
 inverse_mass = [1/3, 1/4, 1/6, 1/9, 0]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
+# bins to do summation
 z_bin = [3.5+0.2*i for i in range(11)]
 
 bins_inter = []
