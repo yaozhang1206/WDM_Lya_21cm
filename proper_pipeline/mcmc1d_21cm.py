@@ -35,7 +35,6 @@ params['fast-realization'] = 'r1'
 params['gadget-realization'] = 'r1'
 params['m_wdm'] = np.infty # for cdm is np.infty
 params['band'] = 'g'
-params['sigma8'] = 0.8159
 params['telescope'] = tele
 params['t_int'] = 1000
 params['beam'] = 32 # think about this one
@@ -85,7 +84,7 @@ else:
 # !! we use 1/m and sigma8 as parameter !!
 inverse_mass = [1/3, 1/4, 1/6, 1/9, 0]
 
-z_bin = [3.5+0.2*i for i in range(11)]
+z_bin = [3.6+0.2*i for i in range(10)]
 
 bins_inter = []
 ref_bin = []
