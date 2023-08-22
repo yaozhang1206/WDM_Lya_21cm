@@ -143,10 +143,9 @@ nw = 32
 nd = 1
 
 # we need to make the initial value in the prior range
-initial = np.zeros(nw)
+initial = np.zeros((nw, nd))
 for l in range(nw):
-    initial[l] = np.random.rand()/3
-print(initial)
+    initial[l,0] = np.random.rand()/3
 
 # run mcmc chain
 filename = "chain1d_21cm_%s.h5"%tele
