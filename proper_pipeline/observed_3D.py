@@ -417,6 +417,33 @@ class observed_3D(object):
         varP = 2.0 * np.power(totP_Mpc,2) / (1.0 * Nmodes) # factor of 2 is because o<mu<1
         return varP
 
+def VarFluxP3D_Mpc_yao(self, k_Mpc,mu,dk,dmu,Pw2D=None,PN_eff=None):
+        """ now assumes log k bins """
+        # Variance of 3D lya power spectrum in Mpc^3
+        # range of mu is 0<mu<1
+        # Note that we are adding the capability of input Pw2D and PN_eff to save some time since this does not depened on k
+        # get redshift
+        z = self.mean_z()
+        # decompose into line of sight and transverse componentes (the k)
+        kp_Mpc = k_Mpc * mu
+        kt_Mpc = k_Mpc * np.sqrt(1.0 - mu**2)
+        # transform from comoving to observed coordinates?
+        dkms_dMpc = self.convert.dkms_dMpc(z)
+        kp_kms = kp_Mpc / (1.0 * dkms_dMpc)
+        dMpc_ddeg = self.convert.dMpc_ddeg(z)
+        kt_deg = kt_Mpc * dMpc_ddeg
+        # now total observed power in funny units
+        totP_degkms = self.TotalFluxP3D_degkms(kt_deg,kp_kms,Pw2D,PN_eff)
+        # back to Mpc^3
+        totP_Mpc = totP_degkms * dMpc_ddeg* dMpc_ddeg / (1.0 * dkms_dMpc)
+        # get volume of survey
+        V_Mpc = self.Volume_Mpc(z)
+        # Andreu: ' based on Eq. 8 in Seo & Eisenstein (2003), but with 0<mu<1 insted of -1<mu<1
+#        Nmodes = V_Mpc * k_Mpc * k_Mpc * dk_Mpc * dmu / (2.0 * np.pi * np.pi) # original
+        Nmodes = V_Mpc * k_Mpc * k_Mpc * dk * dmu / (2.0 * np.pi * np.pi)
+        varP = 2.0 * np.power(totP_Mpc,2) / (1.0 * Nmodes) # factor of 2 is because o<mu<1
+        return varP
+
     # need the capability of returning the total power spectrum for given 1D and 3D power spectrum
     # this will be done with new functions
     
