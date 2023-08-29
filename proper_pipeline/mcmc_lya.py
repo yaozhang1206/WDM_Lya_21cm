@@ -195,7 +195,7 @@ for i in range(len(z_bin)):
             #kp_kms = k * mu / dkms_dmpc
             #kt_deg = k * np.sqrt(1.0 - mu**2) * dmpc_ddeg
             ref_bin.append(cdm_s8.LyaLya_base_Mpc_norm(z, k, mu) + cdm_s8.LyaLya_reio_Mpc_norm(z, k, mu))
-            var_bin.append(ref.VarFluxP3D_Mpc(k, mu, 0.01, 0.2, Pw2D=pw, PN_eff=pn))    # Yao: note that we use linear k bins here, not log k bins, so the calculation of Nmode need to be changed in observed_3D.py
+            var_bin.append(ref.VarFluxP3D_Mpc_yao(k, mu, 0.01, 0.2, Pw2D=pw, PN_eff=pn))    # Yao: note that we use linear k bins here, not log k bins, so the calculation of Nmode need to be changed in observed_3D.py
 
 
 end2 = time.time()
