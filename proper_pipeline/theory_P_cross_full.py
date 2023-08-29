@@ -171,6 +171,18 @@ class theory_P_cross(object):
         var21 = 2. * sigma_IM**2 / Nmodes
         return var21
 
+
+    def Var_autoHI_Mpc_yao(self, z, k_Mpc, mu, dk, dmu):
+        """ Computes the variance for the 21cm auto """
+        sigma_IM = self.Total_P_21_Mpc_norm(z, k_Mpc, mu)
+        # volume
+        V_Mpc = self.tel.survey_vol_Mpc(z)
+        # number of modes
+        Nmodes = V_Mpc * k_Mpc * k_Mpc * dk * dmu / (2. * np.pi * np.pi)
+        var21 = 2. * sigma_IM**2 / Nmodes
+        return var21
+        
+    
     # let's start the capability to compute the spherically-average one
     # will do every power at the same time
     def sph_average_p(self, z, k_Mpc, epsilon, Pw2D=None, PN_eff=None):
