@@ -48,7 +48,7 @@ class theory_P_lyas(object):
         # the observed array
         self.z_obs_array = [2.0, 2.5, 3.0, 3.5, 4.0]
         # for memory of reionization
-        bg = np.loadtxt('../data/gadget/xray/transp_gadget_'+self.gadget_realization+'_'+self.gadget_model+'.txt', usecols=[7])
+        bg = np.loadtxt('../data/gadget/xray/transp_gadget_'+self.gadget_realization+'_'+self.gadget_model+'_f.txt', usecols=[7])
         self.b_gamma = interpolate.interp1d(self.z_obs_array, bg)
         # let's unpickle the pickles
         f_pat = open('../pickles/pat_'+self.fast_realization+'_'+self.fast_model+'.pkl', 'rb')
