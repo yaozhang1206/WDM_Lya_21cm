@@ -30,7 +30,7 @@ class observed_3D(object):
         self.lya_A = 1215.67
         # some of the functionality of survey since it it more convenient
         # area of the sky that is covered (in ddeg^2)
-        self.area_ddeg2 = 100 # so it is 140 times smaller than current DESI #14000.0
+        self.area_ddeg2 = 14000.0
         # wavelength range being covered (amrstrongs)
         self.lmin = 3501 #3501.0
         self.lmax = 3701 #3701.0
