@@ -34,6 +34,7 @@ params['band'] = 'g'
 params['telescope'] = 'skalow'
 params['t_int'] = 1000
 params['beam'] = 32 # think about this one
+params['P_k_max_1/Mpc'] = 10
 params['z_max_pk'] = 5.5 # only farmer would have 35 for running patchy class 
 params['pickle'] = False # only farmer would have True here
 
