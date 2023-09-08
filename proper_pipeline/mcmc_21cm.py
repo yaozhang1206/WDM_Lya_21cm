@@ -185,7 +185,7 @@ for z in z_bin:
             one_bin[14] = cdm_splus.P3D_21_Mpc_norm(z, k, mu)
             bins_inter.append(interpolate.LinearNDInterpolator(coords, one_bin))
             ref_bin.append(cdm_s8.P3D_21_Mpc_norm(z, k, mu))
-            var_bin.append(cdm_s8.Var_autoHI_Mpc(z, k, mu, dk, dmu)) # Yao: note this func assume dmu=0.2, which might need modification
+            var_bin.append(cdm_s8.Var_autoHI_Mpc_yao(z, k, mu, dk, dmu)) # Yao: note this func assume dmu=0.2, which might need modification
 
 
 
