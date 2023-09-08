@@ -291,3 +291,17 @@ class puma(object):
         # now that would be the expression for a single field interferometer survey, but we have many fields
         ratio_all = self.S_area / self.FOV(lambda_obs)
         return Dc_Mpc**2 * Delta_D_Mpc * ratio_single * ratio_all
+
+    def survey_vol_Mpc_eqn(self, z, dz):
+        """
+            analogue to galaxy survey, adopted from Heyang's paper
+            
+            Units of Mpc^3
+        """
+        z_max = z + 0.5*dz
+        z_min = z - 0.5*dz
+        # comoving distance
+        Dc_Mpc_max = self.lya_c.comoving_dist(z_max)
+        Dc_Mpc_min = self.lya_c.comoving_dist(z_min)
+       
+        return 4*np.pi/3. * self.f_sky * (Dc_Mpc_max**3 - Dc_Mpc_min**3)
