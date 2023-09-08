@@ -145,7 +145,7 @@ mu_bin = [0.1, 0.3, 0.5, 0.7, 0.9]
 
 
 # calculate the bins by previous theoretical model
-bins = np.zeros((len(z_bin)*len(k_bin)*len(mu_bin), 3, 5))
+bins = np.zeros((len(z_bin)*len(k_bin)*len(mu_bin), 15))
 i = 0
 for z in z_bin:
     for k in k_bin:
