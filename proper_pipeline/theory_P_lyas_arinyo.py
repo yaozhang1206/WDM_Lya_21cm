@@ -1,6 +1,6 @@
 import numpy as np
 from scipy import integrate
-from scipy.interpolate import CloughTocher2DInterpolator
+from scipy.interpolate import interp2d
 import scipy.linalg
 import sys
 from scipy.misc import derivative
@@ -29,27 +29,21 @@ class theory_P_lyas(object):
         self.fast_model = params['fast-model']
         self.our_sigma8 = params['sigma8']
         # so, the redshifts for arinyo are the following
-        self.z_arinyo = [2.2, 2.2, 2.2, 2.4, 2.4, 2.4, 2.6, 2.6, 2.6, 2.8, 2.8, 2.8, 3.0, 3.0, 3.0]
+        self.z_arinyo = [2.2, 2.4, 2.6, 2.8, 3.0]
         # the sigma8 arrays
-        self.sigma8 = [0.64, 0.76, 0.8778, 0.64, 0.76, 0.8778, 0.64, 0.76, 0.8778, 0.64, 0.76, 0.8778, 0.64, 0.76, 0.8778] #note that our sigma 8 is 0.8159
-        # so for the interpolation
-        intTable = np.zeros((len(self.sigma8),2))
-        intTable[:,1] = self.sigma8
-        intTable[:,0] = self.z_arinyo
-        # and need to interpolate unfortunately
-        # betas
+        self.sigma8 = [0.64, 0.76, 0.8778] #note that our sigma 8 is 0.8159
         self.beta_rsd_zs = [1.163, 1.284, 1.405, 1.137, 1.257, 1.385, 1.094, 1.219, 1.343, 1.035, 1.161, 1.284, 0.965, 1.086, 1.205]
-        self._beta_rsd = CloughTocher2DInterpolator(intTable, self.beta_rsd_zs)
+        self._beta_rsd = interp2d(self.z_arinyo, self.sigma8, self.beta_rsd_zs)
         # bias, this one needs to be converted into a flux bias
         self.b_tau_delta_zs = [0.7490, 0.6401, 0.5536, 0.7478, 0.6428, 0.5574, 0.7429, 0.6409, 0.5588, 0.7366, 0.6373, 0.5577, 0.7287, 0.6319, 0.5546]
-        self.b_tau_delta = CloughTocher2DInterpolator(intTable, self.b_tau_delta_zs)
+        self.b_tau_delta = interp2d(self.z_arinyo, self.sigma8, self.b_tau_delta_zs)
         # reference
         self.z_ref = 3.0
         # the observed array
         self.z_obs_array = [2.0, 2.5, 3.0, 3.5, 4.0]
         # for memory of reionization
         bg = np.loadtxt('../data/gadget/transp_gadget_'+self.gadget_realization+'_'+self.gadget_model+'_f.txt', usecols=[7])
-        self.b_gamma = interpolate.interp1d(self.z_obs_array, bg)
+        self.b_gamma = interpolate.interp1d(self.z_obs_array, bg, fill_value="extrapolate")
         # let's unpickle the pickles
         f_pat = open('../pickles/pat_'+self.fast_realization+'_'+self.fast_model+'.pkl', 'rb')
         # this is actually a power and not a density!
