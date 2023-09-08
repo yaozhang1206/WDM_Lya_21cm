@@ -417,7 +417,7 @@ class observed_3D(object):
         varP = 2.0 * np.power(totP_Mpc,2) / (1.0 * Nmodes) # factor of 2 is because o<mu<1
         return varP
 
-def VarFluxP3D_Mpc_yao(self, k_Mpc,mu,dk,dmu,Pw2D=None,PN_eff=None):
+    def VarFluxP3D_Mpc_yao(self, k_Mpc,mu,dk,dmu,Pw2D=None,PN_eff=None):
         """ now assumes log k bins """
         # Variance of 3D lya power spectrum in Mpc^3
         # range of mu is 0<mu<1
