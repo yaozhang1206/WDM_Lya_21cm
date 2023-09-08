@@ -311,6 +311,22 @@ class skalow(object):
         ratio_all = self.S_area / self.FOV(lambda_obs)
         return Dc_Mpc**2 * Delta_D_Mpc * ratio_single * ratio_all
 
+    def survey_vol_Mpc_eqn(self, z, dz):
+        """
+            analogue to galaxy survey, adopted from Heyang's paper
+            
+            Units of Mpc^3
+        """
+        #fractional coverage of sky
+        f_sky = self.S_area / (4. * np.pi)
+        z_max = z + 0.5*dz
+        z_min = z - 0.5*dz
+        # comoving distance
+        Dc_Mpc_max = self.lya_c.comoving_dist(z_max)
+        Dc_Mpc_min = self.lya_c.comoving_dist(z_min)
+       
+        return 4*np.pi/3. * f_sky * (Dc_Mpc_max**3 - Dc_Mpc_min**3)
+
 
     def checking_lightcone(self, z_1, band_MHz):
         """
