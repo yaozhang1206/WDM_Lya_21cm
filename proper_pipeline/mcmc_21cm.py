@@ -137,12 +137,20 @@ else:
 inverse_mass = [1/3, 1/4, 1/6, 1/9, 0]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
+coords = np.zeros((15,2))
+
+for i in range(3):
+    for j in range(5):
+        coords[5*i+j]= [inverse_mass[j], sigma8[i]]
+
 # bins to do summation
 z_bin = [3.6+0.2*i for i in range(10)]
 
 bins_inter = []
 ref_bin = []
 var_bin = []
+
+
 
 
 bin_class = wedge.bins(dish_D=D_dish)
@@ -159,25 +167,25 @@ for z in z_bin:
             k_perp = k * np.sqrt(1-mu**2)
             if (k_parallel<k_parallel_min) or (k_perp<k_perp_min) or mu<mu_wedge:
                 continue
-            one_bin = np.zeros((3,5))
-            one_bin[0,0] = wdm_3keV_sminus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[0,1] = wdm_4keV_sminus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[0,2] = wdm_6keV_sminus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[0,3] = wdm_9keV_sminus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[0,4] = cdm_sminus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[1,0] = wdm_3keV_s8.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[1,1] = wdm_4keV_s8.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[1,2] = wdm_6keV_s8.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[1,3] = wdm_9keV_s8.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[1,4] = cdm_s8.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[2,0] = wdm_3keV_splus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[2,1] = wdm_4keV_splus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[2,2] = wdm_6keV_splus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[2,3] = wdm_9keV_splus.P3D_21_Mpc_norm(z, k, mu)
-            one_bin[2,4] = cdm_splus.P3D_21_Mpc_norm(z, k, mu)
-            bins_inter.append(interpolate.interp2d(inverse_mass, sigma8, one_bin))
+            one_bin = np.zeros(15)
+            one_bin[0] = wdm_3keV_sminus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[1] = wdm_4keV_sminus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[2] = wdm_6keV_sminus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[3] = wdm_9keV_sminus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[4] = cdm_sminus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[5] = wdm_3keV_s8.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[6] = wdm_4keV_s8.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[7] = wdm_6keV_s8.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[8] = wdm_9keV_s8.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[9] = cdm_s8.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[10] = wdm_3keV_splus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[11] = wdm_4keV_splus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[12] = wdm_6keV_splus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[13] = wdm_9keV_splus.P3D_21_Mpc_norm(z, k, mu)
+            one_bin[14] = cdm_splus.P3D_21_Mpc_norm(z, k, mu)
+            bins_inter.append(interpolate.LinearNDInterpolator(coords, one_bin))
             ref_bin.append(cdm_s8.P3D_21_Mpc_norm(z, k, mu))
-            var_bin.append(cdm_s8.Var_autoHI_Mpc_yao(z, k, mu, dk, dmu)) # Yao: note this func assume dmu=0.2, which might need modification
+            var_bin.append(cdm_s8.Var_autoHI_Mpc(z, k, mu, dk, dmu)) # Yao: note this func assume dmu=0.2, which might need modification
 
 
 
