@@ -39,7 +39,7 @@ class P_bubble(object):
         self.P_temp = np.array(Pc.T[2][:]).flatten()
 #        print(self.z_temp)
 #        print(self.k_temp)
-        self.temp_table = np.zeros((len(self.z_temp)*len(self.k_temp),3))
+        self.temp_table = np.zeros((len(self.z_temp)*len(self.k_plot),3))
         print('This patchy pickle will take some time just because I did not try to optimize this procedure... :P')
         for i in range(0, len(self.z_temp)):
             for j in range(0, len(self.k_plot)):
