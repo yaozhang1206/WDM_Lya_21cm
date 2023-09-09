@@ -27,7 +27,7 @@ class P_bubble(object):
         # interpolate power but later
         self.P_mxHI = interpolate.LinearNDInterpolator(Pc[:,0:2], np.array(Pk).flatten())
         # before we pickle we need to deal with biasing procedure
-        self.k_plot = np.logspace(-3,0,100)
+        self.k_plot = np.logspace(-3,np.log10(2.),100)
         self.k_min = Pc.T[1][3]
         self.k_max = Pc.T[1][-1]
         self.cosmo = pm.P_matter(params)
