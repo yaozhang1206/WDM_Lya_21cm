@@ -157,8 +157,8 @@ ax1.set_xlabel(r'Redshift',fontsize=14)
 ax1.set_ylabel(r'Neutral hydrogen fraction',fontsize=14)
 #ax1.legend(loc='lower right')
 ax1.legend(loc='center left',bbox_to_anchor=(1.,0.5))
-#plt.savefig('global_history_yao.pdf',bbox_inches="tight")
-plt.savefig('global_history.png',bbox_inches="tight")
+plt.savefig('global_history.pdf',bbox_inches="tight")
+#plt.savefig('global_history.png',bbox_inches="tight")
 plt.show()
 
 # let's also do the mini-halos
