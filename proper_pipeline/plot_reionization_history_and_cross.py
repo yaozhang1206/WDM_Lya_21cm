@@ -145,8 +145,11 @@ ax1.errorbar(7.,0.7,yerr=np.array([[0.23,0.20]]).T,uplims=False,marker='p',marke
 ax1.errorbar(7.5,0.39,yerr=np.array([[0.13,0.22]]).T,uplims=False,marker='p',markersize=7,capthick=2,capsize=4,label=r'J1007+2115',zorder=6)
 ax1.errorbar(7.1,0.4,yerr=np.array([[0.19,0.21]]).T,uplims=False,marker='p',markersize=7,capthick=2,capsize=4,label=r'J1120+0641',zorder=6)
 ax1.errorbar(7.5,0.21,yerr=np.array([[0.19,0.17]]).T,uplims=False,marker='p',markersize=7,capthick=2,capsize=4,label=r'J1342+0928a',zorder=6)
+# these next  two are at 7.5 but I shifted them for clarity
 ax1.errorbar(7.6,0.56,yerr=np.array([[0.18,0.21]]).T,uplims=False,marker='p',markersize=7,capthick=2,capsize=4,label=r'J1342+0928b',zorder=6)
 ax1.errorbar(7.4,0.60,yerr=np.array([[0.23,0.20]]).T,uplims=False,marker='p',markersize=7,capthick=2,capsize=4,label=r'J1342+0928c',zorder=6)
+# adding the other quasar from davies
+ax1.errorbar(7.1,0.48,yerr=np.array([[0.26,0.26]]).T,uplims=False,marker='p',markersize=7,capthick=2,capsize=4, label=r'J1120+0641',zorder=6)
 ax1.errorbar(7.29,0.49,yerr=np.array([[0.11,0.11]]).T,uplims=False,marker='p',markersize=7,capthick=2,capsize=4,label=r'Combined quasars',zorder=6)
 ax1.errorbar(7.0,0.59,yerr=np.array([[0.15,0.11]]).T,xerr=0.5,uplims=False,marker='d',markersize=7,capthick=2,capsize=4,label=r'Ly$\alpha$ EWa',zorder=6)
 ax1.errorbar(7.6,0.88,yerr=np.array([[0.10,0.05]]).T,xerr=0.6,uplims=False,marker='d',markersize=7,capthick=2,capsize=4,label=r'Ly$\alpha$ EWb',zorder=6)
