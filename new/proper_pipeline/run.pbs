@@ -1,0 +1,17 @@
+#PBS -N combine_puma_r2_continue
+#PBS -V 
+#PBS -lselect=1:ncpus=2:mem=10gb
+#PBS -j oe
+cd $PBS_O_WORKDIR
+
+date
+
+#python3 plot_power_v2.py
+
+#python3 mcmc_lya.py r2
+
+#python3 mcmc_21cm.py puma r2
+
+python3 mcmc_combine_continue.py puma r2
+
+date
