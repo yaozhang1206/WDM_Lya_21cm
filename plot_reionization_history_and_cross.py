@@ -43,30 +43,30 @@ def tanH_model(z_re,z):
 #history_9keV = interp1d(xH_9keV, z)
 # now I have to actually grab Catalina's data of the different realizations
 # start with cdm
-z, xH_r1_cdm = np.loadtxt('./data/21cmFAST/xH_21cm_r1_cdm.txt', unpack=True)
-z, xH_r2_cdm = np.loadtxt('./data/21cmFAST/xH_21cm_r2_cdm.txt', unpack=True)
-z, xH_r3_cdm = np.loadtxt('./data/21cmFAST/xH_21cm_r3_cdm.txt', unpack=True)
-z, xH_r4_cdm = np.loadtxt('./data/21cmFAST/xH_21cm_r4_cdm.txt', unpack=True)
+z, xH_r1_cdm = np.loadtxt('./data/21cmFAST/xH_21cm_r1_cdm_s8.txt', unpack=True)
+z, xH_r2_cdm = np.loadtxt('./data/21cmFAST/xH_21cm_r2_cdm_s8.txt', unpack=True)
+z, xH_r3_cdm = np.loadtxt('./data/21cmFAST/xH_21cm_r3_cdm_s8.txt', unpack=True)
+z, xH_r4_cdm = np.loadtxt('./data/21cmFAST/xH_21cm_r4_cdm_s8.txt', unpack=True)
 # 3keV
-z, xH_r1_3keV = np.loadtxt('./data/21cmFAST/xH_21cm_r1_wdm3.txt', unpack=True)
-z, xH_r2_3keV = np.loadtxt('./data/21cmFAST/xH_21cm_r2_wdm3.txt', unpack=True)
-z, xH_r3_3keV = np.loadtxt('./data/21cmFAST/xH_21cm_r3_wdm3.txt', unpack=True)
-z, xH_r4_3keV = np.loadtxt('./data/21cmFAST/xH_21cm_r4_wdm3.txt', unpack=True)
+z, xH_r1_3keV = np.loadtxt('./data/21cmFAST/xH_21cm_r1_3keV_s8.txt', unpack=True)
+z, xH_r2_3keV = np.loadtxt('./data/21cmFAST/xH_21cm_r2_3keV_s8.txt', unpack=True)
+z, xH_r3_3keV = np.loadtxt('./data/21cmFAST/xH_21cm_r3_3keV_s8.txt', unpack=True)
+z, xH_r4_3keV = np.loadtxt('./data/21cmFAST/xH_21cm_r4_3keV_s8.txt', unpack=True)
 # 4keV
-z, xH_r1_4keV = np.loadtxt('./data/21cmFAST/xH_21cm_r1_wdm4.txt', unpack=True)
-z, xH_r2_4keV = np.loadtxt('./data/21cmFAST/xH_21cm_r2_wdm4.txt', unpack=True)
-z, xH_r3_4keV = np.loadtxt('./data/21cmFAST/xH_21cm_r3_wdm4.txt', unpack=True)
-z, xH_r4_4keV = np.loadtxt('./data/21cmFAST/xH_21cm_r4_wdm4.txt', unpack=True)
+z, xH_r1_4keV = np.loadtxt('./data/21cmFAST/xH_21cm_r1_4keV_s8.txt', unpack=True)
+z, xH_r2_4keV = np.loadtxt('./data/21cmFAST/xH_21cm_r2_4keV_s8.txt', unpack=True)
+z, xH_r3_4keV = np.loadtxt('./data/21cmFAST/xH_21cm_r3_4keV_s8.txt', unpack=True)
+z, xH_r4_4keV = np.loadtxt('./data/21cmFAST/xH_21cm_r4_4keV_s8.txt', unpack=True)
 # 6keV
-z, xH_r1_6keV = np.loadtxt('./data/21cmFAST/xH_21cm_r1_wdm6.txt', unpack=True)
-z, xH_r2_6keV = np.loadtxt('./data/21cmFAST/xH_21cm_r2_wdm6.txt', unpack=True)
-z, xH_r3_6keV = np.loadtxt('./data/21cmFAST/xH_21cm_r3_wdm6.txt', unpack=True)
-z, xH_r4_6keV = np.loadtxt('./data/21cmFAST/xH_21cm_r4_wdm6.txt', unpack=True)
+z, xH_r1_6keV = np.loadtxt('./data/21cmFAST/xH_21cm_r1_6keV_s8.txt', unpack=True)
+z, xH_r2_6keV = np.loadtxt('./data/21cmFAST/xH_21cm_r2_6keV_s8.txt', unpack=True)
+z, xH_r3_6keV = np.loadtxt('./data/21cmFAST/xH_21cm_r3_6keV_s8.txt', unpack=True)
+z, xH_r4_6keV = np.loadtxt('./data/21cmFAST/xH_21cm_r4_6keV_s8.txt', unpack=True)
 # 9keV
-z, xH_r1_9keV = np.loadtxt('./data/21cmFAST/xH_21cm_r1_wdm9.txt', unpack=True)
-z, xH_r2_9keV = np.loadtxt('./data/21cmFAST/xH_21cm_r2_wdm9.txt', unpack=True)
-z, xH_r3_9keV = np.loadtxt('./data/21cmFAST/xH_21cm_r3_wdm9.txt', unpack=True)
-z, xH_r4_9keV = np.loadtxt('./data/21cmFAST/xH_21cm_r4_wdm9.txt', unpack=True)
+z, xH_r1_9keV = np.loadtxt('./data/21cmFAST/xH_21cm_r1_9keV_s8.txt', unpack=True)
+z, xH_r2_9keV = np.loadtxt('./data/21cmFAST/xH_21cm_r2_9keV_s8.txt', unpack=True)
+z, xH_r3_9keV = np.loadtxt('./data/21cmFAST/xH_21cm_r3_9keV_s8.txt', unpack=True)
+z, xH_r4_9keV = np.loadtxt('./data/21cmFAST/xH_21cm_r4_9keV_s8.txt', unpack=True)
 # now let's compute the average and standard deviation on the mean
 def ave(a,b,c,d):
     return (a + b + c + d)/4.
@@ -146,9 +146,10 @@ ax1.errorbar(8.0,0.76,yerr=0.22,xerr=0.6,uplims=False,lolims=True,marker='X',mar
 ax1.set_xlim(5.5,12)
 ax1.set_xlabel(r'Redshift',fontsize=14)
 ax1.set_ylabel(r'Neutral hydrogen fraction',fontsize=14)
+#ax1.legend(loc='lower right')
 ax1.legend(loc='best')
-plt.savefig('global_history.pdf',bbox_inches="tight")
-#plt.savefig('global_history.png',bbox_inches="tight")
+#plt.savefig('global_history_yao.pdf',bbox_inches="tight")
+plt.savefig('global_history.png',bbox_inches="tight")
 plt.show()
 
 # let's also do the mini-halos
