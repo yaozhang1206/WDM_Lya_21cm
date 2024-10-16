@@ -12,9 +12,6 @@ class P_matter(object):
     def __init__(self, params):
         # now time to build class model
         # Define your cosmology (what is not specified will be set to CLASS default parameters, see explanatory.ini for specific information regarding all parameters)
-        # for reference these are the parameters that go into the fisher matrix
-        
-        """ need to be careful with Lyman alpha since we have a different parametrization (sigma8) """
         # getting wdm stuff
         self.m_WDM_keV = params['m_wdm']
         
@@ -58,7 +55,7 @@ class P_matter(object):
 
     def T_WDM(self, k_Mpc):
         """
-        Transfer function of WDM, taken from Viel et al. (~2006), remember that it is dimensionless
+        Transfer function of WDM, remember that it is dimensionless
 
         Inputs: k [Mpc^-1], note that no redshift nor little h in the input
 
@@ -73,44 +70,13 @@ class P_matter(object):
         """
         Returns the 3D matter power spectrum obtained from CLASS in units of Mpc^3 (no little h!). Note that this is a function of redshift too.
         
-        Inputs: k [h Mpc^-1], z
+        Inputs: k [Mpc^-1], z
         
         Outputs: P_m_CDM [Mpc^3]
         """
         # so actually pk needs k_Mpc as input and throws P_Mpc, so [Mpc^3] units, no h.
         # note that in case of cdm m_wdm -> infinity, thus transfer function -> 1
         return self.cosmo.pk_lin(k_Mpc, z) * self.T_WDM(k_Mpc) * self.T_WDM(k_Mpc)
-
-    def sigma(self, M_h, z):
-        """
-        Returns sigma at z needed for our HMF
-        
-        Inputs: M_h the halo mass and redshift
-        
-        Outputs: sigma
-        """
-#        R = 8. / self.h
-        # critical density
-        rho_crit = 1.879e-29 # g cm^{-3} h^2
-        rho_crit = rho_crit * self.h * self.h
-        # convert to solar masses
-        rho_crit = rho_crit / 2.e33
-        # and to Mpc
-        dcm_dMpc = 3.0857e24
-        rho_crit = rho_crit * dcm_dMpc**3
-        Omega_m = 0.2602 + 0.0486
-        rho_mean_z = Omega_m * rho_crit * (1. + z**3)
-        M_h = M_h
-#        print('Halo mass: in 10^8 solar masses ', M_h / 1.e8)
-#        print('mean density: ', rho_mean_z)
-        R = 3. * M_h / (4. * np.pi * rho_mean_z)
-        R = pow(R, 1./3.)
-#        print('Scaling R in Mpc: ', R)
-#        result = self.cosmo.sigma(R, z)
-        # and it seems that R should be R / h
-        result = self.cosmo.sigma(R / self.h, z)
-#        print('Sigma: ', result)
-        return result
 
     
     def kill_model(self):
