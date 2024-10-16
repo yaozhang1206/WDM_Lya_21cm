@@ -29,7 +29,7 @@ class theory_P_21(object):
         self.P_m_Xi = pickle.load(f21)
         f21.close()
         # get lya related stuff
-        self.sigma8 = params['sigma8'] # note that we also use As, fid = 0.8159, need to be careful with that!
+        self.sigma8 = params['sigma8']
         # we grab the wdm value in case someone forgot which model is this
         self.m_wdm = params['m_wdm']
         if telescope == 'puma':
