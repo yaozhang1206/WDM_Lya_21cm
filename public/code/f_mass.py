@@ -3,6 +3,11 @@
 import numpy as np
 from scipy import interpolate
 
+"""
+    This calculates the filtering mass M_F and filetering scale k_F in Equations (11), (12), (13), which quantifies the smoothing of small-scale baryonic structure and the reduction of gas in low-mass halos due to the increased pressure after rreionization.
+    The input data is the thermal history (sound speed) extracted from Gadget-2 simulations. 
+"""
+
 def load_f(name):
 	with open(name,'r') as f:
 		data=f.read()
@@ -26,6 +31,7 @@ class f_scale:
 		self.rho_mo=3*self.Omega_m*self.H_0**2/8/np.pi/self.G 
 
 	def cs_extract(self): 
+		# extract sound speed from Gadget-2 snapshots
 		k=1.38069e-23 # Boltzmann constant @ J*K-1
 		m_p=1.67262192369e-27 # proton mass @ kg
 		data=load_f(self.file_name)
