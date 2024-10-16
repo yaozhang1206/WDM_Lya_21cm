@@ -1,5 +1,7 @@
 This repository contains the codes and data used in the work "Unveiling the dark matter nature with reionization relics".
 
+Code requirements: classy (which also requires cython)
+
 [realization]: we have 4 realizations (r1-r4) and the average of them (ave).
 
 [model]:
