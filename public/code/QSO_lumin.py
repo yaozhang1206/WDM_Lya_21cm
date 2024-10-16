@@ -1,8 +1,11 @@
 import numpy as np
 import scipy.interpolate
 
+"""
+    This constructs the quasar luminosity function required for the MCMC forecast when using Lyman alpha forest power spectrum as a probe.
+"""
+
 class QSO_LF(object):
-    # This constructs the luminosity function required for the forecast
     
     def __init__(self,QLF_verbose):
         self.QLF_verbose = QLF_verbose
@@ -10,7 +13,6 @@ class QSO_LF(object):
             print('Using the SV QLF')
         else:
             print('Using the default QLF')
-#        self.my_QLFS = QLFS.QLFS()
         # Construct our luminosity function
         self._setup_LF()
     
@@ -21,10 +23,6 @@ class QSO_LF(object):
         # now grab the arrays for later interpolation
         z = np.unique(z)
         m = np.unique(m)
-#        print 'Paulo says:\n'
-#        print len(z), z
-#        print len(m), m
-#        print len(temp_dNdmdzddeg2), temp_dNdmdzddeg2
         # Paulo needs some help with this arrays so here you/I go
         self.z_array = z
         self.m_array = m
@@ -36,19 +34,15 @@ class QSO_LF(object):
         temp_dNdmdzddeg2 /= (1.0 * dz * dm)
         temp_dNdmdzddeg2 = np.reshape(temp_dNdmdzddeg2,[len(z),len(m)])
         
-#        print len(temp_dNdmdzddeg2), temp_dNdmdzddeg2
-        
         # compute the range (remember the center a bin spans z - delta_z/2 to z + delta_z/2
         self.zmin = z[0] - 0.5 * dz
         self.zmax = z[-1] + 0.5 * dz
         
-#        print self.zmin, self.zmax
         # time for the magnitude
         self.mmin = m[0] - 0.5*dm
         self.mmax = m[-1] + 0.5*dm
         
-#        print self.mmin, self.mmax
-        # interpolate for eveyother redshift/magnitude
+        # interpolate for everyother redshift/magnitude
         self._dNdmdzddeg2 = scipy.interpolate.RectBivariateSpline(z,m,temp_dNdmdzddeg2, bbox=[self.zmin,self.zmax,self.mmin,self.mmax], kx=2,ky=2)
     
     def range_z(self):
@@ -82,8 +76,4 @@ class QSO_LF(object):
         dn_dz_default = np.sum(self._dNdmdzddeg2(z_q,self.m_array)) * dm  # * dz if doing plotted
         # the ratio
         ratio = dn_dz_SV / dn_dz_default
-        # test
-#        print('SV ',dn_dz_SV)
-#        print('Default',dn_dz_default)
-#        print('ratio ',ratio)
         return ratio
