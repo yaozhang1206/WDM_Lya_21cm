@@ -47,6 +47,6 @@ class lya_convert(object):
     
     def dMpc_ddeg(self,z):
         # this one takes care of the transition from deg to Mpc, so twice for areas!!
-        # What we needed is not the angular diameter distance but the comoving distance because we are not calculating proper distance but the comoving distance.
+        # What we needed for dMpc_drad is not the angular diameter distance but the comoving distance because we are not calculating the physical distance but the comoving distance spanned by the angle.
         dMpc_drad = self.comoving_dist(z)
         return dMpc_drad * np.pi / 180.0
