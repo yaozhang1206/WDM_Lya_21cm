@@ -40,6 +40,25 @@ redshift xHI
 ......
 
 
+gadget:
+
+transp_gadget_[realization]_[model]_f.txt
+column 1-7: psi(z_re,z_obs) in Equation (4), relative transparency of gas reionized at z_re compared to gas reionized at z=8 in CDM
+column 8: radiation bias b_Gamma in Equation (2)
+e.g.
+          psi(z_re=6) psi(z_re=7) psi(z_re=8) psi(z_re=9) psi(z_re=10) psi(z_re=11) psi(z_re=12) b_Gamma
+z_obs=2.0 0.01809 -0.00997 -0.01894 -0.02173 -0.02280 -0.02350 -0.02405 0.08886
+z_obs=2.5 0.04902 0.01060 -0.00081 -0.00319 -0.00236 -0.00168 -0.00201 0.15411
+          ......
+
+
+dNdzdg_QSO.dat
+DESI quasar luminosity function
+
+sn-spec-lya-g[magnitude]-t4000.dat
+DESI spectrograph performance
+
+skalow1_density_baseline.csv
 
 
 
