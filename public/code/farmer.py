@@ -6,12 +6,20 @@ import sys
     Look! A pickle farmer?
     
     We run this script once per model.
+
+    inputs: model fast_realization gadget_realization 1.0/m_wdm sigma8
+
+    outputs:
+    psi_[gadget_realization]_[model].pkl
+    pat_[fast_realization]_[model].pkl
+    p_mXi_[fast_realization]_[model]_[gadget_realization]_[model].pkl
+    p_mpsi_[fast_realization]_[model]_[gadget_realization]_[model].pkl
     
 """
 
 """ FIRST: carefully tune the parameters of the dictionary to your model """
 
-# put attention to sigma8 value (and thus As value need to be consistend), m_wdm value
+# put attention to sigma8 value, m_wdm value
 
 # after that put attention to the fast-model and fast-realization
 
@@ -21,13 +29,13 @@ model = sys.argv[1]
 fast_realization = sys.argv[2]
 gadget_realization = sys.argv[3]
 
+
 # dictionary
 params={}
 params['h'] = 0.6774
 params['Obh2'] = 0.02230
 params['Och2'] = 0.1188
 params['mnu'] = 0.194
-params['As'] = 2.142 # 10^9 * As
 params['ns'] = 0.9667
 params['alphas'] = -0.002
 params['taure'] = 0.066
@@ -45,29 +53,8 @@ params['z_max_pk'] = 35 # 35 for running patchy class and 5.5 for everything els
 params['P_k_max_1/Mpc'] = 110
 params['pickle'] = True # this needs to be True for this script.
 
-if(model[0]=='3'):
-    params['m_wdm'] = 3.0
-elif(model[0]=='4'):
-    params['m_wdm'] = 4.0
-elif(model[0]=='6'):
-    params['m_wdm'] = 6.0
-elif(model[0]=='9'):
-    params['m_wdm'] = 9.0
-elif(model[0]=='c'):
-    params['m_wdm'] = np.infty
-else:
-    print("DM mass cannot be determined.")
-    sys.exit(1)
-
-if(model[-3:]=='_s8'):
-    params['sigma8'] = 0.8159
-elif(model[-3:]=='nus'):
-    params['sigma8'] = 0.7659
-elif(model[-3:]=='lus'):
-    params['sigma8'] = 0.8659
-else:
-    print("Sigma8 cannot be determined.")
-    sys.exit(1)
+params['m_wdm'] = 1.0 / float(sys.argv[4])
+params['sigma8'] = float(sys.argv[5])
 
 
 print('\n')
