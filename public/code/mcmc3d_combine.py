@@ -26,7 +26,6 @@ params['Obh2'] = 0.02230
 params['Och2'] = 0.1188
 params['ns'] = 0.9667
 params['mnu'] = 0.194
-params['As'] = 2.142 # 10^9 * As
 params['alphas'] = -0.002
 params['taure'] = 0.066
 params['bHI'] = 2.82
