@@ -16,7 +16,6 @@ class P_21_obs:
         self.Obh2 = params['Obh2']
         self.Och2 = params['Och2']
         self.mnu2 = params['mnu']
-        self.As = params['As'] / 1.e9 # As read in 10^9 * As
         self.ns = params['ns']
         self.alpha_s = params['alphas']
         self.tau_re = params['taure']
