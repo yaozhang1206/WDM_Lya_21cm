@@ -7,7 +7,7 @@ import pickle
 class P_21_obs:
 
     """
-        Build the cross power spectrum of matter and Xi (HI density fluctuation), we want to pickle this function to save time!
+        Build the cross power spectrum of matter and Xi (HI density fluctuation) for 21 cm IM, we want to pickle this function to save time!
     """
     
     def __init__(self, params):
