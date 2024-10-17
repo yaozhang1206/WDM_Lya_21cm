@@ -3,7 +3,7 @@ import pickle
 from scipy.interpolate import interp2d
 
 """
-    Build the transparency and we want to pickle this function to save time!
+    Build the transparency for lya forest and we want to pickle this function to save time!
     
     Only needs to be run once per model!
     
