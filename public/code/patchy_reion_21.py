@@ -7,7 +7,7 @@ import pickle
 class P_21_obs:
 
     """
-        I am also pickling this guy!
+        Build the cross power spectrum of matter and Xi (HI density fluctuation), we want to pickle this function to save time!
     """
     
     def __init__(self, params):
@@ -79,6 +79,7 @@ class P_21_obs:
         return rho_HI
 
     def reion_mid(self):
+        # we use the average because the difference of xHI(z) between realizations is very small
         xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_ave_'+self.fast_model+'.txt')
         for z in np.arange(12.0,6.0,-0.01):
             if (xi_arr(z)<0.5 and xi_arr(z+0.01)>0.5): break
