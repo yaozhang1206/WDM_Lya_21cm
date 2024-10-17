@@ -4,7 +4,7 @@ import pickle
 import Pm_DM as pm
 
 """
-    Build the matter cross xHI, we want to pickle this extrapolated function to save time!
+    Build the cross power spectrum of matter and xHI, we want to pickle this extrapolated function to save time!
     
     Only needs to be run once per model!
     
