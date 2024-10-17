@@ -40,6 +40,7 @@ class puma(object):
         # number of receivers
         self.N_s = 256 # hence compact square array will have 256^2, be careful the fit uses this, so
         # it really should be 256 here
+        # when calculating noise power spectrum, we normalize it to have 32000 array elements
         # speed of ligth in km/s
         self.c_kms = 2.99979e5
 #        """ playing with this for a second it should go back to 256!!! """
