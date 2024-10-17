@@ -4,9 +4,12 @@ import pixel as pix
 import lya_convertor as convertor
 import theory_P_lyas_arinyo as theory
 
+"""
+    Construct P_w^2D and P_N^eff in Equation (24) required for the total observed 3D lya power spectrum (Pw2D and PN_eff in function EffectiveDensityAndNoise())
+    Calculate the variance of 3D lya power spectrum required for MCMC (function VarFluxP3D_Mpc_yao())
+"""
+
 class observed_3D(object):
-    # This constructs the P2w, and its integrals and other items required for the observed 3D lya power spectrum
-    
     """
         lmin = 3501. + 200. * 10 -> z_mean = 3.61
         lmin = 3501. + 200. * 11 -> z_mean = 3.77
