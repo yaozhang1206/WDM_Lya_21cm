@@ -86,7 +86,7 @@ pickle of the interpolator of rho_HI(z_re,z_obs) in Equation (9)
 
 ######## code ########
 
-The usage of each .py file is at the beginning of the files.
+Each .py file is described at the beginning of the file.
 
 In general,
 - theory_P_lyas_arinyo.py
