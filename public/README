@@ -26,9 +26,13 @@ DESI quasar luminosity function
 DESI spectrograph performance
 
 - skalow1_density_baseline.csv
-reference: 
-e.g.
-
+reference: Figure 6 in arXiv:1410.7393
+e.g. 
+u/nu [MHz^-1] n(u)*nu^2 [MHz^2]
+0.11903168444605486 63095.73444801943
+......
+u = k_transverse * comving_distance / (2*pi)
+n(u): baseline number density
 
 ######## 21cmFAST ########
 
@@ -87,6 +91,9 @@ pickle of the interpolator of rho_HI(z_re,z_obs) in Equation (9)
 ######## code ########
 
 Each .py file is described at the beginning of the file.
+
+Note that the ncdm.py and scales.py are adopted from https://github.com/jstuecker/ncdm-mass-functions to calculate WDM halo mass function.
+reference: arXiv:2109.09760 and arXiv:1909.00008
 
 In general,
 - theory_P_lyas_arinyo.py
