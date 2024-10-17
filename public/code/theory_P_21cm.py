@@ -6,7 +6,12 @@ import pickle
 import Pm_DM as pm
 
 """
-    Now we are using pickle for saving memories
+    Calculate the 3D 21 cm IM power spectrum:
+    P3D_21_Mpc_norm(z, k_Mpc, mu) = HIHI_base_Mpc_norm(z, k_Mpc, mu) + HIHI_reio_Mpc_norm(z, k_Mpc, mu),
+    where HIHI_base_Mpc_norm() is the first term on the RHS of Equation (15) divided by Tb^2, i.e. (b_HI+mu^2*f)^2*P_m;
+    HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (15) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi.
+    
+    Also calculate the variance of the 21 cm IM power spectrum for MCMC.
 """
 
 class theory_P_21(object):
