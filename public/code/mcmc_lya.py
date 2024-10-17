@@ -11,6 +11,14 @@ import time
 import os
 import sys
 
+"""
+    2D MCMC forecast for DESI and Stage V using lyman alpha forest power spectrum.
+    Use the average of realization 1-4.
+    2 parameter: 1/m_WDM, sigma8
+    input: [next_gen]: 0 or 1
+    0: DESI; 1: Stage V
+"""
+
 os.environ["OMP_NUM_THREADS"] = "1"
 
 start = time.time()
