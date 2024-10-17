@@ -3,6 +3,11 @@
 #
 # Code by Jens Stuecker
 
+"""
+    This is adopted from https://github.com/jstuecker/ncdm-mass-functions
+    reference: arXiv:2109.09760
+"""
+
 import numpy as np
 
 def transfer_ncdm(k, alpha, beta, gamma=5.):
