@@ -11,6 +11,13 @@ import time
 import os
 import sys
 
+"""
+    3D MCMC forecast for skalow and puma using 21 cm IM power spectrum.
+    Only use relization 1.
+    3 free parameter: 1/m_WDM, sigma8, zeta
+    input: [telescope]: skalow or puma
+"""
+
 os.environ["OMP_NUM_THREADS"] = "1"
 
 start = time.time()
