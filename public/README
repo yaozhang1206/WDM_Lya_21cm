@@ -91,11 +91,15 @@ Each .py file is described at the beginning of the file.
 In general,
 - theory_P_lyas_arinyo.py
 calculates the 3D lyman alpha forest power spectrum:
-P_F^3D(z,k_Mpc,mu) = LyaLya_base_Mpc_norm(z, k_Mpc, mu) + LyaLya_reio_Mpc_norm(z, k_Mpc, mu), where LyaLya_base_Mpc_norm is the first term on the RHS of Equation (6) and LyaLya_reio_Mpc_norm is the second term on the RHS, which is the leading-order term of the impact of reionization on the 3D lyman alpha forest power spectrum.
+P_F^3D(z,k_Mpc,mu) = LyaLya_base_Mpc_norm(z, k_Mpc, mu) + LyaLya_reio_Mpc_norm(z, k_Mpc, mu),
+where LyaLya_base_Mpc_norm() is the first term on the RHS of Equation (6),
+and LyaLya_reio_Mpc_norm() is the second term on the RHS of Equation (6), which is the leading-order term of the impact of reionization on the 3D lyman alpha forest power spectrum.
 
 - theory_P_21cm.py
 calculates the 3D 21 cm IM power spectrum:
-P3D_21_Mpc_norm(z, k_Mpc, mu) = HIHI_base_Mpc_norm(z, k_Mpc, mu) + HIHI_reio_Mpc_norm(z, k_Mpc, mu) where HIHI_base_Mpc_norm is the first term on the RHS of Equation (15) divided by Tb^2, i.e. (b_HI+mu^2*f)^2*P_m; HIHI_reio_Mpc_norm is the second term on the RHS divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi.
+P3D_21_Mpc_norm(z, k_Mpc, mu) = HIHI_base_Mpc_norm(z, k_Mpc, mu) + HIHI_reio_Mpc_norm(z, k_Mpc, mu),
+where HIHI_base_Mpc_norm() is the first term on the RHS of Equation (15) divided by Tb^2, i.e. (b_HI+mu^2*f)^2*P_m;
+HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (15) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi.
 
 - mcmc_lya.py, mcmc_21cm.py, mcmc_combine.py: 2D mcmc results in Figure 3 (m_WDM,sigma8)
 
