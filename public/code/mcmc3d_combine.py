@@ -13,6 +13,14 @@ import time
 import os
 import sys
 
+"""
+    3D MCMC forecast for DESI+SKA1-LOW and PUMA+Stage V using lyman alpha forest and 21 cm IM power spectra.
+    Only use realization 1.
+    3 parameter: 1/m_WDM, sigma8, zeta
+    input: [telescope]: skalow or puma
+    skalow: DESI+SKA1-LOW; puma: PUMA+Stage V
+"""
+
 os.environ["OMP_NUM_THREADS"] = "1"
 
 start = time.time()
@@ -302,8 +310,6 @@ for i in range(len(z_bin_lya)):
         pn /= 3.
     for k in k_bin_lya:
         for mu in mu_bin_lya:
-            #kp_kms = k * mu / dkms_dmpc
-            #kt_deg = k * np.sqrt(1.0 - mu**2) * dmpc_ddeg
             ref_bin_lya.append(cdm_s8_lya.LyaLya_base_Mpc_norm(z, k, mu) + cdm_s8_lya.LyaLya_reio_Mpc_norm(z, k, mu))
             var_bin_lya.append(ref_lya.VarFluxP3D_Mpc_yao(k, mu, 0.01, 0.2, Pw2D=pw, PN_eff=pn))    # Yao: note that we use linear k bins here, not log k bins, so the calculation of Nmode need to be changed in observed_3D.py
 
