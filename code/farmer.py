@@ -7,7 +7,7 @@ import sys
     
     We run this script once per model.
 
-    inputs: model fast_realization gadget_realization 1.0/m_wdm sigma8
+    inputs: model fast_realization gadget_realization m_wdm(keV or 'cdm') sigma8
 
     outputs:
     psi_[gadget_realization]_[model].pkl
@@ -53,7 +53,11 @@ params['z_max_pk'] = 35 # 35 for running patchy class and 5.5 for everything els
 params['P_k_max_1/Mpc'] = 110
 params['pickle'] = True # this needs to be True for this script.
 
-params['m_wdm'] = 1.0 / float(sys.argv[4])
+if sys.argv[4]=='cdm':
+    params['m_wdm'] = np.infty
+else:
+    params['m_wdm'] = float(sys.argv[4])
+
 params['sigma8'] = float(sys.argv[5])
 
 
