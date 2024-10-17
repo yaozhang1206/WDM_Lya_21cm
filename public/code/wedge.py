@@ -1,6 +1,10 @@
 import numpy as np
 from scipy import integrate
 
+"""
+    Calculate the allowed k bins, mu bins and mu wedge for MCMC when using 21 cm IM power spectrum, Equation (30)-(32).
+"""
+
 class bins:
     def __init__(self, dish_D):
 
