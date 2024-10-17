@@ -1,7 +1,10 @@
 import numpy as np
 from scipy.interpolate import RegularGridInterpolator
 
-# this one is for the pixel error
+"""
+    This one is for the pixel error.
+"""
+
 class spec_pixel(object):
     # This class describe given spectrograph, and gives noise estimates
 
