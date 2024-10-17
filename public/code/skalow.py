@@ -23,14 +23,9 @@ class skalow(object):
         self.t_int = t_int * 3600.
         # physical dish area
         self.D_phys = 40.0 # meters
-        # square root of effective dish area
-#        self.D_eff = np.sqrt(0.7) * self.D_phys # in meters
-        # total survey area (100 sq. degrees coming from the proposed survey for low-z in SKA
-        # Red book)
-#        self.S_area = 6. * (np.pi / 180.)**2 # sq. radians
         # number of receivers = 224 stations * 256 dipole antennas in each
-        self.N_s = 224 #224 * 2 # stations in the core
-        self.Total_N_s = 512 #512 * 2 # total stations
+        self.N_s = 224 # 224 stations in the core
+        self.Total_N_s = 512 # total stations
         self.N_a = 256 # this is the number of antennas per station, not being used for anything
         # the data that we grabbed manually
         self.U_over_nu, self.n_U_x_nu_nu = np.loadtxt('../data/skalow1_density_baseline.csv', unpack=True)
@@ -203,7 +198,7 @@ class skalow(object):
         ang_factor = lambda_obs**2 / self.eff_area_SKA_LOW(nu_obs) # [sq. m] / [sq. m] = dimensionless
         # FOV factor
 #        f_factor = self.S_area / self.FOV(lambda_obs) # dimensionless
-        f_factor = 1.
+        f_factor = 1.  # we use survey area = FOV, i.e. a deep and narrow survey to reduce thermal noise
         # number density stuff
         # first get the right k perp
         kt_Mpc = k_Mpc * np.sqrt(1. - mu**2)
