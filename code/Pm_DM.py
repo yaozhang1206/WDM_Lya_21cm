@@ -72,7 +72,7 @@ class P_matter(object):
         
         Inputs: k [Mpc^-1], z
         
-        Outputs: P_m_CDM [Mpc^3]
+        Outputs: P_m [Mpc^3]
         """
         # so actually pk needs k_Mpc as input and throws P_Mpc, so [Mpc^3] units, no h.
         # note that in case of cdm m_wdm -> infinity, thus transfer function -> 1
