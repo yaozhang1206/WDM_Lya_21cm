@@ -14,9 +14,9 @@ import os
 import sys
 
 """
-    2D MCMC forecast for DESI+SKA1-LOW and PUMA+Stage V using lyman alpha forest and 21 cm IM power spectra.
+    2-parameter MCMC forecast for DESI+SKA1-LOW and PUMA+Stage V using lyman alpha forest and 21 cm IM power spectra.
     Use the average of realization 1-4.
-    2 parameter: 1/m_WDM, sigma8
+    2 parameters: 1/m_WDM, sigma8
     input: [telescope]: skalow or puma
     skalow: DESI+SKA1-LOW; puma: PUMA+Stage V
 """
@@ -163,7 +163,7 @@ cdm_sminus_lya = theory_lya.theory_P_lyas(params)
 cdm_sminus_21 = theory_21.theory_P_21(params)
 
 
-# !! we use 1/m and sigma8 as parameter !!
+# !! we use 1/m and sigma8 as parameters !!
 inverse_mass = [1/3., 1/4., 1/6., 1/9., 0.]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
@@ -340,22 +340,6 @@ sampler.run_mcmc(initial, 50000, progress=False)
 end2 = time.time()
 mcmc_time = end2 - end1
 print("MCMC took {0:.1f} seconds".format(mcmc_time))
-
-fig, axs = plt.subplots(2)
-samples1 = sampler.get_chain()
-axs[0].plot(range(len(samples1)), samples1[:, :, 0], "k", alpha=0.3)
-axs[0].set_xlabel('step number')
-axs[0].set_ylabel('1keV / m')
-axs[1].plot(range(len(samples1)), samples1[:, :, 1], "k", alpha=0.3)
-axs[1].set_xlabel('step number')
-axs[1].set_ylabel(r'$\sigma_8$')
-fig.savefig('chain_combine_%s.pdf'%(tele))
-
-
-samples = sampler.get_chain(flat=True, discard=2000, thin=20)
-fig1 = corner.corner(
-    samples, labels=['1keV / m', r'$\sigma_8$'], truths=[0, 0.8159])
-fig1.savefig('corner_combine_%s.pdf'%(tele))
 
 cal_time = np.array(cal_time, dtype=float)
 print('calculation time for each step: ', np.mean(cal_time))
