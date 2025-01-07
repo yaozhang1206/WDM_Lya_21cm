@@ -210,7 +210,7 @@ zeta_p8_lya = theory_lya.theory_P_lyas(params)
 zeta_p8_21 = theory_21.theory_P_21(params)
 
 
-# !! we use 1/m and sigma8 as parameter !!
+# !! we use 1/m, sigma8 and zeta as parameters !!
 inverse_mass = [1/3., 1/4., 1/6., 1/9., 0.]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
