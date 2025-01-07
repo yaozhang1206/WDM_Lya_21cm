@@ -126,15 +126,15 @@ p8=(3keV,sigma8=0.8659,zeta=40)
   
 &emsp;&emsp;pickle of the function P_m_Xi(z_obs, k) where P_m_Xi is the cross-power spectrum of matter density and Xi (HI density fluctuation), Equation (1) for 21 cm IM
 
-- pat_[realization]_[model].pkl
+- pat_[fast_realization]_[model].pkl
   
 &emsp;&emsp;pickle of the interpolator of P_m_xHI(z, k) where P_m_xHI is the cross-power spectrum of matter density and xHI in Equation (1)
 
-- psi_[realization]_[model].pkl
+- psi_[gadget_realization]_[model].pkl
   
 &emsp;&emsp;pickle of the interpolator of psi(z_re,z_obs) in Equation (4)
 
-- rho_HI_func_[realization]_[model].pkl
+- rho_HI_func_[gadget_realization]_[model].pkl
   
 &emsp;&emsp;pickle of the interpolator of rho_HI(z_re,z_obs) in Equation (9)
 
