@@ -11,7 +11,7 @@ import ncdm
 
 
 """
-    Build the HI density for 21 cm IM and we want to pickle this function to save time!
+    Build the HI density in Equation (9) for 21 cm IM and we want to pickle this function to save time!
     
     Only need to run once per model!
     
