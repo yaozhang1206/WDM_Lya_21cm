@@ -7,7 +7,7 @@ import sys
     
     We run this script once per model.
 
-    inputs: model fast_realization gadget_realization m_wdm(keV or 'cdm') sigma8
+    inputs: model fast_realization gadget_realization m_wdm(in keV or 'cdm') sigma8
 
     outputs:
     psi_[gadget_realization]_[model].pkl
