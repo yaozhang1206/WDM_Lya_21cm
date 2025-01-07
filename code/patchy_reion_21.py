@@ -7,7 +7,7 @@ import pickle
 class P_21_obs:
 
     """
-        Build the cross power spectrum of matter and Xi (HI density fluctuation) for 21 cm IM, we want to pickle this function to save time!
+        Build the cross-power spectrum of matter density and Xi (HI density fluctuation) for 21 cm IM, we want to pickle this function to save time!
     """
     
     def __init__(self, params):
@@ -116,7 +116,7 @@ class P_21_obs:
         return P_patchy
         
     def pickle_this(self):
-        # hhopefully it is faster to get the function than to compute it
+        # hopefully it is faster to get the function than to compute it
         file = open('../pickles/p_mXi_'+self.fast_realization+'_'+self.fast_model+'_'+self.gadget_realization+'_'+self.gadget_model+'.pkl', 'wb')
         pickle.dump(self.P_m_Xi, file)
         file.close()
