@@ -11,6 +11,8 @@ from scipy.integrate import trapz
     This class is in charge of describing SKA1-LOW for grabing info needed for noise. The technical specs come from Francisco's 2014 paper (arXiv:1410.7393) and other references. This one is the second version, which accounts for the lack of correlations between the antennas in each station.
     
     Note that this version has very low sensitivity, in fact it has a pretty subpar number density of baselines!
+
+    The function noise_power_Mpc() is used to calculate noise power spectrum in Equation (26).
     
 """
 
