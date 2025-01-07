@@ -165,7 +165,7 @@ In general,
 
 &emsp;&emsp;where HIHI_base_Mpc_norm() is the first term on the RHS of Equation (15) divided by Tb^2, i.e. (b_HI+mu^2\*f)^2\*P_m;
 
-&emsp;&emsp;HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (15) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi.
+&emsp;&emsp;HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (15) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi, which is the leading-order term of the impact of reionization on the 3D 21cm IM power spectrum.
 
 - mcmc_lya.py, mcmc_21cm.py, mcmc_combine.py
 
