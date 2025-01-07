@@ -14,7 +14,7 @@ import os
 import sys
 
 """
-    3D MCMC forecast for DESI+SKA1-LOW and PUMA+Stage V using lyman alpha forest and 21 cm IM power spectra.
+    3-parameter MCMC forecast for DESI+SKA1-LOW and PUMA+Stage V using lyman alpha forest and 21 cm IM power spectra.
     Only use realization 1.
     3 parameter: 1/m_WDM, sigma8, zeta
     input: [telescope]: skalow or puma
@@ -417,25 +417,6 @@ sampler.run_mcmc(initial, 50000, progress=False)
 end2 = time.time()
 mcmc_time = end2 - end1
 print("MCMC took {0:.1f} seconds".format(mcmc_time))
-
-fig, axs = plt.subplots(3)
-samples1 = sampler.get_chain()
-axs[0].plot(range(len(samples1)), samples1[:, :, 0], "k", alpha=0.3)
-axs[0].set_xlabel('step number')
-axs[0].set_ylabel('1keV / m')
-axs[1].plot(range(len(samples1)), samples1[:, :, 1], "k", alpha=0.3)
-axs[1].set_xlabel('step number')
-axs[1].set_ylabel(r'$\sigma_8$')
-axs[2].plot(range(len(samples1)), samples1[:, :, 2], "k", alpha=0.3)
-axs[2].set_xlabel('step number')
-axs[2].set_ylabel(r'$\zeta$')
-fig.savefig('chain_combine_%s_zeta_pop2.pdf'%(tele))
-
-
-samples = sampler.get_chain(flat=True, discard=2000, thin=20)
-fig1 = corner.corner(
-    samples, labels=['1keV / m', r'$\sigma_8$', r'$\zeta$'], truths=[0,0.8159,30.])
-fig1.savefig('corner_combine_%s_zeta_pop2.pdf'%(tele))
 
 cal_time = np.array(cal_time, dtype=float)
 print('calculation time for each step: ', np.mean(cal_time))
