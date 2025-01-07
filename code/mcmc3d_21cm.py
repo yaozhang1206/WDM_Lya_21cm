@@ -12,7 +12,7 @@ import os
 import sys
 
 """
-    3D MCMC forecast for skalow and puma using 21 cm IM power spectrum.
+    3-parameter MCMC forecast for skalow and puma using 21 cm IM power spectrum.
     Only use realization 1.
     3 parameter: 1/m_WDM, sigma8, zeta
     input: [telescope]: skalow or puma
@@ -185,7 +185,7 @@ params['gadget-model'] = 'zeta_p8'
 zeta_p8 = theory.theory_P_21(params)
 
 
-# !! we use 1/m and sigma8 as parameter !!
+# !! we use 1/m, sigma8 and zeta as parameters !!
 inverse_mass = [1/3., 1/4., 1/6., 1/9., 0.]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
@@ -289,7 +289,7 @@ def log_prob(theta, ref, var):
 nw = 32
 nd = 3
 
-# we need to make the initial value in the prior range
+# we need to generate the initial value in the prior range
 initial = np.zeros((nw, nd))
 for l in range(nw):
     initial[l,0] = np.random.rand()/3.
