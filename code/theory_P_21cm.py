@@ -11,7 +11,7 @@ import Pm_DM as pm
     where HIHI_base_Mpc_norm() is the first term on the RHS of Equation (15) divided by Tb^2, i.e. (b_HI+mu^2*f)^2*P_m;
     HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (15) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi.
     
-    Also calculate the variance of the 21 cm IM power spectrum for MCMC in function Var_autoHI_Mpc_yao().
+    Also calculate the variance of the 21 cm IM power spectrum in Equation (22) for MCMC using function Var_autoHI_Mpc_yao().
 """
 
 class theory_P_21(object):
