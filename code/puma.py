@@ -8,6 +8,8 @@ from scipy.integrate import trapz
 
 """
     This class is in charge of describing PUMA for grabing info needed for noise. The technical specs come from 1810.09572
+
+    The function noise_power_Mpc() is used to calculate noise power spectrum in Equation (26).
 """
 
 class puma(object):
