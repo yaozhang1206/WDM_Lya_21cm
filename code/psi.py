@@ -3,7 +3,7 @@ import pickle
 from scipy.interpolate import interp2d
 
 """
-    Build the transparency for lya forest and we want to pickle this function to save time!
+    Build the IGM transparency in Equation (4) for lya forest and we want to pickle this function to save time!
     
     Only needs to be run once per model!
     
