@@ -4,9 +4,8 @@ import numpy as np
 from scipy import interpolate
 
 """
-    This calculates the filtering mass M_F and filetering scale k_F in Equations (11), (12), (13), 
-    which quantifies the smoothing of small-scale baryonic structure and the reduction of gas in low-mass halos due to the increased pressure after reionization.
-    The input data is the thermal history (sound speed) extracted from Gadget-2 simulations. 
+    This calculates the filtering mass M_F and filetering scale k_F in Equations (11), (12), (13), and extracts sound speed in Equation (14) from Gadget-2 snapshots.
+    M_F and k_F quantify the smoothing of small-scale baryonic structure and the reduction of gas in low-mass halos due to the increased pressure after reionization.
 """
 
 def load_f(name):
