@@ -6,7 +6,7 @@ import theory_P_lyas_arinyo as theory
 
 """
     Construct P_w^2D and P_N^eff in Equation (24) required for the total observed 3D lya power spectrum (Pw2D and PN_eff in function EffectiveDensityAndNoise())
-    Calculate the variance of 3D lya power spectrum required for MCMC (function VarFluxP3D_Mpc_yao())
+    Calculate the variance of 3D lya power spectrum required for MCMC (function VarFluxP3D_Mpc_yao()) in Equation (22).
 """
 
 class observed_3D(object):
