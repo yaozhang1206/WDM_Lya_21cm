@@ -12,9 +12,9 @@ import os
 import sys
 
 """
-    3D MCMC forecast for DESI and Stage V using lyman alpha forest power spectrum.
+    3-parameter MCMC forecast for DESI and Stage V using lyman alpha forest power spectrum.
     Only use realization 1.
-    3 parameter: 1/m_WDM, sigma8, zeta
+    3 parameters: 1/m_WDM, sigma8, zeta
     input: [next_gen]: 0 or 1
     0: DESI; 1: Stage V
 """
@@ -228,7 +228,7 @@ for z in z_bin:
             bins[i,22] = zeta_p8.LyaLya_base_Mpc_norm(z, k, mu) + zeta_p8.LyaLya_reio_Mpc_norm(z, k, mu)
             i += 1
 
-# !! we use 1/m and sigma8 as parameter !!
+# !! we use 1/m, sigma8 and zeta as parameters !!
 inverse_mass = [1./3., 1./4., 1./6., 1./9., 0.]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
@@ -322,25 +322,6 @@ sampler.run_mcmc(initial, 50000, progress=False)
 end3 = time.time()
 mcmc_time = end3 - end2
 print("MCMC took {0:.1f} seconds".format(mcmc_time))
-
-fig, axs = plt.subplots(3)
-samples1 = sampler.get_chain()
-axs[0].plot(range(len(samples1)), samples1[:, :, 0], "k", alpha=0.3)
-axs[0].set_xlabel('step number')
-axs[0].set_ylabel('1keV / m')
-axs[1].plot(range(len(samples1)), samples1[:, :, 1], "k", alpha=0.3)
-axs[1].set_xlabel('step number')
-axs[1].set_ylabel(r'$\sigma_8$')
-axs[2].plot(range(len(samples1)), samples1[:, :, 2], "k", alpha=0.3)
-axs[2].set_xlabel('step number')
-axs[2].set_ylabel(r'$\zeta$')
-fig.savefig('chain_lya_NGen%d_zeta_pop2.pdf'%next_gen)
-
-
-samples = sampler.get_chain(flat=True, discard=2000, thin=20)
-fig1 = corner.corner(
-    samples, labels=['1keV / m', r'$\sigma_8$', r'$\zeta$'], truths=[0,0.8159,30.])
-fig1.savefig('corner_lya_NGen%d_zeta_pop2.pdf'%next_gen)
 
 cal_time = np.array(cal_time, dtype=float)
 print('calculation time for each step: ', np.mean(cal_time))
