@@ -1,10 +1,12 @@
-Repository for "Unveiling the dark matter nature with reionization relics".
+Repository for "Unveiling the dark matter nature with reionization relics"
 ==========================================================================
 
 This repository contains the data and code used in the work "Unveiling the dark matter nature with reionization relics".
 
 ## Code requirements
 __classy__ (which also requires __cython__)
+
+https://cobaya.readthedocs.io/en/latest/theory_class.html
 
 ## Meaning in the filename
 
@@ -80,6 +82,7 @@ p8=(3keV,sigma8=0.8659,zeta=40)
 - xH_21cm_[realization]_[model].txt
   
 &emsp;&emsp;evolution of volume-weighted global neutral hydrogen fraction
+
 &emsp;&emsp;e.g. redshift xHI
 
 &emsp;&emsp;3.537197473298937211e+01 9.997801780700683594e-01
@@ -97,16 +100,23 @@ p8=(3keV,sigma8=0.8659,zeta=40)
 
 &emsp;&emsp;e.g.
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;psi(z_re=6) psi(z_re=7) psi(z_re=8) psi(z_re=9) psi(z_re=10) psi(z_re=11) psi(z_re=12) b_Gamma
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;psi(z_re=6) psi(z_re=7) psi(z_re=8) psi(z_re=9) psi(z_re=10) psi(z_re=11) psi(z_re=12) b_Gamma
           
-&emsp;&emsp;z_obs=2.0 0.01809 -0.00997 -0.01894 -0.02173 -0.02280 -0.02350 -0.02405 0.08886
+&emsp;&emsp;z_obs=2.0&emsp;0.01809 -0.00997 -0.01894 -0.02173 -0.02280 -0.02350 -0.02405 0.08886
 
-&emsp;&emsp;z_obs=2.5 0.04902 0.01060 -0.00081 -0.00319 -0.00236 -0.00168 -0.00201 0.15411
+&emsp;&emsp;z_obs=2.5&emsp;0.04902 0.01060 -0.00081 -0.00319 -0.00236 -0.00168 -0.00201 0.15411
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;......
+&emsp;&emsp;z_obs=3.0&emsp;......
+
+&emsp;&emsp;z_obs=3.5&emsp;......
+
+&emsp;&emsp;z_obs=4.0&emsp;......
+
 
 
 ## pickles/
+
+[fast_realization]: realization of 21cmFAST simulation; [gadget_realization]: realization of Gadget simulation.
 
 - p_mpsi_[fast_realization]\_[model]\_[gadget_realization]\_[model].pkl
   
@@ -133,7 +143,7 @@ p8=(3keV,sigma8=0.8659,zeta=40)
 
 Each .py file is described at the beginning of the file.
 
-Note that the ncdm.py and scales.py are adopted from https://github.com/jstuecker/ncdm-mass-functions to calculate WDM halo mass function. **reference: arXiv:2109.09760**
+Note that the ncdm.py and scales.py are adopted from https://github.com/jstuecker/ncdm-mass-functions to calculate WDM halo mass function. **Reference: arXiv:2109.09760**
 
 In general,
 
@@ -153,7 +163,7 @@ In general,
 
 &emsp;&emsp;P3D_21_Mpc_norm(z, k_Mpc, mu) = HIHI_base_Mpc_norm(z, k_Mpc, mu) + HIHI_reio_Mpc_norm(z, k_Mpc, mu),
 
-&emsp;&emsp;where HIHI_base_Mpc_norm() is the first term on the RHS of Equation (15) divided by Tb^2, i.e. (b_HI+mu^2*f)^2*P_m;
+&emsp;&emsp;where HIHI_base_Mpc_norm() is the first term on the RHS of Equation (15) divided by Tb^2, i.e. (b_HI+mu^2\*f)^2\*P_m;
 
 &emsp;&emsp;HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (15) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi.
 
