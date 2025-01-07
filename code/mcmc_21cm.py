@@ -12,9 +12,9 @@ import os
 import sys
 
 """
-    2D MCMC forecast for skalow and puma using 21 cm IM power spectrum.
+    2-parameter MCMC forecast for skalow and puma using 21 cm IM power spectrum.
     Use the average of realization 1-4.
-    2 parameter: 1/m_WDM, sigma8
+    2 parameters: 1/m_WDM, sigma8
     input: [telescope]: skalow or puma
 """
 
@@ -37,8 +37,6 @@ params['bHI'] = 2.82
 params['OHI'] = 1.18e-3 * 1.e3
 params['fast-realization'] = 'ave'
 params['gadget-realization'] = 'ave'
-#params['fast-realization'] = 'r1'
-#params['gadget-realization'] = 'r1'
 params['band'] = 'g'
 params['telescope'] = tele
 params['beam'] = 32 # think about this one
@@ -145,7 +143,7 @@ params['m_wdm'] = np.infty
 cdm_sminus = theory.theory_P_21(params)
 
 
-# !! we use 1/m and sigma8 as parameter !!
+# !! we use 1/m and sigma8 as parameters !!
 inverse_mass = [1/3., 1/4., 1/6., 1/9., 0.]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
@@ -245,22 +243,6 @@ sampler.run_mcmc(initial, 50000, progress=False)
 end2 = time.time()
 mcmc_time = end2 - end1
 print("MCMC took {0:.1f} seconds".format(mcmc_time))
-
-fig, axs = plt.subplots(2)
-samples1 = sampler.get_chain()
-axs[0].plot(range(len(samples1)), samples1[:, :, 0], "k", alpha=0.3)
-axs[0].set_xlabel('step number')
-axs[0].set_ylabel('1keV / m')
-axs[1].plot(range(len(samples1)), samples1[:, :, 1], "k", alpha=0.3)
-axs[1].set_xlabel('step number')
-axs[1].set_ylabel(r'$\sigma_8$')
-fig.savefig('chain_21cm_%s.pdf'%(tele))
-
-
-samples = sampler.get_chain(flat=True, discard=2000, thin=20)
-fig1 = corner.corner(
-    samples, labels=['1keV / m', r'$\sigma_8$'], truths=[0, 0.8159])
-fig1.savefig('corner_21cm_%s.pdf'%(tele))
 
 cal_time = np.array(cal_time, dtype=float)
 print('calculation time for each step: ', np.mean(cal_time))
