@@ -1,4 +1,4 @@
-# redshift mu k(Mpc^-1) P(k,mu)(Mpc^3) standard deviation of P(k,mu) of four realizations
+# redshift mu k(Mpc^-1) P(k,mu)(mK^2 Mpc^3) standard deviation of P(k,mu) of four realizations
 5.5 0.1 3.503514e-02 2.306189e+03 7.629662e+01
 5.5 0.1 5.263151e-02 1.632719e+03 5.210392e+01
 5.5 0.1 7.314235e-02 8.992766e+02 1.995375e+01
