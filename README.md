@@ -4,7 +4,7 @@ Repository for "Unveiling the dark matter nature with reionization relics"
 This repository contains the data and code used in the work "Unveiling the dark matter nature with reionization relics".
 
 ## Code requirements
-__classy__ (which also requires __cython__) for calculate matter power spectrum
+__classy__ (which also requires __cython__) for calculating matter power spectrum
 
 https://cobaya.readthedocs.io/en/latest/theory_class.html
 
@@ -13,6 +13,8 @@ __emcee__ for MCMC forecast
 https://emcee.readthedocs.io/en/stable/
 
 __pickle__
+
+The codes are run with __python3__.
 
 ## Meaning in the filename
 
@@ -62,6 +64,10 @@ p8=(3keV,sigma8=0.8659,zeta=40)
 &emsp;&emsp;......
 
 &emsp;&emsp;u = k_transverse * comving_distance / (2*pi), n(u): baseline number density
+
+### data/power_spectrum
+
+The Lyman alpha forest and 21 cm IM power spectra including the imprints of reionization in Figure 2.
 
 ### data/21cmFAST/
 
