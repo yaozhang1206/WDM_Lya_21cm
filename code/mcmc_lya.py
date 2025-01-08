@@ -2,11 +2,8 @@ import numpy as np
 import theory_P_lyas_arinyo as theory
 import observed_3D as obs
 import emcee
-import matplotlib
-matplotlib.use("agg")
 from matplotlib import pyplot as plt
 from scipy import interpolate
-import corner
 import time
 import os
 import sys

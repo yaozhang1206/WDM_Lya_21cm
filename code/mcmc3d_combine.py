@@ -4,11 +4,8 @@ import theory_P_lyas_arinyo as theory_lya
 import observed_3D as obs
 import wedge
 import emcee
-import matplotlib
-matplotlib.use("agg")
 from matplotlib import pyplot as plt
 from scipy import interpolate
-import corner
 import time
 import os
 import sys

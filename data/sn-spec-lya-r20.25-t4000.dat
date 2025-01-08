@@ -1,5 +1,4 @@
 # Lyman-alpha forest S/N per Ang for mean quasar with mean forest
-# INFILE= /Users/andreufont/DESIRepo/code/desimodel//data/spectra/spec-lya.dat
 # BAND= r
 # MAG= 20.25
 # EXPTIME= 4000

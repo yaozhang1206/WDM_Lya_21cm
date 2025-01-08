@@ -12,6 +12,8 @@ __emcee__ for MCMC forecast
 
 https://emcee.readthedocs.io/en/stable/
 
+__pickle__
+
 ## Meaning in the filename
 
 ### [realization]
