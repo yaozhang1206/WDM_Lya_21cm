@@ -4,9 +4,13 @@ Repository for "Unveiling the dark matter nature with reionization relics"
 This repository contains the data and code used in the work "Unveiling the dark matter nature with reionization relics".
 
 ## Code requirements
-__classy__ (which also requires __cython__)
+__classy__ (which also requires __cython__) for calculate matter power spectrum
 
 https://cobaya.readthedocs.io/en/latest/theory_class.html
+
+__emcee__ for MCMC forecast
+
+https://emcee.readthedocs.io/en/stable/
 
 ## Meaning in the filename
 
