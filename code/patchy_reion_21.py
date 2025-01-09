@@ -31,7 +31,6 @@ class P_21_obs:
         file = open('../pickles/pat_'+self.fast_realization+'_'+self.fast_model+'.pkl', 'rb')
         self.PmxH = pickle.load(file)
         file.close()
-        self.z_reio_mid = self.reion_mid()
 
 
     # adding the bias and omega as functions here
@@ -94,7 +93,7 @@ class P_21_obs:
         return z
 
     def dpsi_dz(self, z):
-        z_re_mean = self.z_reio_mid
+        z_re_mean = self.reion_mid()
         rho_HI = self.rho_HI()
         dpsi_dz = np.gradient(np.log(rho_HI(self.zres,z)/rho_HI(z_re_mean,z)),self.zres)
         dpsi_dz[np.isnan(dpsi_dz)] = 0
