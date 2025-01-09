@@ -91,7 +91,7 @@ wdm_9keV_s8_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 cdm_s8_lya = theory_lya.theory_P_lyas(params)
 cdm_s8_21 = theory_21.theory_P_21(params)
 
@@ -123,7 +123,7 @@ wdm_9keV_splus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = 'cdm_splus'
 params['gadget-model'] = 'cdm_splus'
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 cdm_splus_lya = theory_lya.theory_P_lyas(params)
 cdm_splus_21 = theory_21.theory_P_21(params)
 
@@ -155,7 +155,7 @@ wdm_9keV_sminus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = 'cdm_sminus'
 params['gadget-model'] = 'cdm_sminus'
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 cdm_sminus_lya = theory_lya.theory_P_lyas(params)
 cdm_sminus_21 = theory_21.theory_P_21(params)
 
@@ -176,7 +176,7 @@ for i in range(3):
 params['sigma8'] = 0.8159
 params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 ref_lya = obs.observed_3D(params)
 
 '''

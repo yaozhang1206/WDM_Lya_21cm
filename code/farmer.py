@@ -54,7 +54,7 @@ params['P_k_max_1/Mpc'] = 110
 params['pickle'] = True # this needs to be True for this script.
 
 if sys.argv[4]=='cdm':
-    params['m_wdm'] = np.infty
+    params['m_wdm'] = np.inf
 else:
     params['m_wdm'] = float(sys.argv[4])
 

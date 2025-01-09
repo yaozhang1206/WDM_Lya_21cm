@@ -70,7 +70,7 @@ wdm_9keV_s8 = theory.theory_P_lyas(params)
 
 params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 cdm_s8 = theory.theory_P_lyas(params)
 
 params['sigma8'] = 0.8659
@@ -97,7 +97,7 @@ wdm_9keV_splus = theory.theory_P_lyas(params)
 
 params['fast-model'] = 'cdm_splus'
 params['gadget-model'] = 'cdm_splus'
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 cdm_splus = theory.theory_P_lyas(params)
 
 params['sigma8'] = 0.7659
@@ -124,12 +124,12 @@ wdm_9keV_sminus = theory.theory_P_lyas(params)
 
 params['fast-model'] = 'cdm_sminus'
 params['gadget-model'] = 'cdm_sminus'
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 cdm_sminus = theory.theory_P_lyas(params)
 
 # add zeta
 
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 
 params['sigma8'] = 0.7659
 params['fast-model'] = 'zeta_p1'
@@ -173,7 +173,7 @@ zeta_p8 = theory.theory_P_lyas(params)
 params['sigma8'] = 0.8159
 params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
-params['m_wdm'] = np.infty
+params['m_wdm'] = np.inf
 ref = obs.observed_3D(params)
 
 if next_gen > 0:

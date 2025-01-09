@@ -80,7 +80,11 @@ class P_21_obs:
 
     def reion_mid(self):
         # we use the average because the difference of xHI(z) between realizations is very small
-        xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_ave_'+self.fast_model+'.txt')
+                # for zeta_p#, we only have r1; for other models, we have ave
+        if(self.fast_model[:4]=='zeta'):
+            xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_r1_'+self.fast_model+'.txt')
+        else:
+            xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_ave_'+self.fast_model+'.txt')
         for z in np.arange(12.0,6.0,-0.01):
             if (xi_arr(z)<0.5 and xi_arr(z+0.01)>0.5): break
             
