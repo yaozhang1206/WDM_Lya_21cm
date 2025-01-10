@@ -14,7 +14,7 @@ https://emcee.readthedocs.io/en/stable/
 
 __pickle__
 
-The codes are run with __python3__.
+The codes are run and tested with __python 3.12.6__, __numpy 2.1.1__, __matplotlib 3.9.2__, __scipy 1.13.0__, __classy 3.2.5__ and __emcee 3.1.6__.
 
 ## Meaning in the filename
 
@@ -42,6 +42,11 @@ p7=(3keV,sigma8=0.8659,zeta=20)
 
 p8=(3keV,sigma8=0.8659,zeta=40)
 
+## Demo
+
+There is a __demo.ipynb__ in code/ illustrating how to read the pickles and data, and plot Lyman alpha and 21 cm IM power spectra, IGM transparency, HI density, cross-power spectrum of matter density and xHI, and the evolution of global xHI.
+
+The code/__mcmc*.py__ files can also be run directly with arguement variable specifying the telescope used.
 
 ## data/
 
@@ -186,4 +191,8 @@ In general,
 - mcmc3d_lya.py, mcmc3d_21cm.py, mcmc3d_combine.py
 
 &emsp;&emsp;3-parameter mcmc analysis in Figure A6 (m_WDM,sigma8,zeta)
+
+- farmer.py, rhoHI.py
+
+&emsp;&emsp;generate the pickles
 
