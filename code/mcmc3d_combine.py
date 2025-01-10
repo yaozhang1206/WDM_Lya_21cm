@@ -409,7 +409,7 @@ filename = "chain_combine_%s_zeta_pop2.h5"%(tele)
 backend = emcee.backends.HDFBackend(filename)
 backend.reset(nwalkers=nw, ndim=nd)
 sampler = emcee.EnsembleSampler(nwalkers = nw, ndim = nd, log_prob_fn = log_prob, backend=backend, moves=emcee.moves.StretchMove(a=4.0))
-sampler.run_mcmc(initial, 10000, progress=False)
+sampler.run_mcmc(initial, 50000, progress=False)
 
 end2 = time.time()
 mcmc_time = end2 - end1

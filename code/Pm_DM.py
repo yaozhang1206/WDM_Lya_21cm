@@ -38,7 +38,7 @@ class P_matter(object):
         self.cosmo.compute()
         # Let's make a function to get us our new computed P_m, but first let's get little h
         self.h = self.cosmo.h()
-        print('Finished prepping the model for P_m')
+        #print('Finished prepping the model for P_m')
 
 
     def alpha_WDM(self):
