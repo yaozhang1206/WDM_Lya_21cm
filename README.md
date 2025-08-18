@@ -174,9 +174,9 @@ In general,
 
 &emsp;&emsp;2-parameter mcmc analysis in Figure 3 (m_WDM,sigma8)
 
-- mcmc3d_lya.py, mcmc3d_21cm.py, mcmc3d_combine.py
+- mcmc4d_lya.py, mcmc4d_21cm.py, mcmc4d_combine.py
 
-&emsp;&emsp;3-parameter mcmc analysis in Figure A6 (m_WDM,sigma8,zeta)
+&emsp;&emsp;4-parameter mcmc analysis in Figure A8 (m_WDM,sigma8,zeta,M_turn)
 
 - farmer.py, rhoHI.py
 
