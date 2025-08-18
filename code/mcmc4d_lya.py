@@ -10,7 +10,7 @@ import sys
 """
     4-parameter MCMC forecast for DESI and Stage V using lyman alpha forest power spectrum.
     Only use realization 1.
-    3 parameters: 1/m_WDM, sigma8, zeta, M_turn
+    4 parameters: 1/m_WDM, sigma8, zeta, M_turn
     input: [next_gen]: 0 or 1
     0: DESI; 1: Stage V
 """
