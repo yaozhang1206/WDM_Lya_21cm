@@ -1,12 +1,13 @@
 import numpy as np
-import theory_P_cross_full as theory
+import theory_P_21cm as theory
 import wedge
 import emcee
+from matplotlib import pyplot as plt
 from scipy import interpolate
 import time
 import os
 import sys
-import pickle
+
 
 """
     4-parameter MCMC forecast for skalow and puma using 21 cm IM power spectrum.
