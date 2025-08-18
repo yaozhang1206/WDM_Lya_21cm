@@ -69,10 +69,9 @@ class P_21_obs:
         z_rh =data.T[0]
         xH = data.T[1]
         return interpolate.interp1d(z_rh,xH)
-        
 
+    
     def rho_HI(self):
-        #rho_HI_func_{Gadge_realization}_{Gadget model}.pkl
         with open('../pickles/rho_HI_func_'+self.gadget_realization+'_'+self.gadget_model+'.pkl','rb') as f:
            rho_HI = pickle.load(f)
            
@@ -80,16 +79,16 @@ class P_21_obs:
 
     def reion_mid(self):
         # we use the average because the difference of xHI(z) between realizations is very small
-        # for zeta_p#, we only have r1; for other models, we have ave
-        if(self.fast_model[:4]=='zeta'):
-            xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_r1_'+self.fast_model+'.txt')
-        else:
+        # for zeta and M_turn variation, we only have 1 realization (r1); for other models, we have ave
+        if(self.fast_model[-2:]=='s8' or self.fast_model[-6:]=='sminus' or self.fast_model[-5:]=='splus'):
             xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_ave_'+self.fast_model+'.txt')
+        else:
+            xi_arr = self.reion_his('../data/21cmFAST/xH_21cm_'+self.fast_realization+'_'+self.fast_model+'.txt')
         for z in np.arange(12.0,6.0,-0.01):
             if (xi_arr(z)<0.5 and xi_arr(z+0.01)>0.5): break
             
         z = z + ((0.5-(xi_arr(z)))/(xi_arr(z+0.01)-xi_arr(z)))*0.01
-        
+
         return z
 
     def dpsi_dz(self, z):
