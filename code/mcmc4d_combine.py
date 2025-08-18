@@ -1,5 +1,5 @@
 import numpy as np
-import theory_P_cross_full as theory_21
+import theory_P_21cm as theory_21
 import theory_P_lyas_arinyo as theory_lya
 import observed_3D as obs
 import wedge
