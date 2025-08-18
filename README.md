@@ -22,25 +22,11 @@ The codes are run and tested with __python 3.12.6__, __numpy 2.1.1__, __matplotl
 We have 4 realizations (r1-r4) and the average of them (ave).
 
 ### [model]
-First kind: **[DM]\_[sigma8]** with DM={3keV,4keV,6keV,9keV,cdm}, sigma8={s8(0.8159),sminus(0.7659),splus(0.8659)}, zeta=30.
+First kind: **[DM]\_[sigma8]** with DM={3keV,4keV,6keV,9keV,cdm}, sigma8={s8(0.8159),sminus(0.7659),splus(0.8659)}, ionization effeciency zeta=24, turnover mass M_turn=5e8 solar mass.
 
-Second kind: **zeta\_[p#]** with p#=p1-p8. Used for 3-parameter MCMC analysis.
+Second kind: **[DM]\_[sigma8]\_[zeta]** with DM={3keV,cdm}, sigma8={sminus(0.7659),splus(0.8659)}, zeta={zplus(35) zminus(20)}, M_turn=5e8 solar mass.
 
-p1=(cdm,sigma8=0.7659,zeta=20)  
-
-p2=(cdm,sigma8=0.7659,zeta=40)
-
-p3=(cdm,sigma8=0.8659,zeta=20)
-
-p4=(cdm,sigma8=0.8659,zeta=40)
-
-p5=(3keV,sigma8=0.7659,zeta=20)
-
-p6=(3keV,sigma8=0.7659,zeta=40)
-
-p7=(3keV,sigma8=0.8659,zeta=20)
-
-p8=(3keV,sigma8=0.8659,zeta=40)
+Third kind: **[DM]\_[sigma8]\_[zeta]\_[mturn]** with DM={3keV,cdm}, sigma8={sminus(0.7659),splus(0.8659)}, zeta={zplus(35),zminus(20)}, M_turn={mlow(1e8),mhigh(1e9)} solar mass.
 
 ## Demo
 
