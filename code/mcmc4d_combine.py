@@ -13,7 +13,7 @@ import sys
 """
     4-parameter MCMC forecast for DESI+SKA1-LOW and PUMA+Stage V using lyman alpha forest and 21 cm IM power spectra.
     Only use realization 1.
-    4 parameter: 1/m_WDM, sigma8, zeta, mturn
+    4 parameters: 1/m_WDM, sigma8, zeta, mturn
     input: [telescope]: skalow or puma
     skalow: DESI+SKA1-LOW; puma: PUMA+Stage V
 """
