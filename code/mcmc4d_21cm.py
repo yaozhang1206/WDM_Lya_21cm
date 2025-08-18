@@ -12,7 +12,7 @@ import sys
 """
     4-parameter MCMC forecast for skalow and puma using 21 cm IM power spectrum.
     Only use realization 1.
-    4 parameter: 1/m_WDM, sigma8, zeta, M_turn
+    4 parameters: 1/m_WDM, sigma8, zeta, M_turn
     input: [telescope]: skalow or puma
 """
 
