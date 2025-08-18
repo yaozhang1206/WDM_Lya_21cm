@@ -63,7 +63,7 @@ params['sigma8'] = 0.8159
 params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
 params['m_wdm'] = np.inf
-cdm_s8 = theory.theory_P_cross(params)
+cdm_s8 = theory.theory_P_21(params)
 
 
 # dark matter models
@@ -96,7 +96,7 @@ for i,dm in enumerate(dm_model):
         params['gadget-model'] = name
         params['m_wdm'] = dm_mass[i]
         params['sigma8'] = s8s[j]
-        models.append(theory.theory_P_cross(params))
+        models.append(theory.theory_P_21(params))
         coords.append([inverse_mass[i],s8s[j],24,8.7])
 
 
@@ -109,12 +109,12 @@ for i,dm in enumerate(dm_model_short):
         for k,zeta in enumerate(zeta_model):
             name1 = "%s_%s_%s"%(dm,s8,zeta)
             params['fast-model'] = name1
-            models.append(theory.theory_P_cross(params))
+            models.append(theory.theory_P_21(params))
             coords.append([inverse_mass_short[i],s8s_short[j],zetas[k],8.7])
             for l,mturn in enumerate(mturn_model):
                 name1 = "%s_%s_%s_%s"%(dm,s8,zeta,mturn)
                 params['fast-model'] = name1
-                models.append(theory.theory_P_cross(params))
+                models.append(theory.theory_P_21(params))
                 coords.append([inverse_mass_short[i],s8s_short[j],zetas[k],mturns[l]])
 
 coords = np.array(coords)
