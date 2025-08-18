@@ -26,7 +26,7 @@ First kind: **[DM]\_[sigma8]** with DM={3keV,4keV,6keV,9keV,cdm}, sigma8={s8(0.8
 
 Second kind: **[DM]\_[sigma8]\_[zeta]** with DM={3keV,cdm}, sigma8={sminus(0.7659),splus(0.8659)}, zeta={zplus(35) zminus(20)}, M_turn=5e8 solar mass.
 
-Third kind: **[DM]\_[sigma8]\_[zeta]\_[mturn]** with DM={3keV,cdm}, sigma8={sminus(0.7659),splus(0.8659)}, zeta={zplus(35),zminus(20)}, M_turn={mlow(1e8),mhigh(1e9)} solar mass.
+Third kind: **[DM]\_[sigma8]\_[zeta]\_[M_turn]** with DM={3keV,cdm}, sigma8={sminus(0.7659),splus(0.8659)}, zeta={zplus(35),zminus(20)}, M_turn={mlow(1e8),mhigh(1e9)} solar mass.
 
 ## Demo
 
