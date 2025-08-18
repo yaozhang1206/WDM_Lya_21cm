@@ -67,7 +67,7 @@ params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
 params['m_wdm'] = np.inf
 cdm_s8_lya = theory_lya.theory_P_lyas(params)
-cdm_s8_21 = theory_21.theory_P_cross(params)
+cdm_s8_21 = theory_21.theory_P_21(params)
 ref_lya = obs.observed_3D(params)
 if tele == 'puma':
     ref_lya.area_ddeg2 = 28000.
@@ -105,7 +105,7 @@ for i,dm in enumerate(dm_model):
         params['m_wdm'] = dm_mass[i]
         params['sigma8'] = s8s[j]
         models_lya.append(theory_lya.theory_P_lyas(params))
-        models_21.append(theory_21.theory_P_cross(params))
+        models_21.append(theory_21.theory_P_21(params))
         coords.append([inverse_mass[i],s8s[j],24,8.7])
 
 
@@ -119,13 +119,13 @@ for i,dm in enumerate(dm_model_short):
             name1 = "%s_%s_%s"%(dm,s8,zeta)
             params['fast-model'] = name1
             models_lya.append(theory_lya.theory_P_lyas(params))
-            models_21.append(theory_21.theory_P_cross(params))
+            models_21.append(theory_21.theory_P_21(params))
             coords.append([inverse_mass_short[i],s8s_short[j],zetas[k],8.7])
             for l,mturn in enumerate(mturn_model):
                 name1 = "%s_%s_%s_%s"%(dm,s8,zeta,mturn)
                 params['fast-model'] = name1
                 models_lya.append(theory_lya.theory_P_lyas(params))
-                models_21.append(theory_21.theory_P_cross(params))
+                models_21.append(theory_21.theory_P_21(params))
                 coords.append([inverse_mass_short[i],s8s_short[j],zetas[k],mturns[l]])
 
 coords = np.array(coords)
