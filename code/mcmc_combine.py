@@ -31,14 +31,15 @@ params['Obh2'] = 0.02230
 params['Och2'] = 0.1188
 params['ns'] = 0.9667
 params['mnu'] = 0.194
+params['As'] = 2.142 # 10^9 * As
 params['alphas'] = -0.002
 params['taure'] = 0.066
 params['bHI'] = 2.82
 params['OHI'] = 1.18e-3 * 1.e3
-params['fast-realization'] = 'ave'
-params['gadget-realization'] = 'ave'
-#params['fast-realization'] = 'r1'
-#params['gadget-realization'] = 'r1'
+#params['fast-realization'] = 'ave'
+#params['gadget-realization'] = 'ave'
+params['fast-realization'] = 'r1'
+params['gadget-realization'] = 'r1'
 params['band'] = 'g'
 params['telescope'] = tele
 params['beam'] = 32 # think about this one
@@ -69,31 +70,31 @@ params['fast-model'] = '3keV_s8'
 params['gadget-model'] = '3keV_s8'
 params['m_wdm'] = 3.0
 wdm_3keV_s8_lya = theory_lya.theory_P_lyas(params)
-wdm_3keV_s8_21 = theory_21.theory_P_21(params)
+wdm_3keV_s8_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '4keV_s8'
 params['gadget-model'] = '4keV_s8'
 params['m_wdm'] = 4.0
 wdm_4keV_s8_lya = theory_lya.theory_P_lyas(params)
-wdm_4keV_s8_21 = theory_21.theory_P_21(params)
+wdm_4keV_s8_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '6keV_s8'
 params['gadget-model'] = '6keV_s8'
 params['m_wdm'] = 6.0
 wdm_6keV_s8_lya = theory_lya.theory_P_lyas(params)
-wdm_6keV_s8_21 = theory_21.theory_P_21(params)
+wdm_6keV_s8_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '9keV_s8'
 params['gadget-model'] = '9keV_s8'
 params['m_wdm'] = 9.0
 wdm_9keV_s8_lya = theory_lya.theory_P_lyas(params)
-wdm_9keV_s8_21 = theory_21.theory_P_21(params)
+wdm_9keV_s8_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
-params['m_wdm'] = np.inf
+params['m_wdm'] = np.infty
 cdm_s8_lya = theory_lya.theory_P_lyas(params)
-cdm_s8_21 = theory_21.theory_P_21(params)
+cdm_s8_21 = theory_21.theory_P_cross(params)
 
 params['sigma8'] = 0.8659
 
@@ -101,31 +102,31 @@ params['fast-model'] = '3keV_splus'
 params['gadget-model'] = '3keV_splus'
 params['m_wdm'] = 3.0
 wdm_3keV_splus_lya = theory_lya.theory_P_lyas(params)
-wdm_3keV_splus_21 = theory_21.theory_P_21(params)
+wdm_3keV_splus_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '4keV_splus'
 params['gadget-model'] = '4keV_splus'
 params['m_wdm'] = 4.0
 wdm_4keV_splus_lya = theory_lya.theory_P_lyas(params)
-wdm_4keV_splus_21 = theory_21.theory_P_21(params)
+wdm_4keV_splus_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '6keV_splus'
 params['gadget-model'] = '6keV_splus'
 params['m_wdm'] = 6.0
 wdm_6keV_splus_lya = theory_lya.theory_P_lyas(params)
-wdm_6keV_splus_21 = theory_21.theory_P_21(params)
+wdm_6keV_splus_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '9keV_splus'
 params['gadget-model'] = '9keV_splus'
 params['m_wdm'] = 9.0
 wdm_9keV_splus_lya = theory_lya.theory_P_lyas(params)
-wdm_9keV_splus_21 = theory_21.theory_P_21(params)
+wdm_9keV_splus_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = 'cdm_splus'
 params['gadget-model'] = 'cdm_splus'
-params['m_wdm'] = np.inf
+params['m_wdm'] = np.infty
 cdm_splus_lya = theory_lya.theory_P_lyas(params)
-cdm_splus_21 = theory_21.theory_P_21(params)
+cdm_splus_21 = theory_21.theory_P_cross(params)
 
 params['sigma8'] = 0.7659
 
@@ -133,34 +134,34 @@ params['fast-model'] = '3keV_sminus'
 params['gadget-model'] = '3keV_sminus'
 params['m_wdm'] = 3.0
 wdm_3keV_sminus_lya = theory_lya.theory_P_lyas(params)
-wdm_3keV_sminus_21 = theory_21.theory_P_21(params)
+wdm_3keV_sminus_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '4keV_sminus'
 params['gadget-model'] = '4keV_sminus'
 params['m_wdm'] = 4.0
 wdm_4keV_sminus_lya = theory_lya.theory_P_lyas(params)
-wdm_4keV_sminus_21 = theory_21.theory_P_21(params)
+wdm_4keV_sminus_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '6keV_sminus'
 params['gadget-model'] = '6keV_sminus'
 params['m_wdm'] = 6.0
 wdm_6keV_sminus_lya = theory_lya.theory_P_lyas(params)
-wdm_6keV_sminus_21 = theory_21.theory_P_21(params)
+wdm_6keV_sminus_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = '9keV_sminus'
 params['gadget-model'] = '9keV_sminus'
 params['m_wdm'] = 9.0
 wdm_9keV_sminus_lya = theory_lya.theory_P_lyas(params)
-wdm_9keV_sminus_21 = theory_21.theory_P_21(params)
+wdm_9keV_sminus_21 = theory_21.theory_P_cross(params)
 
 params['fast-model'] = 'cdm_sminus'
 params['gadget-model'] = 'cdm_sminus'
-params['m_wdm'] = np.inf
+params['m_wdm'] = np.infty
 cdm_sminus_lya = theory_lya.theory_P_lyas(params)
-cdm_sminus_21 = theory_21.theory_P_21(params)
+cdm_sminus_21 = theory_21.theory_P_cross(params)
 
 
-# !! we use 1/m and sigma8 as parameters !!
+# !! we use 1/m and sigma8 as parameter !!
 inverse_mass = [1/3., 1/4., 1/6., 1/9., 0.]
 sigma8 = [0.7659, 0.8159, 0.8659]
 
@@ -176,11 +177,11 @@ for i in range(3):
 params['sigma8'] = 0.8159
 params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
-params['m_wdm'] = np.inf
+params['m_wdm'] = np.infty
 ref_lya = obs.observed_3D(params)
 
 '''
-Yao: Note that PUMA is ~2040 instrument, so at that time Lya survey will be better than DESI.
+Yao: Note that PUMA is ~2040 instrument, so at that time Lya survey will be better than DESI
 So we assume a DESI++ instrument, i.e. survey area = 2 * DESI's = 28,000 deg^2
 Reduce noise of the instrument and get more quasars, P_N and P_w can be reduced by a factor of 3.
 '''
@@ -189,18 +190,19 @@ if tele == 'puma':
 
 
 # from wavelength range to z_bin
-def obs_z(l):
-        l_mean = np.sqrt(l * (l + 200.0)) 
+def obs_z(lmin, lmax):
+        l_mean = np.sqrt(lmin * lmax) 
         z = l_mean / 1215.67 - 1.0
         return z
 
 # wavelength list
-lmin_list = [3501.0 + i * 200.0 for i in range(13)]
+lmin_list = [3.*1215.67, 4.*1215.67]
+lmax_list = [4.*1215.67, 5.*1215.67]
 
 # bins for lya
-z_bin_lya = [obs_z(l) for l in lmin_list]
-k_bin_lya = np.linspace(0.06, 0.45, 40)
-mu_bin_lya = [0.1, 0.3, 0.5, 0.7, 0.9]
+z_bin_lya = [obs_z(lmin_list[i],lmax_list[i]) for i in range(2)]
+k_bin_lya = np.linspace(0.06, 0.35, 30)
+mu_bin_lya = [0.125,0.375,0.625,0.875]
 
 bins_lya = np.zeros((len(z_bin_lya)*len(k_bin_lya)*len(mu_bin_lya), 15))
 i = 0
@@ -235,7 +237,7 @@ var_bin_lya = []
 for i in range(len(z_bin_lya)):
     z = z_bin_lya[i]
     ref_lya.lmin = lmin_list[i]
-    ref_lya.lmax = lmin_list[i] + 200.0
+    ref_lya.lmax = lmax_list[i]
     peff, pw, pn = ref_lya.EffectiveDensityAndNoise() # for each redshift, we calculate Pw2D and PN_eff once to save some time
     # for puma, we assume it combines with DESI++ instruments, and P_N and P_w can be reduced by a factor of 3
     if tele == 'puma':
@@ -243,8 +245,10 @@ for i in range(len(z_bin_lya)):
         pn /= 3.
     for k in k_bin_lya:
         for mu in mu_bin_lya:
+            #kp_kms = k * mu / dkms_dmpc
+            #kt_deg = k * np.sqrt(1.0 - mu**2) * dmpc_ddeg
             ref_bin_lya.append(cdm_s8_lya.LyaLya_base_Mpc_norm(z, k, mu) + cdm_s8_lya.LyaLya_reio_Mpc_norm(z, k, mu))
-            var_bin_lya.append(ref_lya.VarFluxP3D_Mpc_yao(k, mu, 0.01, 0.2, Pw2D=pw, PN_eff=pn))    # Yao: note that we use linear k bins here, not log k bins, so the calculation of Nmode need to be changed in observed_3D.py
+            var_bin_lya.append(ref_lya.VarFluxP3D_Mpc_yao(k, mu, 0.01, 0.25, Pw2D=pw, PN_eff=pn))    # Yao: note that we use linear k bins here, not log k bins, so the calculation of Nmode need to be changed in observed_3D.py
 
 
 #******** 21cm ********#
@@ -299,10 +303,8 @@ print("Preparing models took {0:.1f} seconds".format(interp_time))
 
 
 # the time taken for each likelihood calculation
-cal_time = []
 #  log-probability function
 def log_prob(theta):
-    cal_start = time.time()
     inver_mass, sigma = theta
     if inver_mass > 1/3 or inver_mass < 0 or sigma < 0.7659 or sigma > 0.8659:
         return -np.inf, -np.inf
@@ -313,8 +315,6 @@ def log_prob(theta):
 
         for i in range(len(bins_inter_21)):
             log_p += ((bins_inter_21[i])(inver_mass,sigma) - ref_bin_21[i])**2 / var_bin_21[i]
-        cal_end = time.time()
-        cal_time.append(cal_end - cal_start)
         return -0.5 * log_p, 0.0
 
 nw = 32
@@ -325,10 +325,10 @@ initial = np.zeros((nw, nd))
 for l in range(nw):
     initial[l,0] = np.random.rand()/3
     initial[l,1] = 0.7659 + np.random.rand() * 0.1
-#print(initial)
+print(initial)
 
 # run mcmc chain
-filename = "chain_combine_%s.h5"%(tele)
+filename = "chain_combine_%s_2d.h5"%(tele)
 backend = emcee.backends.HDFBackend(filename)
 backend.reset(nwalkers=nw, ndim=nd)
 sampler = emcee.EnsembleSampler(nwalkers = nw, ndim = nd, log_prob_fn = log_prob, backend=backend, moves=emcee.moves.StretchMove(a=4.0))
@@ -337,10 +337,6 @@ sampler.run_mcmc(initial, 50000, progress=False)
 end2 = time.time()
 mcmc_time = end2 - end1
 print("MCMC took {0:.1f} seconds".format(mcmc_time))
-
-cal_time = np.array(cal_time, dtype=float)
-print('calculation time for each step: ', np.mean(cal_time))
-print("length: ", len(cal_time))
 
 print("Mean acceptance fraction: {0:.3f}".format(np.mean(sampler.acceptance_fraction)))
 
