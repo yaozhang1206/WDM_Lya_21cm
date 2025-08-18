@@ -163,5 +163,32 @@ class theory_P_lyas(object):
         """
         bias_mem = self.memory_bias(z, k_Mpc, mu)
         return 2. * bias_mem * self._crosspower_psi(z, k_Mpc)
+
+    def LyaLya_monopole(self, z, k_Mpc):
+        """ Monopole of the 3D Lya power spectrum """
+        # need to integrate over mu
+        mu = np.linspace(-1, 1, 100)
+        integrand = np.zeros(mu.shape)
+        for i in range(mu.shape[0]):
+            integrand[i] = self.LyaLya_base_Mpc_norm(z, k_Mpc, mu[i]) + self.LyaLya_reio_Mpc_norm(z, k_Mpc, mu[i])
+        return 0.5*integrate.simps(integrand, mu)
+    
+    def LyaLya_quadrupole(self, z, k_Mpc):
+        """ Quadropole of the 3D Lya power spectrum """
+        # need to integrate over mu
+        mu = np.linspace(-1, 1, 100)
+        integrand = np.zeros(mu.shape)
+        for i in range(mu.shape[0]):
+            integrand[i] = (self.LyaLya_base_Mpc_norm(z, k_Mpc, mu[i]) + self.LyaLya_reio_Mpc_norm(z, k_Mpc, mu[i])) * 0.5* (3. * mu[i]**2 - 1.)
+        return 2.5*integrate.simps(integrand, mu)
+    
+    def LyaLya_hexadecapole(self, z, k_Mpc):
+        """ Hexadecapole of the 3D Lya power spectrum """
+        # need to integrate over mu
+        mu = np.linspace(-1, 1, 100)
+        integrand = np.zeros(mu.shape) 
+        for i in range(mu.shape[0]):
+            integrand[i] = (self.LyaLya_base_Mpc_norm(z, k_Mpc, mu[i]) + self.LyaLya_reio_Mpc_norm(z, k_Mpc, mu[i])) * 0.125 * (35. * mu[i]**4 - 30. * mu[i]**2 + 3.)
+        return 4.5*integrate.simps(integrand, mu)
             
 
