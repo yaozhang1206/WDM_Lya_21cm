@@ -70,31 +70,31 @@ params['fast-model'] = '3keV_s8'
 params['gadget-model'] = '3keV_s8'
 params['m_wdm'] = 3.0
 wdm_3keV_s8_lya = theory_lya.theory_P_lyas(params)
-wdm_3keV_s8_21 = theory_21.theory_P_cross(params)
+wdm_3keV_s8_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '4keV_s8'
 params['gadget-model'] = '4keV_s8'
 params['m_wdm'] = 4.0
 wdm_4keV_s8_lya = theory_lya.theory_P_lyas(params)
-wdm_4keV_s8_21 = theory_21.theory_P_cross(params)
+wdm_4keV_s8_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '6keV_s8'
 params['gadget-model'] = '6keV_s8'
 params['m_wdm'] = 6.0
 wdm_6keV_s8_lya = theory_lya.theory_P_lyas(params)
-wdm_6keV_s8_21 = theory_21.theory_P_cross(params)
+wdm_6keV_s8_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '9keV_s8'
 params['gadget-model'] = '9keV_s8'
 params['m_wdm'] = 9.0
 wdm_9keV_s8_lya = theory_lya.theory_P_lyas(params)
-wdm_9keV_s8_21 = theory_21.theory_P_cross(params)
+wdm_9keV_s8_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = 'cdm_s8'
 params['gadget-model'] = 'cdm_s8'
 params['m_wdm'] = np.infty
 cdm_s8_lya = theory_lya.theory_P_lyas(params)
-cdm_s8_21 = theory_21.theory_P_cross(params)
+cdm_s8_21 = theory_21.theory_P_21(params)
 
 params['sigma8'] = 0.8659
 
@@ -102,31 +102,31 @@ params['fast-model'] = '3keV_splus'
 params['gadget-model'] = '3keV_splus'
 params['m_wdm'] = 3.0
 wdm_3keV_splus_lya = theory_lya.theory_P_lyas(params)
-wdm_3keV_splus_21 = theory_21.theory_P_cross(params)
+wdm_3keV_splus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '4keV_splus'
 params['gadget-model'] = '4keV_splus'
 params['m_wdm'] = 4.0
 wdm_4keV_splus_lya = theory_lya.theory_P_lyas(params)
-wdm_4keV_splus_21 = theory_21.theory_P_cross(params)
+wdm_4keV_splus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '6keV_splus'
 params['gadget-model'] = '6keV_splus'
 params['m_wdm'] = 6.0
 wdm_6keV_splus_lya = theory_lya.theory_P_lyas(params)
-wdm_6keV_splus_21 = theory_21.theory_P_cross(params)
+wdm_6keV_splus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '9keV_splus'
 params['gadget-model'] = '9keV_splus'
 params['m_wdm'] = 9.0
 wdm_9keV_splus_lya = theory_lya.theory_P_lyas(params)
-wdm_9keV_splus_21 = theory_21.theory_P_cross(params)
+wdm_9keV_splus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = 'cdm_splus'
 params['gadget-model'] = 'cdm_splus'
 params['m_wdm'] = np.infty
 cdm_splus_lya = theory_lya.theory_P_lyas(params)
-cdm_splus_21 = theory_21.theory_P_cross(params)
+cdm_splus_21 = theory_21.theory_P_21(params)
 
 params['sigma8'] = 0.7659
 
@@ -134,31 +134,31 @@ params['fast-model'] = '3keV_sminus'
 params['gadget-model'] = '3keV_sminus'
 params['m_wdm'] = 3.0
 wdm_3keV_sminus_lya = theory_lya.theory_P_lyas(params)
-wdm_3keV_sminus_21 = theory_21.theory_P_cross(params)
+wdm_3keV_sminus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '4keV_sminus'
 params['gadget-model'] = '4keV_sminus'
 params['m_wdm'] = 4.0
 wdm_4keV_sminus_lya = theory_lya.theory_P_lyas(params)
-wdm_4keV_sminus_21 = theory_21.theory_P_cross(params)
+wdm_4keV_sminus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '6keV_sminus'
 params['gadget-model'] = '6keV_sminus'
 params['m_wdm'] = 6.0
 wdm_6keV_sminus_lya = theory_lya.theory_P_lyas(params)
-wdm_6keV_sminus_21 = theory_21.theory_P_cross(params)
+wdm_6keV_sminus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = '9keV_sminus'
 params['gadget-model'] = '9keV_sminus'
 params['m_wdm'] = 9.0
 wdm_9keV_sminus_lya = theory_lya.theory_P_lyas(params)
-wdm_9keV_sminus_21 = theory_21.theory_P_cross(params)
+wdm_9keV_sminus_21 = theory_21.theory_P_21(params)
 
 params['fast-model'] = 'cdm_sminus'
 params['gadget-model'] = 'cdm_sminus'
 params['m_wdm'] = np.infty
 cdm_sminus_lya = theory_lya.theory_P_lyas(params)
-cdm_sminus_21 = theory_21.theory_P_cross(params)
+cdm_sminus_21 = theory_21.theory_P_21(params)
 
 
 # !! we use 1/m and sigma8 as parameter !!
