@@ -170,6 +170,10 @@ In general,
 
 &emsp;&emsp;HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (15) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi, which is the leading-order term of the impact of reionization on the 21cm IM power spectrum.
 
+- theory_P_cross.py
+
+&emsp;&emsp;calculates the cross-power spectrum of lyman alpha forest and 21 cm IM:
+
 - mcmc_lya.py, mcmc_21cm.py, mcmc_combine.py
 
 &emsp;&emsp;2-parameter mcmc analysis in Figure 3 (m_WDM,sigma8)
@@ -183,6 +187,6 @@ In general,
 &emsp;&emsp;generate the pickles
 
 - SNR.py
-- 
+
 &emsp;&emsp;make signal-to-noise ratio plot (Extended Fig. A7)
 
