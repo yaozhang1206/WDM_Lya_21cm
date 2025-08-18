@@ -7,15 +7,12 @@ import pickle
 import Pm_DM as pm
 
 """
-    For SNR for cross-correlation of 21cm and lya. This is the full version it will need to call a class from Heyang for every z,k,mu... or just put a random one and update!
+   Cross power spectrum of 21cm and lya.
     
-    Now we are using pickle for our memories
+   Reference: Montero-Camacho et al. (2025) [arXiv:2409.11613]
 """
 
 class theory_P_cross(object):
-    # cosmology may not be exactly the same, this may be problematic for this simple comparison. However, cosmology should be very similar.
-    
-    # noise for Lya is going to be a problem due to redshift binning
 
     def __init__(self,params):
         telescope = params['telescope']
