@@ -182,3 +182,7 @@ In general,
 
 &emsp;&emsp;generate the pickles
 
+- SNR.py
+- 
+&emsp;&emsp;make signal-to-noise ratio plot (Extended Fig. A7)
+
