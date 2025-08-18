@@ -173,6 +173,7 @@ In general,
 - theory_P_cross.py
 
 &emsp;&emsp;calculates the cross-power spectrum of lyman alpha forest and 21 cm IM:
+
 &emsp;&emsp;Reference: Montero-Camacho et al. (2025) [arXiv:2409.11613]
 
 - mcmc_lya.py, mcmc_21cm.py, mcmc_combine.py
