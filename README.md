@@ -60,7 +60,7 @@ The code/__mcmc*.py__ files can also be run directly with arguement variable spe
 
 ### data/power_spectrum
 
-The Lyman alpha forest and 21 cm IM power spectra including the imprints of reionization in Figure 2.
+The Lyman alpha forest and 21 cm IM power spectra including the imprints of reionization in Figure 3.
 
 ### data/21cmFAST/
 
