@@ -11,10 +11,10 @@ import pickle
 """
     calculate the 3D lyman alpha forest power spectrum:
     P_F^3D(z,k_Mpc,mu) = LyaLya_base_Mpc_norm(z, k_Mpc, mu) + LyaLya_reio_Mpc_norm(z, k_Mpc, mu),
-    where LyaLya_base_Mpc_norm() is the first term on the RHS of Equation (6),
-    and LyaLya_reio_Mpc_norm() is the second term on the RHS of Equation (6), which is the leading-order term of the impact of reionization on the 3D lyman alpha forest power spectrum.
+    where LyaLya_base_Mpc_norm() is the first term on the RHS of Equation (3),
+    and LyaLya_reio_Mpc_norm() is the second term on the RHS of Equation (3), which is the leading-order term of the impact of reionization on the 3D lyman alpha forest power spectrum.
     
-    Now using Andreu Arinyo-i-Prats et al. (arXiv:1506.04519) results to compute flux bias b_F and RSD parameter beta_F in Equation (6)
+    Now using Andreu Arinyo-i-Prats et al. (arXiv:1506.04519) results to compute flux bias b_F and RSD parameter beta_F in Equation (3)
 """
 
 class theory_P_lyas(object):
