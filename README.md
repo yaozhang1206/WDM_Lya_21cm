@@ -3,6 +3,8 @@ Repository for "Unveiling the dark matter nature with reionization relics"
 
 This repository contains the data and code used in the work "Unveiling the dark matter nature with reionization relics".
 
+https://arxiv.org/abs/2605.26518
+
 ## Code requirements
 __classy__ (which also requires __cython__) for calculating matter power spectrum
 
