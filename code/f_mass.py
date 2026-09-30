@@ -4,7 +4,7 @@ import numpy as np
 from scipy import interpolate
 
 """
-    This calculates the filtering mass M_F and filetering scale k_F in Equations (11), (12), (13), and extracts sound speed in Equation (14) from Gadget-2 snapshots.
+    This calculates the filtering mass M_F and filetering scale k_F in Equations (13), (14), (15), and extracts sound speed in Equation (16) from Gadget-2 snapshots.
     M_F and k_F quantify the smoothing of small-scale baryonic structure and the reduction of gas in low-mass halos due to the increased pressure after reionization.
 """
 
