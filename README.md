@@ -141,7 +141,7 @@ The Lyman alpha forest and 21 cm IM power spectra including the imprints of reio
 
 - rho_HI_func_[gadget_realization]_[model].pkl
   
-&emsp;&emsp;pickle of the interpolator of rho_HI(z_re,z_obs) in Equation (8)
+&emsp;&emsp;pickle of the interpolator of rho_HI(z_re,z_obs) in Equation (11)
 
 
 ## code/
