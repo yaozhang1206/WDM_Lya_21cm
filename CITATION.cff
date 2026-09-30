@@ -1,0 +1,20 @@
+cff-version: 1.1.0
+message: "If you use this software or data, please cite it as below."
+
+authors:
+  - family-names: Zhang
+    given-names: Yao
+  - family-names: Montero-Camacho
+    given-names: Paulo
+  - family-names: Morales-Gutiérrez
+    given-names: Catalina
+  - family-names: Long
+    given-names: Heyang
+  - family-names: Hirata
+    given-names: Christopher M.
+  - family-names: Mao
+    given-names: Yi
+
+title: "Unveiling the dark matter nature with reionization relics"
+version: "formal_realese"
+date-released: 2026-09-30
