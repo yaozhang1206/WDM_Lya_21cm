@@ -99,7 +99,7 @@ The Lyman alpha forest and 21 cm IM power spectra including the imprints of reio
 
 - transp_gadget_[realization]_[model]_f.txt
   
-&emsp;&emsp;column 1-7: psi(z_re,z_obs) in Equation (4), relative transparency of gas reionized at z_re compared to gas reionized at z=8 in CDM
+&emsp;&emsp;column 1-7: psi(z_re,z_obs) in Equation (5), relative transparency of gas reionized at z_re compared to gas reionized at z=8 in CDM
 
 &emsp;&emsp;column 8: radiation bias b_Gamma in Equation (2)
 
@@ -137,11 +137,11 @@ The Lyman alpha forest and 21 cm IM power spectra including the imprints of reio
 
 - psi_[gadget_realization]_[model].pkl
   
-&emsp;&emsp;pickle of the interpolator of psi(z_re,z_obs) in Equation (4)
+&emsp;&emsp;pickle of the interpolator of psi(z_re,z_obs) in Equation (5)
 
 - rho_HI_func_[gadget_realization]_[model].pkl
   
-&emsp;&emsp;pickle of the interpolator of rho_HI(z_re,z_obs) in Equation (9)
+&emsp;&emsp;pickle of the interpolator of rho_HI(z_re,z_obs) in Equation (8)
 
 
 ## code/
@@ -158,9 +158,9 @@ In general,
 
 &emsp;&emsp;P_F^3D(z,k_Mpc,mu) = LyaLya_base_Mpc_norm(z, k_Mpc, mu) + LyaLya_reio_Mpc_norm(z, k_Mpc, mu),
 
-&emsp;&emsp;where LyaLya_base_Mpc_norm() is the first term on the RHS of Equation (6),
+&emsp;&emsp;where LyaLya_base_Mpc_norm() is the first term on the RHS of Equation (3),
 
-&emsp;&emsp;and LyaLya_reio_Mpc_norm() is the second term on the RHS of Equation (6), which is the leading-order term of the impact of reionization on the 3D lyman alpha forest power spectrum.
+&emsp;&emsp;and LyaLya_reio_Mpc_norm() is the second term on the RHS of Equation (3), which is the leading-order term of the impact of reionization on the 3D lyman alpha forest power spectrum.
 
 - theory_P_21cm.py
 
@@ -168,9 +168,9 @@ In general,
 
 &emsp;&emsp;P3D_21_Mpc_norm(z, k_Mpc, mu) = HIHI_base_Mpc_norm(z, k_Mpc, mu) + HIHI_reio_Mpc_norm(z, k_Mpc, mu),
 
-&emsp;&emsp;where HIHI_base_Mpc_norm() is the first term on the RHS of Equation (15) divided by Tb^2, i.e. (b_HI+mu^2\*f)^2\*P_m;
+&emsp;&emsp;where HIHI_base_Mpc_norm() is the first term on the RHS of Equation (9) divided by Tb^2, i.e. (b_HI+mu^2\*f)^2\*P_m;
 
-&emsp;&emsp;HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (15) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi, which is the leading-order term of the impact of reionization on the 21cm IM power spectrum.
+&emsp;&emsp;HIHI_reio_Mpc_norm() is the second term on the RHS of Equation (9) divided by Tb^2, i.e. 2*(b_HI+mu^2*f)*P_mXi, which is the leading-order term of the impact of reionization on the 21cm IM power spectrum.
 
 - theory_P_cross.py
 
@@ -180,11 +180,11 @@ In general,
 
 - mcmc_lya.py, mcmc_21cm.py, mcmc_combine.py
 
-&emsp;&emsp;2-parameter mcmc analysis in Figure 3 (m_WDM,sigma8)
+&emsp;&emsp;2-parameter mcmc analysis in Figure 9 (m_WDM,sigma8)
 
 - mcmc4d_lya.py, mcmc4d_21cm.py, mcmc4d_combine.py
 
-&emsp;&emsp;4-parameter mcmc analysis in Figure A8 (m_WDM,sigma8,zeta,M_turn)
+&emsp;&emsp;4-parameter mcmc analysis in Figure 11 (m_WDM,sigma8,zeta,M_turn)
 
 - farmer.py, rhoHI.py
 
@@ -192,5 +192,5 @@ In general,
 
 - SNR.py
 
-&emsp;&emsp;make signal-to-noise ratio plot (Extended Fig. A7)
+&emsp;&emsp;make signal-to-noise ratio plot (Figure 10)
 
